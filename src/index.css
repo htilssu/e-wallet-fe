@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("./assets/backgroundLogin.png");
+    background-repeat: no-repeat; /*ngăn chặn việc lặp lại của hình nền*/
+    background-size: cover;  /*full man hinh*/
+}
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit; /* Sử dụng lại nền của phần tử gốc */
+    background-size: inherit; /* Đảm bảo kích thước ảnh nền phù hợp */
+    filter: blur(5px); /* Độ mờ của ảnh nền */
+    opacity: 0.7; /* Độ trong suốt của ảnh nền */
+    z-index: -1; /* Đảm bảo lớp phủ nằm phía sau nội dung */
+}
