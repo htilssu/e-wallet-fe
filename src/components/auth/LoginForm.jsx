@@ -1,6 +1,6 @@
 // cach tao ra: rafce
 // eslint-disable-next-line no-unused-vars
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import './LoginRegister.css'  //add css
 import LoginComponent from './LoginComponent';
 import RegisterComponent from "./RegisterComponent";
@@ -15,10 +15,6 @@ const LoginForm = () => {
     const loginLink = () => {
         setAction('');
     };
-
-    useEffect(() => {
-        console.log(123)
-    }, []);
 
     return (
         <div className={`wrapper${action}`}>
