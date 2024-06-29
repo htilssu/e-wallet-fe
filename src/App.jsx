@@ -1,17 +1,22 @@
+
 import './App.css'
-import Home from "./components/topup/test.jsx";
+import Home from './components/topup/test';
+
 
 
 function App() {
 
   return (
     <>
-      <div>
+      <div className='home'>
+          
           <Home></Home>
-          <TestComponent/>
+          
       </div>
     </>
   )
 }
+
+
 
 export default App
