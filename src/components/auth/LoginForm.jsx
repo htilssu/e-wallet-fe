@@ -1,12 +1,11 @@
-
 // cach tao ra: rafce
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from 'react';
-import './LoginRegister.css';  //add css
-import LoginComponent from './LoginComponent.jsx';
-import RegisterComponent from "./RegisterComponent.jsx";
+import React, {useEffect, useState} from 'react';
+import './LoginRegister.css'  //add css
+import LoginComponent from './LoginComponent';
+import RegisterComponent from "./RegisterComponent";
 
-const LoginRegister = () => {
+const LoginForm = () => {
 
     const [action, setAction] = useState('');  //khai báo một biến action và một hàm setAction để cập nhật giá trị của biến này.
 
@@ -17,12 +16,16 @@ const LoginRegister = () => {
         setAction('');
     };
 
+    useEffect(() => {
+        console.log(123)
+    }, []);
+
     return (
-        <div className = {`wrapper${action}`}>
+        <div className={`wrapper${action}`}>
             <LoginComponent registerLink={registerLink}></LoginComponent>
             <RegisterComponent loginLink={loginLink}></RegisterComponent>
         </div>
     )
 }
 
-export default LoginRegister
+export default LoginForm
