@@ -1,6 +1,6 @@
 // cach tao ra: rafce
 // eslint-disable-next-line no-unused-vars
-import React, { useState} from 'react';
+import React, {useState} from 'react';
 import './LoginRegister.css'  //add css
 import LoginComponent from './LoginComponent';
 import RegisterComponent from "./RegisterComponent";
@@ -17,9 +17,11 @@ const LoginForm = () => {
     };
 
     return (
-        <div className={`wrapper${action}`}>
-            <LoginComponent registerLink={registerLink}></LoginComponent>
-            <RegisterComponent loginLink={loginLink}></RegisterComponent>
+        <div className="bodyLogin">
+            <div className={`wrapper${action}`}>
+                <LoginComponent registerLink={registerLink}></LoginComponent>
+                <RegisterComponent loginLink={loginLink}></RegisterComponent>
+            </div>
         </div>
     )
 }
