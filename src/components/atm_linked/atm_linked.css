@@ -1,0 +1,160 @@
+
+.form-box {
+    width: 100%;
+    max-width: 800px; /* Độ rộng tối đa của form, điều chỉnh tùy theo thiết kế */
+    margin: 0 auto; /* Canh giữa form */
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 20px;
+
+}
+
+.head-form {
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    margin-bottom: 20px;
+}
+
+.icons {
+    margin-right: 10px; /* Khoảng cách giữa biểu tượng và văn bản */
+    color: coral;
+    font-size:20px ;
+}
+
+.head-title p {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0; /* Đảm bảo không có khoảng trắng xung quanh văn bản */
+}
+
+.body-title {
+    margin-bottom: 10px;
+    font-weight: 500;
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+
+}
+
+.body-section {
+    /* Thêm CSS cho phần thân của form tùy theo thiết kế */
+}
+
+.body-section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+
+.body-section-head-left,
+.body-section-head-right {
+    display: flex;
+    align-items: center;
+    position: relative; /* Đảm bảo phần tử cha có position relative */
+}
+
+
+.icon-body-head {
+    position: relative;
+    top: -10px; /* Điều chỉnh vị trí top tùy theo yêu cầu */
+    color: coral;
+    font-size: 24px;
+
+}
+.body-section-head-right-p {
+    display: flex;
+    align-items: center;
+    color: coral;
+}
+
+.body-section-head-right p {
+    margin-left: 5px;
+}
+.card-atm {
+    height: 150px!important; /* Chiều cao tự động phù hợp với nội dung */
+    width: 50%; /* Chiều rộng của card, có thể điều chỉnh */
+    padding: 15px!important; /* Khoảng cách nội dung với viền của card */
+    margin-top: 20px; /* Khoảng cách từ card lên trên */
+    background-color: #ffffff!important; /* Màu nền của card */
+    border: 2px dashed gray!important; /* Đường viền nét đứt với màu xám nhạt */
+    border-radius: 5px!important; /* Bo tròn góc của card */
+    display: flex;
+    flex-direction: column!important; /* Hiển thị nội dung theo chiều dọc */
+    justify-content: center!important; /* Căn giữa nội dung theo chiều ngang */
+    align-items: center; /* Căn giữa nội dung theo chiều dọc */
+
+}
+
+.card-atm a{
+    text-decoration:none ;
+    color: coral;
+}
+.card-atm .card-icon{
+    font-size: 28px;
+    color: coral;
+}
+.atm{
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+.card-nganhang{
+    height: 150px!important; /* Chiều cao tự động phù hợp với nội dung */
+    width: 50%; /* Chiều rộng của card, có thể điều chỉnh */
+    padding: 15px!important; /* Khoảng cách nội dung với viền của card */
+    margin-top: 20px; /* Khoảng cách từ card lên trên */
+    background-color: #ffffff!important; /* Màu nền của card */
+    border: 2px dashed gray!important; /* Đường viền nét đứt với màu xám nhạt */
+    border-radius: 5px!important; /* Bo tròn góc của card */
+    display: flex;
+    flex-direction: column!important; /* Hiển thị nội dung theo chiều dọc */
+    justify-content: center!important; /* Căn giữa nội dung theo chiều ngang */
+    align-items: center; /* Căn giữa nội dung theo chiều dọc */
+    margin-bottom: 20px;
+}
+.card-nganhang a{
+    text-decoration: none;
+    color: coral;
+}
+.body-section-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    margin-top: 20px;
+}
+
+.card-nganhang .card-icon-nganhang{
+    font-size: 30px;
+    color: coral;
+}
+.body-section-bottom-left,
+.body-section-bottom-right {
+    display: flex;
+    align-items: center;
+    position: relative; /* Đảm bảo phần tử cha có position relative */
+}
+
+
+.icon-body-bottom {
+    position: relative;
+    top: -10px; /* Điều chỉnh vị trí top tùy theo yêu cầu */
+    color: coral;
+    font-size: 24px;
+
+}
+.body-section-bottom-right-p {
+    display: flex;
+    align-items: center;
+    color: coral;
+}
+
+.body-section-bottom-right p {
+    margin-left: 5px;
+
+}
