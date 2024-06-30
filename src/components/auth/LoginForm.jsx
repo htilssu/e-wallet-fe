@@ -1,10 +1,9 @@
 
-// cach tao ra: rafce
-// eslint-disable-next-line no-unused-vars
-import React, {useState} from 'react';
+
 import './LoginRegister.css'  //add css
 import LoginComponent from './LoginComponent';
 import RegisterComponent from "./RegisterComponent";
+import {useState} from "react";
 
 const LoginRegister = () => {
 
