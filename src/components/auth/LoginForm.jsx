@@ -1,3 +1,4 @@
+
 // cach tao ra: rafce
 // eslint-disable-next-line no-unused-vars
 import React, {useState} from 'react';
@@ -5,7 +6,7 @@ import './LoginRegister.css'  //add css
 import LoginComponent from './LoginComponent';
 import RegisterComponent from "./RegisterComponent";
 
-const LoginForm = () => {
+const LoginRegister = () => {
 
     const [action, setAction] = useState('');  //khai báo một biến action và một hàm setAction để cập nhật giá trị của biến này.
 
@@ -26,4 +27,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default LoginRegister
