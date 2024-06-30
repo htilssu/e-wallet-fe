@@ -1,8 +1,9 @@
-
-import './InforPopup.css'  //add css
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
+import './Topup.css'  //add css
 import {useNavigate} from "react-router-dom";
 
-const InforPopup = () => {
+const InfoTopup = () => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -19,4 +20,4 @@ const InforPopup = () => {
     );
 };
 
-export default InforPopup;
+export default InfoTopup;

@@ -1,0 +1,4 @@
+.home-container {
+    background-color: #f5f5f5;
+    margin: 0; /* Loại bỏ khoảng trống mặc định của phần tử nếu có */
+}
