@@ -1,5 +1,5 @@
 import './atm_linked.css'; // Import file CSS để tùy chỉnh giao diện
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+
 import { GrTransaction } from "react-icons/gr";
 import { IoIosAddCircle } from "react-icons/io";
 
@@ -25,14 +25,14 @@ const AtmLinked = () => {
                     {/* Phần đầu của phần thân */}
                     <div className="body-section-head">
                         <div className="body-section-head-left">
-                            <p>Thẻ ATM</p>
+                            <p>THẺ ATM</p>
                         </div>
                         <div className="body-section-head-right">
                             <div className="icon-body-head">
                                 <IoIosAddCircle/>
                             </div>
                             <div className="body-section-head-right-p">
-                                <p>THẺ ATM</p>
+                                <p>Thẻ ATM</p>
                             </div>
                         </div>
                     </div>
@@ -64,8 +64,9 @@ const AtmLinked = () => {
                             </div>
                         </div>
                     </div>
+
+                    {/* Card thứ hai */}
                     <div className="nganhang">
-                        {/* Card thứ hai */}
                         <div className="cart card-nganhang">
                             <div className="card-body-nganhang">
                                 <a href='#'>

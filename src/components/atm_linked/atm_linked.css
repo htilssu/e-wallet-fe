@@ -61,11 +61,8 @@
 
 
 .icon-body-head {
-    position: relative;
-    top: -10px; /* Điều chỉnh vị trí top tùy theo yêu cầu */
     color: coral;
     font-size: 24px;
-
 }
 .body-section-head-right-p {
     display: flex;
@@ -98,6 +95,10 @@
 .card-atm .card-icon{
     font-size: 28px;
     color: coral;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 .atm{
     border-bottom: 1px solid black;
@@ -117,6 +118,13 @@
     align-items: center; /* Căn giữa nội dung theo chiều dọc */
     margin-bottom: 20px;
 }
+.card-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: coral;
+}
 .card-nganhang a{
     text-decoration: none;
     color: coral;
@@ -130,8 +138,11 @@
 }
 
 .card-nganhang .card-icon-nganhang{
-    font-size: 30px;
+    font-size: 28px;
     color: coral;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .body-section-bottom-left,
 .body-section-bottom-right {
@@ -143,7 +154,6 @@
 
 .icon-body-bottom {
     position: relative;
-    top: -10px; /* Điều chỉnh vị trí top tùy theo yêu cầu */
     color: coral;
     font-size: 24px;
 
