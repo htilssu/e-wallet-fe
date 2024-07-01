@@ -12,7 +12,7 @@ function App() {
             <Route path="/home" element={<Footer/>}/>
             <Route path="/atm/link" element={<AtmLinked/>}/>
             <Route path="/footer" element={<Footer/>}/>
-            <Route path="/" element={<LoginForm/>}/> {/* Route mặc định */}
+            <Route path="/" element={<LoginForm/>}/>
           </Routes>
         </div>
       </BrowserRouter>
