@@ -1,4 +1,5 @@
 name: build
+run-name: build
 on:
   pull_request:
     branches:
@@ -25,8 +26,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+          cache: 'npm'
+
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Build
         run: npm run build
 #      - name: Test

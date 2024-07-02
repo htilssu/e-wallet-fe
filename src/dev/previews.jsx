@@ -3,6 +3,7 @@ import { PaletteTree } from './palette'
 import App from '../App.jsx'
 import InforPopup from '../components/topup/InforPopup.jsx'
 import LoginForm from '../components/auth/LoginForm.jsx'
+import Footer from '../components/footer/Footer.jsx';
 
 const ComponentPreviews = () => {
     return (
@@ -16,6 +17,12 @@ const ComponentPreviews = () => {
                 <ComponentPreview path="/LoginForm">
                     <LoginForm/>
                 </ComponentPreview>
+              <ComponentPreview path="/Footer">
+                <Footer/>
+              </ComponentPreview>
+              <ComponentPreview path="/ComponentPreviews">
+                <ComponentPreviews/>
+              </ComponentPreview>
             </Previews>
     )
 }
