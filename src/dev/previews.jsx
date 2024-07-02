@@ -1,7 +1,6 @@
 import { ComponentPreview, Previews } from '@react-buddy/ide-toolbox'
 import { PaletteTree } from './palette'
 import App from '../App.jsx'
-import InforPopup from '../components/topup/InforPopup.jsx'
 import LoginForm from '../components/auth/LoginForm.jsx'
 import Footer from '../components/footer/Footer.jsx';
 
@@ -10,9 +9,6 @@ const ComponentPreviews = () => {
             <Previews palette={<PaletteTree/>}>
                 <ComponentPreview path="/App">
                     <App/>
-                </ComponentPreview>
-                <ComponentPreview path="/InforPopup">
-                    <InforPopup/>
                 </ComponentPreview>
                 <ComponentPreview path="/LoginForm">
                     <LoginForm/>
