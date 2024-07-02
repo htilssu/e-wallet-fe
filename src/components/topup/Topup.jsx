@@ -1,10 +1,9 @@
 
-
 import InforTopup from "./InfoPopup.jsx";
 
 const Topup = () => {
     return (
-        <div className={"hh"}>
+        <div>
             <InforTopup/>
         </div>
     )
