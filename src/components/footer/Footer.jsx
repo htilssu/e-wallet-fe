@@ -1,3 +1,4 @@
+
 import {FaFacebook, FaInstagram, FaLinkedin, FaTwitter} from 'react-icons/fa';
 import {IoIosArrowForward} from 'react-icons/io';
 
@@ -105,5 +106,6 @@ const Footer = () => {
     </div>
   </footer>);
 };
+
 
 export default Footer;
