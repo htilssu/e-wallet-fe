@@ -1,7 +1,8 @@
-import './App.css'
+
 import LoginForm from "./components/auth/LoginForm.jsx";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Footer from "./components/footer/Footer.jsx";
+import PersonalInfoForm from "./components/infoAccount/PersonalInfoForm.jsx";
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
         <div className="text-amber-50">
           <Routes>
             <Route path="/login" element={<LoginForm/>}/>
-            <Route path="/home" element={<Footer/>}/>
+            <Route path="/home" element={<PersonalInfoForm/>}/>
             <Route path="/atm/link" element={<Footer/>}/>
             <Route path="/footer" element={<Footer/>}/>
             <Route path="/" element={<LoginForm/>}/>
