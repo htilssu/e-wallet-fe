@@ -1,15 +1,21 @@
-import './atm_linked.css'; // Import file CSS để tùy chỉnh giao diện
-
 import { GrTransaction } from "react-icons/gr";
 import { IoIosAddCircle } from "react-icons/io";
+import CardAtmComponents from './CardAtmComponents'; // Import the CardAtmComponents component
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const AtmLinked = () => {
+    const navigate = useNavigate();
+
+    const handleShowNganHang = () => {
+        navigate('/AddInfoAtm'); // Điều hướng đến trang AddInfoAtm
+    };
+
     return (
-        <div className="form-box">
+        <div className="form-box w-full max-w-[800px] my-auto mx-0 p-5 bg-white border-[1px] border-solid border-amber-500 rounded-3xl">
             <form>
-                {/* Phần đầu form */}
-                <div className="head-form">
-                    <div className="icons">
+                {/* Form Header */}
+                <div className="head-form flex items-center mb-5">
+                    <div className="icons mr-2 text-[#FF7F50FF]">
                         <GrTransaction />
                     </div>
                     <div className="head-title">
@@ -17,67 +23,57 @@ const AtmLinked = () => {
                     </div>
                 </div>
 
-                {/* Phần thân form */}
-                <div className="body-title">
+                {/* Form Body */}
+                <div className="body-title mb-2 font-semibold flex items-start border-b-[1px] border-black ">
                     <p>Thẻ/tài khoản nội địa(rút)</p>
                 </div>
                 <div className="body-section">
-                    {/* Phần đầu của phần thân */}
-                    <div className="body-section-head">
-                        <div className="body-section-head-left">
+                    {/* Body Section Header */}
+                    <div className="body-section-head flex justify-between items-center pb-2 mb-2">
+                        <div className="body-section-head-left flex items-center relative">
                             <p>THẺ ATM</p>
                         </div>
-                        <div className="body-section-head-right">
-                            <div className="icon-body-head">
+                        <div className="body-section-head-right flex items-center relative">
+                            <div className="icon-body-head text-[#FF7F50FF] text-sm" onClick={handleShowNganHang}>
                                 <IoIosAddCircle/>
                             </div>
-                            <div className="body-section-head-right-p">
+                            <div className="body-section-head-right-p ml-1 flex items-center text-[#FF7F50FF]" onClick={handleShowNganHang}>
                                 <p>Thẻ ATM</p>
                             </div>
                         </div>
                     </div>
 
-                    {/* Card thứ nhất */}
-                    <div className="atm">
-                        <div className="cart card-atm">
-                            <div className="card-body">
-                                <a href='#'>
-                                    <div className="card-icon">
-                                        <IoIosAddCircle/>
-                                    </div>
-                                    <h5 className="card-title">Thêm thẻ ATM</h5>
-                                    <p className="card-text">Bạn có thể thêm thẻ ATM vào đây</p>
-                                </a>
-                            </div>
-                        </div>
+                    {/* First Card */}
+                    <div className="atm hover:black border-b border-solid text-black pb-2" onClick={handleShowNganHang}>
+                        <CardAtmComponents
+                            title="Thêm thẻ ATM"
+                            text="Bạn có thể thêm thẻ ATM vào đây"
+                            link="#"
+                        />
                     </div>
-                    <div className="body-section-bottom">
-                        <div className="body-section-bottom-left">
+
+                    {/* Body Section Bottom */}
+                    <div className="body-section-bottom flex justify-between items-center pb-2 mt-4">
+                        <div className="body-section-bottom-left flex items-center relative">
                             <p>TÀI KHOẢN NGÂN HÀNG</p>
                         </div>
-                        <div className="body-section-bottom-right">
-                            <div className="icon-body-bottom">
+                        <div className="body-section-bottom-right flex items-center relative">
+                            <div className="icon-body-bottom relative text-[#FF7F50FF] text-sm" onClick={handleShowNganHang}>
                                 <IoIosAddCircle/>
                             </div>
-                            <div className="body-section-bottom-right-p">
+                            <div className="body-section-bottom-right-p flex items-center text-[#FF7F50FF]" onClick={handleShowNganHang}>
                                 <p>Thẻ tài khoản</p>
                             </div>
                         </div>
                     </div>
 
-                    {/* Card thứ hai */}
-                    <div className="nganhang">
-                        <div className="cart card-nganhang">
-                            <div className="card-body-nganhang">
-                                <a href='#'>
-                                    <div className="card-icon-nganhang">
-                                        <IoIosAddCircle/>
-                                    </div>
-                                    <h5 className="card-title">Thêm tài khoản ngân hàng</h5>
-                                    <p className="card-text">Bạn có thể tài khoản ngân hàng vào đây</p>
-                                </a>
-                            </div>
-                        </div>
+                    {/* Second Card */}
+                    <div className="nganhang" onClick={handleShowNganHang}>
+                        <CardAtmComponents
+                            title="Thêm tài khoản ngân hàng"
+                            text="Bạn có thể thêm tài khoản ngân hàng vào đây"
+                            link="#"
+                        />
                     </div>
                 </div>
             </form>
