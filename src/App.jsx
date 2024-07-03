@@ -1,4 +1,4 @@
-import UnAuthHeader from './components/header/UnAuthHeader.jsx';
+import UnAuthHeader from "./components/header/UnAuthHeader.jsx";
 import LoginForm from "./components/auth/LoginForm.jsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "./components/footer/Footer.jsx";
@@ -11,16 +11,16 @@ import { PageNotFound } from "./modules/core/system-component/PageNotFound.jsx";
 function App() {
   return (
     <>
-    <UnAuthHeader/>
+      <UnAuthHeader />
       <BrowserRouter>
-        <div className="">
+        <div className="mt-24">
           <Routes>
             <Route path="/login" element={<LoginForm />} />
             <Route path="/home" element={<PersonalInfoForm />} />
-              <Route path="/atm/link" element={<AtmLinked/>}/>
+            <Route path="/atm/link" element={<AtmLinked />} />
             <Route path="/topup" element={<Topup />} />
-              <Route path="/AddInfoAtm" element={<AddInfoAtm/>}/>
-              <Route path="/footer" element={<Footer/>}/>
+            <Route path="/AddInfoAtm" element={<AddInfoAtm />} />
+            <Route path="/footer" element={<Footer />} />
             <Route path="/" element={<LoginForm />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
@@ -32,4 +32,3 @@ function App() {
 }
 
 export default App;
-
