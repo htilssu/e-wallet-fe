@@ -5,6 +5,7 @@ import PersonalInfoForm from "./components/infoAccount/PersonalInfoForm.jsx";
 import AtmLinked from "./components/atm_linked/AtmLinked.jsx";
 import AddInfoAtm from "./components/add_atm_linked/AddInfoAtm.jsx";
 import Topup from "./components/topup/Topup.jsx";
+import { PageNotFound } from "./modules/core/system-component/PageNotFound.jsx";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
               <Route path="/AddInfoAtm" element={<AddInfoAtm/>}/>
               <Route path="/footer" element={<Footer/>}/>
             <Route path="/" element={<LoginForm />} />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </div>
       </BrowserRouter>
