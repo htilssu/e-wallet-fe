@@ -5,7 +5,6 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const InfoTopUp = lazy(() => {
   return delay(100).then(() => import("./InfoPopup.jsx"));
 });
-import Footer from "../footer/Footer.jsx";
 import { MyWallet } from "../infoAccount/PersonalInfoForm.jsx";
 
 const TopUp = () => {

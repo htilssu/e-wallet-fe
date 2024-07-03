@@ -1,7 +1,6 @@
 import {FaEdit} from "react-icons/fa";
 import {MdAccountCircle} from "react-icons/md";
 import {HiMiniCheckBadge} from "react-icons/hi2";
-import Footer from "../footer/Footer.jsx";
 import { useNavigate } from "react-router-dom";
 
 function MyWallet() {
@@ -114,7 +113,6 @@ const PersonalInfoForm = () => {
                 <MyWallet/>
                 <TopUpBtn/>
             </div>
-            <Footer/>
         </div>
     );
 };
