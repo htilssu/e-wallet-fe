@@ -12,7 +12,7 @@ const AtmLinked = () => {
 
     return (
         <div className={"md:p-6 flex items-center justify-center"}>
-        <div className="form-box w-full max-w-[800px] my-auto mx-0 p-5 bg-white border-[1px] border-solid border-amber-500 rounded-3xl">
+        <div className="form-box w-full max-w-[800px] my-auto mx-0 p-5 bg-white border-0 md:border-[1px] border-solid border-amber-500 rounded-3xl">
             <form>
                 {/* Form Header */}
                 <div className="head-form flex items-center mb-5">

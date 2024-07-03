@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <div className="text-amber-50">
+        <div className="">
           <Routes>
             <Route path="/login" element={<LoginForm />} />
             <Route path="/home" element={<PersonalInfoForm />} />
