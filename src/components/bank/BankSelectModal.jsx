@@ -81,7 +81,7 @@ const BankSelectModal = ({ show, onClose }) => {
     );
 
     return (
-        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center">
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-40">
             <div className="bg-gray-100 border-2 rounded-lg overflow-hidden shadow-xl w-full max-w-lg">
                 <div className="text-gray-950 p-6">
                     <div>
