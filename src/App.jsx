@@ -2,7 +2,7 @@ import LoginForm from "./components/auth/LoginForm.jsx";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Footer from "./components/footer/Footer.jsx";
 import PersonalInfoForm from "./components/infoAccount/PersonalInfoForm.jsx";
-import Topup from "./components/topup/Topup.jsx";
+import TopUp from "./components/topup/TopUp.jsx";
 
 function App() {
     return (
@@ -13,7 +13,7 @@ function App() {
                     <Route path="/home" element={<PersonalInfoForm/>}/>
                     <Route path="/atm/link" element={<Footer/>}/>
                     <Route path="/footer" element={<Footer/>}/>
-                    <Route path="/topup" element={<Topup/>}/>
+                    <Route path="/topup" element={<TopUp/>}/>
                     <Route path="/" element={<LoginForm/>}/>
                 </Routes>
             </div>
