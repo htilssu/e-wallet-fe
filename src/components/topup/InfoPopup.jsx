@@ -1,14 +1,13 @@
-import {FaDownload} from "react-icons/fa";
-
-import {useState} from "react";
+import { FaDownload } from "react-icons/fa";
+import { useState } from "react";
+import BankSelectModal from "../bank/BankSelectModal.jsx";
 
 const InfoPopup = () => {
     const [amount, setAmount] = useState('');
     const [displayAmount, setDisplayAmount] = useState('');
     const [method, setMethod] = useState('');
-    // amount: Lưu trữ giá trị số tiền nhập vào từ người dùng (dạng chuỗi).
-    // displayAmount: Lưu trữ giá trị số tiền dạng đã định dạng để hiển thị cho người dùng.
-    // method: Lưu trữ phương thức thanh toán được chọn.
+    const [error, setError] = useState(false); // Thêm state để theo dõi lỗi
+    const [showModal, setShowModal] = useState(false);  //chon ngan hang
 
     const handleAmountChange = (e) => {
         const value = e.target.value;  //Lấy giá trị người dùng nhập vào.
@@ -16,6 +15,8 @@ const InfoPopup = () => {
         const numericValue = value.replace(/[^0-9]/g, '');
         setAmount(numericValue);  //Cập nhật state amount với giá trị số đã được xử lý.
         setDisplayAmount(numericValue);  // Cập nhật state displayAmount để hiển thị giá trị số tiền mới nhập vào mà không cần định dạng.
+        // Reset trạng thái lỗi khi có sự thay đổi giá trị
+        setError(false);
     };
 
     const handleAmountBlur = () => {
@@ -28,13 +29,24 @@ const InfoPopup = () => {
         }
     };
 
-    //Hàm này được gọi khi người dùng chọn một phương thức thanh toán khác nhau.
+    // Hàm này được gọi khi người dùng chọn một phương thức thanh toán khác nhau.
     const handleMethodChange = (method) => {
+        if (!amount) {
+            setError(true); // Đặt trạng thái lỗi nếu chưa nhập số tiền
+            return;
+        }
         setMethod(method);
+        // Reset trạng thái lỗi khi chọn phương thức thanh toán mới
+        setError(false);
+        setShowModal(true); //hien form len
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!amount) {
+            setError(true); // Đặt trạng thái lỗi nếu chưa nhập số tiền
+            return;
+        }
         alert(`Số tiền: ${displayAmount}, Phương thức: ${method}`);
     };
 
@@ -50,7 +62,7 @@ const InfoPopup = () => {
     return (
         <div className="max-w-2xl bg-white shadow-md rounded-lg overflow-hidden p-8 mb-9">
             <div className="flex items-center mb-6">
-                <FaDownload size={25} className="text-black"/>
+                <FaDownload size={25} className="text-black" />
                 <h2 className="text-red-800 text-4xl font-bold ml-3">Nạp tiền</h2>
             </div>
             <form onSubmit={handleSubmit}>
@@ -65,8 +77,9 @@ const InfoPopup = () => {
                         value={displayAmount}
                         onChange={handleAmountChange}
                         onBlur={handleAmountBlur}
-                        className="placeholder:text-lg w-full text-2xl px-3 py-2 text-red-700 font-sans ring-green-700 ring-1 border rounded-lg focus:outline-none focus:shadow-outline"
+                        className={`placeholder:text-lg w-full text-2xl px-3 py-2 text-red-700 font-sans ring-1 rounded-lg focus:outline-none focus:shadow-outline ${error ? 'ring-red-500' : 'ring-blue-500'}`}
                     />
+                    {error && <p className="text-red-600 text-sm mt-1">Vui lòng nhập số tiền</p>}
                 </div>
                 <div className="mb-6">
                     <p className="text-gray-700 text-sm font-bold mb-2">Số tiền đề xuất:</p>
@@ -82,6 +95,7 @@ const InfoPopup = () => {
                                     }).format(val);
                                     setAmount(val.toString());
                                     setDisplayAmount(formattedAmount);
+                                    setError(false);
                                 }}
                                 className="h-10 bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-2 px-4 rounded-lg hover:from-cyan-600 hover:to-blue-600 hover:bg-gradient-to-r focus:outline-none focus:shadow-outline transition duration-300"
                             >
@@ -95,7 +109,7 @@ const InfoPopup = () => {
                         CHỌN PHƯƠNG THỨC NẠP
                     </label>
                     <div className="grid grid-cols-2 gap-4">
-                        {paymentMethods.map(({label, minAmount, fee}) => (
+                        {paymentMethods.map(({ label, minAmount, fee }) => (
                             <div
                                 key={label}
                                 onClick={() => handleMethodChange(label)}
@@ -107,14 +121,7 @@ const InfoPopup = () => {
                             </div>
                         ))}
                     </div>
-                </div>
-                <div className="flex items-center justify-between">
-                    <button
-                        type="submit"
-                        className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700 focus:outline-none focus:shadow-outline"
-                    >
-                        Nạp tiền vào ví
-                    </button>
+                    {error && !amount && <p className="text-red-600 text-sm mt-1">Vui lòng nhập số tiền trước khi chọn phương thức</p>}
                 </div>
             </form>
             <div className="mt-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700">
@@ -123,6 +130,7 @@ const InfoPopup = () => {
                     một số Ngân hàng sẽ không hỗ trợ kiểm tra sau 19h00: Agribank, Đông Á, Sacombank, Vietinbank,
                     Vietcombank.</p>
             </div>
+            <BankSelectModal show={showModal} onClose={() => setShowModal(false)} />
         </div>
     );
 };

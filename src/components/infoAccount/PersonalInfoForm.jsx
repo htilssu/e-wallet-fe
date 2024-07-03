@@ -5,16 +5,9 @@ import Footer from "../footer/Footer.jsx";
 import {useNavigate} from "react-router-dom";
 
 function MyWallet() {
-    const navigate = useNavigate();
-
-    const handleTopup = (e) => {
-        e.preventDefault();
-        // Logic xác thực người dùng ở đây
-        navigate('/topup');
-    };
     return (
         <div className="p-4">
-            <div className="mb-4">
+            <div >
                 <div className="text-zinc-900 font-medium text-xl mb-2">VÍ CỦA TÔI</div>
                 <div className="flex flex-wrap">
                     <div className={"p-2 w-1/2"}>
@@ -33,18 +26,26 @@ function MyWallet() {
                         <p className="text-sm text-gray-600">Số dư chờ chuyển</p>
                         <p className="text-lg font-semibold text-rose-600">0 đ</p>
                     </div>
-                    <div className={"p-2 w-1/2"}>
-                        <p className="text-sm text-gray-600">Số dư chờ nhận</p>
-                        <p className="text-lg font-semibold text-rose-600">0 đ</p>
-                    </div>
                 </div>
             </div>
-            <div className="text-center" onClick={handleTopup}>
-                <button className="bg-cyan-950 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
+        </div>
+    )
+}
+
+function TopUpBtn() {
+    const navigate = useNavigate();
+
+    const handleTopup = (e) => {
+        e.preventDefault();
+        // Logic xác thực người dùng ở đây
+        navigate('/topup');
+    };
+    return (
+        <div className="text-center" onClick={handleTopup}>
+            <button className="bg-cyan-950 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
                     transition duration-300 ease-in-out hover:bg-blue-700 hover:text-white">
-                    Nạp tiền vào ví
-                </button>
-            </div>
+                Nạp tiền vào ví
+            </button>
         </div>
     )
 }
@@ -69,7 +70,7 @@ const PersonalInfoForm = () => {
 
     return (
         <div>
-            <div className="max-w-lg mx-auto bg-white shadow-md rounded-lg overflow-hidden mb-4">
+            <div className="max-w-lg mx-auto bg-white shadow-md rounded-lg overflow-hidden mb-9">
                 <div>
                     <div className="bg-[url('/backgroundLogin.png')] bg-cover">
                         <div className="max-w-lg mx-auto shadow-md backdrop-blur-sm rounded-lg overflow-hidden">
@@ -111,6 +112,7 @@ const PersonalInfoForm = () => {
                     </div>
                 </div>
                 <MyWallet/>
+                <TopUpBtn/>
             </div>
             <Footer/>
         </div>
@@ -118,4 +120,4 @@ const PersonalInfoForm = () => {
 };
 
 export default PersonalInfoForm;
-export { MyWallet }
+export { MyWallet, TopUpBtn }
