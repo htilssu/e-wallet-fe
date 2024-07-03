@@ -8,7 +8,7 @@ function App() {
       <BrowserRouter>
         <div className="text-amber-50">
           <Routes>
-          <Route path="/" element={<LoginForm/>}/> {/* Route mặc định */}
+          <Route path="/" element={<UnAuthHeader/>}/> {/* Route mặc định */}
             <Route path="/login" element={<LoginForm/>}/>
             <Route path="/home" element={<Footer/>}/>
             <Route path="/atm/link" element={<Footer/>}/>
