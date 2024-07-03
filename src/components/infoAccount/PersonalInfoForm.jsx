@@ -2,8 +2,24 @@ import { FaEdit } from "react-icons/fa";
 import { MdAccountCircle } from "react-icons/md";
 import { HiMiniCheckBadge } from "react-icons/hi2";
 import Footer from "../footer/Footer.jsx";
+import {useNavigate} from "react-router-dom";
+
+function formatCurrency(amount) {
+    return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+}
+// Ví dụ sử dụng
+const amount = 99000020457;
+const formattedAmount = formatCurrency(amount);
 
 const PersonalInfoForm = () => {
+    const navigate = useNavigate();
+
+    const handleTopup = (e) => {
+        e.preventDefault();
+        // Logic xác thực người dùng ở đây
+        navigate('/topup');
+    };
+
     return (
         <div>
             <div className="max-w-lg mx-auto bg-white shadow-md rounded-lg overflow-hidden mb-4">
@@ -54,7 +70,7 @@ const PersonalInfoForm = () => {
                         <div className="grid grid-cols-2 gap-4">
                             <div>
                                 <p className="text-sm text-gray-600">Số dư tổng</p>
-                                <p className="text-lg text-rose-600 font-semibold">0 đ</p>
+                                <p className="text-lg text-rose-600 font-semibold">{formattedAmount}</p>
                             </div>
                             <div>
                                 <p className="text-sm text-gray-600">Số dư khả dụng</p>
@@ -62,7 +78,7 @@ const PersonalInfoForm = () => {
                             </div>
                             <div>
                                 <p className="text-sm text-gray-600">Số dư đóng băng</p>
-                                <p className="text-lg font-semibold text-rose-600">0 đ</p>
+                                <p className="text-lg font-semibold text-rose-600">{formattedAmount}</p>
                             </div>
                             <div>
                                 <p className="text-sm text-gray-600">Số dư chờ chuyển</p>
@@ -74,7 +90,7 @@ const PersonalInfoForm = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="text-center">
+                    <div className="text-center" onClick={handleTopup}>
                         <button className="bg-cyan-950 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
                     transition duration-300 ease-in-out hover:bg-blue-700 hover:text-white">
                             Nạp tiền vào ví

@@ -11,8 +11,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: url('../../../public/backgroundLogin.png');
-    /*background-image: url('src/assets/Payment_gateway.png');*/
+    background-image: url('/backgroundLogin.png');
     background-repeat: no-repeat; /*ngăn chặn việc lặp lại của hình nền*/
     background-size: cover;  /*full man hinh*/
 }
