@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "./components/footer/Footer.jsx";
 import PersonalInfoForm from "./components/infoAccount/PersonalInfoForm.jsx";
 import Topup from "./components/topup/Topup.jsx";
+import { PageNotFound } from "./modules/core/system-component/PageNotFound.jsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/topup" element={<Topup />} />
             <Route path="/footer" element={<Footer />} />
             <Route path="/" element={<LoginForm />} />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </div>
       </BrowserRouter>
