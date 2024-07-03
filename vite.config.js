@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, splitVendorChunkPlugin } from "vite";
 import react from "@vitejs/plugin-react";
 import federation from "@originjs/vite-plugin-federation";
 
@@ -14,5 +14,19 @@ export default defineConfig({
   ],
   build: {
     target: "ESNext",
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (
+            id.includes("react-router-dom") ||
+            id.includes("@remix-run") ||
+            id.includes("react-router")
+          ) {
+            return "@react-router";
+          }
+        },
+      },
+    },
+    cssCodeSplit: true,
   },
 });
