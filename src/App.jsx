@@ -5,12 +5,12 @@ import Footer from "./components/footer/Footer.jsx";
 import PersonalInfoForm from "./components/infoAccount/PersonalInfoForm.jsx";
 import AtmLinked from "./components/atm_linked/AtmLinked.jsx";
 import AddInfoAtm from "./components/add_atm_linked/AddInfoAtm.jsx";
-import React from "react";
+
 function App() {
   return (
       <>
           <BrowserRouter>
-              <div className={"md:p-6 flex items-center justify-center"}>
+              <div className={"text-amber-500"}>
                   <Routes>
                       <Route path="/login" element={<LoginForm/>}/>
                       <Route path="/home" element={<PersonalInfoForm/>}/>
