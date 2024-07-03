@@ -1,19 +1,22 @@
-import { useState, useEffect, useRef } from 'react';
-import './test.css'; // Import CSS file
+import {useState, useEffect} from 'react';
 import axios from 'axios';
 
 const AddInfoAtm = () => {
-    const [showBankList, setShowBankList] = useState(false);
     const [selectedBank, setSelectedBank] = useState('');
     const [bankList, setBankList] = useState([]);
-    const inputRef = useRef(null);
+    const accountName = 'Út Tún';
+    const [accountNumber, setAccountNumber] = useState('');
+    const [ngayphathanh, setngayphathanh] = useState('');
+    const [errors, setErrors] = useState({
+        accountNumber: '',
+        ngayphathanh: ''
+    });
+    const [successMessage, setSuccessMessage] = useState('');
 
     useEffect(() => {
-
-        // Function to fetch data from API
         const fetchBankList = async () => {
             try {
-                const response = await axios.get('https://api.vietqr.io/v2/banks')
+                const response = await axios.get('https://api.vietqr.io/v2/banks');
                 setBankList(response.data.data);
             } catch (error) {
                 console.error('Error fetching bank list:', error);
@@ -23,76 +26,153 @@ const AddInfoAtm = () => {
         fetchBankList();
     }, []);
 
-    const list = () => {
-        setShowBankList(!showBankList);
-    };
-
     const selectBank = (shortName) => {
         setSelectedBank(shortName);
-        setShowBankList(false); // Hide bank list after selecting
     };
 
-    // Handle click outside to close the bank list
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (inputRef.current && !inputRef.current.contains(event.target)) {
-                setShowBankList(false);
-            }
+    const handleValidation = () => {
+        let formIsValid = true;
+        const newErrors = {
+            accountNumber: '',
+            ngayphathanh: ''
         };
 
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
+        if (!accountNumber) {
+            newErrors.accountNumber = 'Vui lòng nhập số tài khoản';
+            formIsValid = false;
+        }
+
+        if (!ngayphathanh) {
+            newErrors.ngayphathanh = 'Vui lòng chọn ngày phát hành';
+            formIsValid = false;
+        }
+
+        setErrors(newErrors);
+        return formIsValid;
+    };
+
+    const handleSubmit = () => {
+        if (handleValidation()) {
+
+            console.log('Form is valid');
+
+            setSuccessMessage('Thông tin đã được cập nhật thành công.')
+        }
+    };
 
     return (
-        <div className="Add-app flex w-full max-w-[1200px]">
-            <div className="card w-full">
-                <div className="form-card ">
-                    <p>title</p>
-                    <div>ten</div>
-                    <div>stk</div>
-                    <div>so ngan hang</div>
-                </div>
-            </div>
-            <div className="bank-container w-full items-center justify-center  ">
-                <div className="pick flex mb-10 ">
-                    <p className="pick-p mr-10 items-center justify-center content-center text-lg">chọn ngân hàng:</p>
-                    <div className="input-container " >
-                        <input
-                            className="list border-[1px]"
-                            placeholder={selectedBank ? selectedBank : "Chọn ngân hàng"}
-                            onClick={list}
-                            readOnly
-                        />
-                        {showBankList && (
-                            <div className="bank-list">
-                                {bankList.map((bank, index) => (
-                                    <input
-                                        key={index}
-                                        type="button"
-                                        className="bank-item"
-                                        value={bank.shortName}
-                                        onClick={() => selectBank(bank.shortName)}
+            <div className="Add-app flex flex-wrap justify-center items-center max-w-[1200px] w-full bg-white border-[1px]   mt-5 p-8 rounded-2xl">
+                <div className="w-full md:flex">
+                    {/* bên trái */}
+                    <div
+                        className="w-full md:w-1/2 p-4 bg-gray-100 border border-gray-300 rounded-2xl mb-5 md:mb-0 h-full">
+                        <div className="mb-4">
+                            <p className="text-lg">{accountName}</p>
+                        </div>
+                        <div className="mb-4">
+                            <p className="stk font-medium text-gray-700">Số tài khoản:</p>
+                            <p className="text-lg">{accountNumber}</p>
 
-                                    />
-                                ))}
+                        </div>
+                        <div className="mb-5">
+                            <p className="nganhang font-medium text-gray-700">Ngân hàng:</p>
+                            <p className="text-lg">{selectedBank}</p>
+                        </div>
+                        <div className="mb-5">
+                            <p className="font-medium text-gray-700">Ngày phát hành:</p>
+                            <p className="text-lg">{ngayphathanh}</p>
+
+                        </div>
+
+                    </div>
+
+                    {/* bên phải*/}
+                    <div className="w-full md:w-2/3 p-4">
+                        <div className="flex flex-col gap-4">
+                            <div className="flex items-center">
+                                <span className="w-1/4 text-right mr-4 text-md">Chọn ngân hàng:</span>
+                                <select
+                                    className="w-3/4 p-2 border border-gray-300 focus:outline-none"
+                                    value={selectedBank}
+                                    onChange={(e) => selectBank(e.target.value)}
+                                >
+                                    <option value="" disabled selected hidden>Chọn ngân hàng</option>
+                                    {bankList.map((bank, index) => (
+                                        <option key={index} value={bank.shortName}>
+                                            {bank.shortName}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
-                        )}
-                    </div>
-                </div>
-                <div className="ten-tk flex ">
-                    <p className="ten-tai-khoan-p mr-10">Tên tài khoản</p>
-                    <div className="ten-tai-khoan-input">
-                        <input className="ten-tk-input" placeholder="Ho Le Anh Toan"/>
-                    </div>
 
+                            <div className="flex items-center">
+                                <span className="w-1/4 text-right mr-4 text-md ">Tên tài khoản:</span>
+                                <input
+                                    className="w-3/4 p-2 border border-gray-300 bg-gray-300 text-gray-700 focus:outline-none"
+                                    value={accountName}
+                                    readOnly
+                                />
+                            </div>
+                            <div className="flex items-center flex-col">
+                                <div className="flex items-center w-full mb-4">
+                                    <div className="w-1/4 text-right mr-4 text-md">
+                                        <span>Số thẻ:</span>
+                                    </div>
+                                    <div className="w-3/4">
+                                        <div className="relative ">
+                                            <input
+                                                className="w-full p-2 border border-gray-300 focus:outline-none"
+                                                type="text"
+                                                value={accountNumber}
+                                                onChange={(e) => setAccountNumber(e.target.value)}
+                                            />
+                                            {errors.accountNumber && (
+                                                <p className="text-red-500 mt-1 absolute left-0">{errors.accountNumber}</p>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center flex-col border-b-2 border-gray-300 pb-6">
+                                <div className="flex items-center w-full mb-4">
+                                    <div className="w-1/4 text-right mr-4 text-md">
+                                        <span>Ngày phát hành thẻ:</span>
+                                    </div>
+                                    <div className="w-3/4">
+                                        <div className="relative ">
+                                        <input
+                                            className="w-full p-2 border border-gray-300 focus:outline-none"
+                                            type="month"
+                                            value={ngayphathanh}
+                                            onChange={(e) => setngayphathanh(e.target.value)}
+                                        />
+                                        {errors.ngayphathanh && (
+                                            <p className="text-red-500 mt-1 absolute left-0">{errors.ngayphathanh}</p>
+                                        )}
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div className="button-bottom flex justify-end">
+                                <button
+                                    className="button-update text-amber-500 p-3 rounded-2xl mr-3 font-bold bg-white">Hủy
+                                    bỏ
+                                </button>
+                                <button className="button-update p-3 rounded-2xl bg-orange-500 font-bold text-white"
+                                        onClick={handleSubmit}>Cập nhật
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                {successMessage && <p className="text-green-500">{successMessage}</p>}
+
             </div>
 
-        </div>
     );
-}
+};
 
 export default AddInfoAtm;
