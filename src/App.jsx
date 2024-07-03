@@ -1,3 +1,4 @@
+import UnAuthHeader from './components/header/UnAuthHeader.jsx';
 import LoginForm from "./components/auth/LoginForm.jsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "./components/footer/Footer.jsx";
@@ -10,6 +11,7 @@ import { PageNotFound } from "./modules/core/system-component/PageNotFound.jsx";
 function App() {
   return (
     <>
+    <UnAuthHeader/>
       <BrowserRouter>
         <div className="">
           <Routes>
@@ -30,3 +32,4 @@ function App() {
 }
 
 export default App;
+
