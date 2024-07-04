@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function MyWallet() {
     return (
-        <div className="p-4 border-2 border-green-600 rounded-2xl">
+        <div className="p-4 border-2 border-gray-300 rounded-2xl">
             <div>
                 <div className="text-zinc-900 font-medium text-xl mb-2">VÍ CỦA TÔI</div>
                 <div className="flex flex-wrap">
