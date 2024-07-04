@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const banks = [
     {
@@ -62,13 +63,14 @@ const banks = [
 
 // eslint-disable-next-line react/prop-types
 const BankSelectModal = ({ show, onClose }) => {
+    const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState("");
 
     if (!show) return null;
 
     const handleBankSelect = (bank) => {
         alert(`Bạn đã chọn ngân hàng: ${bank.name}`);
-        onClose();
+        navigate('/topup/banktransfer', { state: { bank } }); // Chuyển hướng đến trang BankTransferModal với state
     };
     // Hàm xử lý thay đổi từ khóa tìm kiếm
     const handleSearchChange = (e) => {
