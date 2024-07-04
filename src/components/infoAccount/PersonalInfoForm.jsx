@@ -5,23 +5,23 @@ import { useNavigate } from "react-router-dom";
 
 function MyWallet() {
     return (
-        <div className="p-4">
-            <div >
+        <div className="p-4 border-2 border-green-600 rounded-2xl">
+            <div>
                 <div className="text-zinc-900 font-medium text-xl mb-2">VÍ CỦA TÔI</div>
                 <div className="flex flex-wrap">
-                    <div className={"p-2 w-1/2"}>
+                    <div className={"p-2 me-5"}>
                         <p className="text-sm text-gray-600">Số dư tổng</p>
                         <p className="text-lg text-rose-600 font-semibold">{formattedAmount}</p>
                     </div>
-                    <div className={"p-2 w-1/2"}>
+                    <div className={"p-2 me-5 "}>
                         <p className="text-sm text-gray-600">Số dư khả dụng</p>
                         <p className="text-lg font-semibold text-rose-600">0 đ</p>
                     </div>
-                    <div className={"p-2 w-1/2"}>
+                    <div className={"p-2 me-5 "}>
                         <p className="text-sm text-gray-600">Số dư đóng băng</p>
                         <p className="text-lg font-semibold text-rose-600">{formattedAmount}</p>
                     </div>
-                    <div className={"p-2 w-1/2"}>
+                    <div className={"p-2 me-5 "}>
                         <p className="text-sm text-gray-600">Số dư chờ chuyển</p>
                         <p className="text-lg font-semibold text-rose-600">0 đ</p>
                     </div>
