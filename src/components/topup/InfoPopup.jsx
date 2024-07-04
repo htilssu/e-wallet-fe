@@ -60,7 +60,7 @@ const InfoPopup = () => {
     ];
 
     return (
-        <div className="max-w-2xl bg-white shadow-md rounded-lg overflow-hidden p-8 mb-9">
+        <div className="max-w-2xl bg-white shadow-md rounded-lg overflow-hidden p-3 mb-9">
             <div className="flex items-center mb-6">
                 <FaDownload size={25} className="text-black" />
                 <h2 className="text-red-800 text-4xl font-bold ml-3">Nạp tiền</h2>
