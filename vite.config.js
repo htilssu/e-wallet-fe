@@ -1,4 +1,4 @@
-import { defineConfig, splitVendorChunkPlugin } from "vite";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import federation from "@originjs/vite-plugin-federation";
 
@@ -8,7 +8,9 @@ export default defineConfig({
     federation({
       name: "remote-app",
       filename: "remoteEntry.js",
-      exposes: {},
+      exposes: {
+        Login: "src/components/auth/LoginForm.jsx",
+      },
       shared: ["react", "react-dom"],
     }),
   ],

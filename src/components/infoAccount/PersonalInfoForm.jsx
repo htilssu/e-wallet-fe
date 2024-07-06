@@ -1,57 +1,62 @@
-import {FaEdit} from "react-icons/fa";
-import {MdAccountCircle} from "react-icons/md";
-import {HiMiniCheckBadge} from "react-icons/hi2";
+import { FaEdit } from "react-icons/fa";
+import { MdAccountCircle } from "react-icons/md";
+import { HiMiniCheckBadge } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 
 function MyWallet() {
-    return (
-        <div className="p-4 border-2 border-gray-300 rounded-2xl">
-            <div>
-                <div className="text-zinc-900 font-medium text-xl mb-2">VÍ CỦA TÔI</div>
-                <div className="flex flex-wrap">
-                    <div className={"p-2 me-5"}>
-                        <p className="text-sm text-gray-600">Số dư tổng</p>
-                        <p className="text-lg text-rose-600 font-semibold">{formattedAmount}</p>
-                    </div>
-                    <div className={"p-2 me-5 "}>
-                        <p className="text-sm text-gray-600">Số dư khả dụng</p>
-                        <p className="text-lg font-semibold text-rose-600">0 đ</p>
-                    </div>
-                    <div className={"p-2 me-5 "}>
-                        <p className="text-sm text-gray-600">Số dư đóng băng</p>
-                        <p className="text-lg font-semibold text-rose-600">{formattedAmount}</p>
-                    </div>
-                    <div className={"p-2 me-5 "}>
-                        <p className="text-sm text-gray-600">Số dư chờ chuyển</p>
-                        <p className="text-lg font-semibold text-rose-600">0 đ</p>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div className="p-4 border-2 border-gray-300 rounded-2xl">
+      <div>
+        <div className="text-zinc-900 font-medium text-xl mb-2">VÍ CỦA TÔI</div>
+        <div className="flex flex-wrap">
+          <div className={"p-2 me-5"}>
+            <p className="text-sm text-gray-600">Số dư tổng</p>
+            <p className="text-lg text-rose-600 font-semibold">
+              {formattedAmount}
+            </p>
+          </div>
+          <div className={"p-2 me-5 "}>
+            <p className="text-sm text-gray-600">Số dư khả dụng</p>
+            <p className="text-lg font-semibold text-rose-600">0 đ</p>
+          </div>
+          <div className={"p-2 me-5 "}>
+            <p className="text-sm text-gray-600">Số dư đóng băng</p>
+            <p className="text-lg font-semibold text-rose-600">
+              {formattedAmount}
+            </p>
+          </div>
+          <div className={"p-2 me-5 "}>
+            <p className="text-sm text-gray-600">Số dư chờ chuyển</p>
+            <p className="text-lg font-semibold text-rose-600">0 đ</p>
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
 function TopUpBtn() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleTopup = (e) => {
-        e.preventDefault();
-        // Logic xác thực người dùng ở đây
-        navigate('/topup');
-    };
-    return (
-        <div className="text-center" onClick={handleTopup}>
-            <button className="bg-cyan-950 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
-                    transition duration-300 ease-in-out hover:bg-blue-700 hover:text-white">
-                Nạp tiền vào ví
-            </button>
-        </div>
-    )
+  const handleTopup = (e) => {
+    e.preventDefault();
+    // Logic xác thực người dùng ở đây
+    navigate("/topup");
+  };
+  return (
+    <div className="text-center" onClick={handleTopup}>
+      <button
+        className="bg-cyan-950 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
+                    transition duration-300 ease-in-out hover:bg-blue-700 hover:text-white"
+      >
+        Nạp tiền vào ví
+      </button>
+    </div>
+  );
 }
 
-
 function formatCurrency(amount) {
-    return amount.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'});
+  return amount.toLocaleString("vi-VN", { style: "currency", currency: "VND" });
 }
 
 // Ví dụ sử dụng
@@ -59,13 +64,13 @@ const amount = 99000020457;
 const formattedAmount = formatCurrency(amount);
 
 const PersonalInfoForm = () => {
-    const user = {
-        name: "NGUYỄN ANH TUẤN",
-        email: "tuanmeo980provip@gmail.com",
-        typeAccount: "Tài khoản cá nhân",
-        isVerify: true,
-        surplus: amount,
-    };
+  const user = {
+    name: "NGUYỄN ANH TUẤN",
+    email: "tuanmeo980provip@gmail.com",
+    typeAccount: "Tài khoản cá nhân",
+    isVerify: true,
+    surplus: amount,
+  };
 
     return (
         <div>
@@ -118,4 +123,4 @@ const PersonalInfoForm = () => {
 };
 
 export default PersonalInfoForm;
-export { MyWallet, TopUpBtn }
+export { MyWallet, TopUpBtn };
