@@ -7,7 +7,6 @@ export function MainLayout() {
     <div>
       <Navbar />
       <div className={"mt-24"}>
-        <div className={"w-full h-[250px]"}></div>
         <Outlet />
       </div>
       <Footer />

@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{js,jsx,ts,tsx}", "./node_modules/flowbite/**/*.js"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       height: {
@@ -19,6 +19,8 @@ export default {
       },
       colors: {
         customGray: "#383f48",
+        primary: "rgb(59 130 246)",
+        primaryHover: "rgb(59 130 246 / 90%)",
       },
       inset: {
         "-29": "-113px",
@@ -36,5 +38,4 @@ export default {
         "expandHeight 0.4s cubic-bezier(0.000, 0.000, 0.580, 1.000) forwards",
     },
   },
-  plugins: [require("flowbite/plugin")],
 };

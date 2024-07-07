@@ -1,10 +1,11 @@
 ﻿import { createBrowserRouter } from "react-router-dom";
 import { MainLayout } from "./layouts/MainLayout.jsx";
-import LoginForm from "../../components/auth/LoginForm.jsx";
+import LoginForm from "../../components/auth/AuthForm.jsx";
 import TopUp from "../../components/topup/TopUp.jsx";
 import AtmLinked from "../../components/atm_linked/AtmLinked.jsx";
 import { PageNotFound } from "./system-component/PageNotFound.jsx";
 import BankTransferModal from "../../components/bank/paymentMethods/BankTransferModal.jsx";
+import AuthForm from "../../components/auth/AuthForm.jsx";
 
 export const router = createBrowserRouter([
   {
