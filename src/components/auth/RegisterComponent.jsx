@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
-import React from 'react';
-import { FaUserAlt, FaLock } from "react-icons/fa";
+import React from "react";
+import { FaLock, FaUserAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
 // eslint-disable-next-line react/prop-types
