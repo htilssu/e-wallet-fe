@@ -1,7 +1,7 @@
 import { GrTransaction } from "react-icons/gr";
 import { IoIosAddCircle } from "react-icons/io";
-import CardAtmComponents from './CardAtmComponents'; // Import the CardAtmComponents component
-import { useNavigate } from 'react-router-dom';
+import CardAtmComponents from "./CardAtmComponents"; // Import the CardAtmComponents component
+import { useNavigate } from "react-router-dom";
 import Card from "./Card.jsx";
 
 const AtmLinked = () => {

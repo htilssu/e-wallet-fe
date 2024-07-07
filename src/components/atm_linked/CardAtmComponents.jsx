@@ -1,5 +1,5 @@
 import { IoIosAddCircle } from "react-icons/io";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const CardAtmComponents = ({ title, text, link, onClick }) => {

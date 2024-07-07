@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const fetchBankList = () => {
-    return axios.get('https://api.vietqr.io/v2/banks');
+  return axios.get("https://api.vietqr.io/v2/banks");
 };
 
 const AddInfoAtm = () => {

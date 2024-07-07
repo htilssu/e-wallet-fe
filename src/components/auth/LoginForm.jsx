@@ -1,9 +1,7 @@
-
-
-import './LoginRegister.css'  //add css
-import LoginComponent from './LoginComponent';
+import "./LoginRegister.css"; //add css
+import LoginComponent from "./LoginComponent";
 import RegisterComponent from "./RegisterComponent";
-import {useState} from "react";
+import { useState } from "react";
 
 const LoginRegister = () => {
 
