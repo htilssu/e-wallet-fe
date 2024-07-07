@@ -1,11 +1,11 @@
 import { lazy, Suspense } from "react";
+import { MyWallet } from "../infoAccount/PersonalInfoForm.jsx";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const InfoTopUp = lazy(() => {
   return delay(100).then(() => import("./InfoPopup.jsx"));
 });
-import { MyWallet } from "../infoAccount/PersonalInfoForm.jsx";
 
 const TopUp = () => {
   return (

@@ -1,6 +1,6 @@
-import {FaEdit} from "react-icons/fa";
-import {MdAccountCircle} from "react-icons/md";
-import {HiMiniCheckBadge} from "react-icons/hi2";
+import { FaEdit } from "react-icons/fa";
+import { MdAccountCircle } from "react-icons/md";
+import { HiMiniCheckBadge } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 
 function MyWallet() {
@@ -32,7 +32,7 @@ function MyWallet() {
 }
 
 function TopUpBtn() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
     const handleTopup = (e) => {
         e.preventDefault();
@@ -51,9 +51,8 @@ function TopUpBtn() {
     )
 }
 
-
 function formatCurrency(amount) {
-    return amount.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'});
+  return amount.toLocaleString("vi-VN", { style: "currency", currency: "VND" });
 }
 
 // Ví dụ sử dụng
@@ -61,13 +60,13 @@ const amount = 99000020457;
 const formattedAmount = formatCurrency(amount);
 
 const PersonalInfoForm = () => {
-    const user = {
-        name: "NGUYỄN ANH TUẤN",
-        email: "tuanmeo980provip@gmail.com",
-        typeAccount: "Tài khoản cá nhân",
-        isVerify: true,
-        surplus: amount,
-    };
+  const user = {
+    name: "NGUYỄN ANH TUẤN",
+    email: "tuanmeo980provip@gmail.com",
+    typeAccount: "Tài khoản cá nhân",
+    isVerify: true,
+    surplus: amount,
+  };
 
     return (
         <div>
@@ -120,4 +119,4 @@ const PersonalInfoForm = () => {
 };
 
 export default PersonalInfoForm;
-export { MyWallet, TopUpBtn }
+export { MyWallet, TopUpBtn };

@@ -9,25 +9,26 @@ const InfoPopup = () => {
     const [error, setError] = useState(false); // Thêm state để theo dõi lỗi
     const [showModal, setShowModal] = useState(false);  //chon ngan hang
 
-    const handleAmountChange = (e) => {
-        const value = e.target.value;  //Lấy giá trị người dùng nhập vào.
-        // Xóa ký tự không phải là số
-        const numericValue = value.replace(/[^0-9]/g, '');
-        setAmount(numericValue);  //Cập nhật state amount với giá trị số đã được xử lý.
-        setDisplayAmount(numericValue);  // Cập nhật state displayAmount để hiển thị giá trị số tiền mới nhập vào mà không cần định dạng.
-        // Reset trạng thái lỗi khi có sự thay đổi giá trị
-        setError(false);
-    };
+  const handleAmountChange = (e) => {
+    const value = e.target.value; //Lấy giá trị người dùng nhập vào.
+    // Xóa ký tự không phải là số
+    const numericValue = value.replace(/[^0-9]/g, "");
+    setAmount(numericValue); //Cập nhật state amount với giá trị số đã được xử lý.
+    setDisplayAmount(numericValue); // Cập nhật state displayAmount để hiển thị giá trị số tiền mới nhập vào mà không cần định dạng.
+    // Reset trạng thái lỗi khi có sự thay đổi giá trị
+    setError(false);
+  };
 
-    const handleAmountBlur = () => {
-        if (amount) {  //Kiểm tra nếu amount không rỗng, thực hiện định dạng số tiền theo định dạng tiền tệ Việt Nam (vi-VN) và lưu vào formattedAmount.
-            const formattedAmount = new Intl.NumberFormat('vi-VN', {
-                style: 'currency',
-                currency: 'VND',
-            }).format(amount);
-            setDisplayAmount(formattedAmount);  //Cập nhật state displayAmount để hiển thị số tiền đã được định dạng.
-        }
-    };
+  const handleAmountBlur = () => {
+    if (amount) {
+      //Kiểm tra nếu amount không rỗng, thực hiện định dạng số tiền theo định dạng tiền tệ Việt Nam (vi-VN) và lưu vào formattedAmount.
+      const formattedAmount = new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      }).format(amount);
+      setDisplayAmount(formattedAmount); //Cập nhật state displayAmount để hiển thị số tiền đã được định dạng.
+    }
+  };
 
     // Hàm này được gọi khi người dùng chọn một phương thức thanh toán khác nhau.
     const handleMethodChange = (methodPay) => {
@@ -42,14 +43,14 @@ const InfoPopup = () => {
     };
 
 
-    const suggestedAmounts = [20000, 50000, 100000, 200000, 500000, 1000000];
-    const paymentMethods = [
-        { label: 'Online bằng thẻ ATM', minAmount: 10000 },
-        { label: 'Online bằng Internet banking', minAmount: 10000 },
-        { label: 'Chuyển khoản nhận ngay', minAmount: 50000 },
-        { label: 'Chuyển khoản offline', minAmount: 10000 },
-        { label: 'Online bằng thẻ liên kết', minAmount: 10000, fee: '0,33%' }
-    ];
+  const suggestedAmounts = [20000, 50000, 100000, 200000, 500000, 1000000];
+  const paymentMethods = [
+    { label: "Online bằng thẻ ATM", minAmount: 10000 },
+    { label: "Online bằng Internet banking", minAmount: 10000 },
+    { label: "Chuyển khoản nhận ngay", minAmount: 50000 },
+    { label: "Chuyển khoản offline", minAmount: 10000 },
+    { label: "Online bằng thẻ liên kết", minAmount: 10000, fee: "0,33%" },
+  ];
 
     return (
         <div className="max-w-2xl bg-white shadow-md rounded-lg overflow-hidden mb-9">

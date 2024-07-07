@@ -1,64 +1,62 @@
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const banks = [
-    {
-        name: "Vietcombank",
-        note: "Vietcombank - Ngoại thương",
-        logo: "/logoVCB.png"
-    },
-    {
-        name: "Vietinbank",
-        note: "Vietinbank - Công thương",
-        logo: "/logoVTB.png"
-    },
-    {
-        name: "DongABank",
-        note: "DongA Bank - Đông Á",
-        logo: "/logoDongABank.png"
-    },
-    {
-        name: "Techcombank",
-        note: "Techcombank - Kỹ Thương Việt Nam",
-        logo: "/logoTCB.png"
-    },
-    {
-        name: "Vietinbank",
-        note: "Vietinbank - Công thương",
-        logo: "/logoVTB.png"
-    },
-    {
-        name: "Eximbank",
-        note: "Eximbank - Xuất nhập khẩu",
-        logo: "/logoVCB.png"
-    },
-    {
-        name: "ACB",
-        note: "ACB - Á Châu",
-        logo: "/logoVCB.png"
-    },
-    {
-        name: "Sacombank",
-        note: "Sacombank - Sài Gòn Thương Tín",
-        logo: "/logoVCB.png"
-    },
-    {
-        name: "BIDV",
-        note: "BIDV - Đầu tư",
-        logo: "/logoVCB.png"
-    }
-    ,
-    {
-        name: "Vietinbank",
-        note: "Vietinbank - Công thương",
-        logo: "/logoVTB.png"
-    }
-    ,
-    {
-        name: "Vietinbank",
-        note: "Vietinbank - Công thương",
-        logo: "/logoVTB.png"
-    }
+  {
+    name: "Vietcombank",
+    note: "Vietcombank - Ngoại thương",
+    logo: "/logoVCB.png",
+  },
+  {
+    name: "Vietinbank",
+    note: "Vietinbank - Công thương",
+    logo: "/logoVTB.png",
+  },
+  {
+    name: "DongABank",
+    note: "DongA Bank - Đông Á",
+    logo: "/logoDongABank.png",
+  },
+  {
+    name: "Techcombank",
+    note: "Techcombank - Kỹ Thương Việt Nam",
+    logo: "/logoTCB.png",
+  },
+  {
+    name: "Vietinbank",
+    note: "Vietinbank - Công thương",
+    logo: "/logoVTB.png",
+  },
+  {
+    name: "Eximbank",
+    note: "Eximbank - Xuất nhập khẩu",
+    logo: "/logoVCB.png",
+  },
+  {
+    name: "ACB",
+    note: "ACB - Á Châu",
+    logo: "/logoVCB.png",
+  },
+  {
+    name: "Sacombank",
+    note: "Sacombank - Sài Gòn Thương Tín",
+    logo: "/logoVCB.png",
+  },
+  {
+    name: "BIDV",
+    note: "BIDV - Đầu tư",
+    logo: "/logoVCB.png",
+  },
+  {
+    name: "Vietinbank",
+    note: "Vietinbank - Công thương",
+    logo: "/logoVTB.png",
+  },
+  {
+    name: "Vietinbank",
+    note: "Vietinbank - Công thương",
+    logo: "/logoVTB.png",
+  },
 ];
 
 // eslint-disable-next-line react/prop-types
