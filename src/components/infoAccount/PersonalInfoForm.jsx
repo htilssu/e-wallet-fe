@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function MyWallet() {
     return (
-        <div className="p-4 border-2 border-gray-300 rounded-2xl">
+        <div className="p-4 border-2 border-gray-200 rounded-2xl bg-white">
             <div>
                 <div className="text-zinc-900 font-medium text-xl mb-2">VÍ CỦA TÔI</div>
                 <div className="flex flex-wrap">
@@ -40,11 +40,13 @@ function TopUpBtn() {
         navigate('/topup');
     };
     return (
-        <div className="text-center" onClick={handleTopup}>
-            <button className="bg-cyan-950 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
-                    transition duration-300 ease-in-out hover:bg-blue-700 hover:text-white">
-                Nạp tiền vào ví
-            </button>
+        <div className={"p-5"}>
+            <div className="text-center" onClick={handleTopup}>
+                <button className="bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
+                    transition duration-300 ease-in-out hover:bg-green-800 hover:text-white">
+                    Nạp tiền vào ví
+                </button>
+            </div>
         </div>
     )
 }
