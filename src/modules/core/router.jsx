@@ -5,7 +5,7 @@ import TopUp from "../../components/topup/TopUp.jsx";
 import AtmLinked from "../../components/atm_linked/AtmLinked.jsx";
 import { PageNotFound } from "./system-component/PageNotFound.jsx";
 import BankTransferModal from "../../components/bank/paymentMethods/BankTransferModal.jsx";
-import AuthForm from "../../components/auth/AuthForm.jsx";
+import QRPayment from "../../components/bank/paymentMethods/QRPayment.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +28,10 @@ export const router = createBrowserRouter([
         path: "topup/banktransfer",
         element: <BankTransferModal />,
       },
+      {
+        path: "qrpayment",
+        element: <QRPayment />,
+      }
     ],
     errorElement: <PageNotFound />,
   },
