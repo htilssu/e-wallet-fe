@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/remoteEntry.js",
+      "destination": "/remoteEntry.js"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
