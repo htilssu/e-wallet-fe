@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { MdOutlinePayments } from "react-icons/md";
 import { MyWallet } from "../../infoAccount/PersonalInfoForm.jsx";
+import {BiBarcode, BiBarcodeReader} from "react-icons/bi";
 
 const QRPayment = () => {
     const [showQRCode, setShowQRCode] = useState(true);
@@ -26,7 +27,7 @@ const QRPayment = () => {
                                 ) : (
                                     <div className="flex flex-col items-center mb-4 text-center">
                                         <FontAwesomeIcon icon={faCircleExclamation} bounce size="3x" className="text-red-500 mb-2" />
-                                        <div className="text-sm text-gray-600 mb-2">Xin lỗi khách hàng, tính năng chưa cập nhật.</div>
+                                        <div className="text-sm text-gray-600 mb-2">Xin lỗi quý hàng, tính năng chưa cập nhật.</div>
                                         <p className="text-lg font-medium text-gray-800">Sử dụng ứng dụng quét mã QR trên thiết bị của bạn</p>
                                     </div>
                                 )}
@@ -38,6 +39,7 @@ const QRPayment = () => {
                                         onClick={() => setShowQRCode(true)}
                                     >
                                         Hiển thị mã QR
+                                        <BiBarcode />
                                     </button>
                                     <button
                                         className={`px-4 py-2 rounded-lg transition duration-300 ${
@@ -46,6 +48,7 @@ const QRPayment = () => {
                                         onClick={() => setShowQRCode(false)}
                                     >
                                         Quét QR
+                                        <BiBarcodeReader />
                                     </button>
                                 </div>
                             </div>
