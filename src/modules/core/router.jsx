@@ -6,6 +6,7 @@ import AtmLinked from "../../components/atm_linked/AtmLinked.jsx";
 import { PageNotFound } from "./system-component/PageNotFound.jsx";
 import BankTransferModal from "../../components/bank/paymentMethods/BankTransferModal.jsx";
 import QRPayment from "../../components/bank/paymentMethods/QRPayment.jsx";
+import HomePage from "../../components/home/Home.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,11 @@ export const router = createBrowserRouter([
       {
         path: "qrpayment",
         element: <QRPayment />,
+      }
+      ,
+      {
+        path: "homepage",
+        element: <HomePage />,
       }
     ],
     errorElement: <PageNotFound />,
