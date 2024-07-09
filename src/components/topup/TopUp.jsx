@@ -17,8 +17,10 @@ const TopUp = () => {
               <InfoTopUp />
             </Suspense>
           </div>
-          <div className="order-first md:order-last w-full md:w-1/3 mb-6 md:mb-0 md:ml-9">
-            <MyWallet />
+          <div className="order-first  md:order-last w-full md:w-1/3 mb-6 md:mb-0 md:ml-9">
+            <div className={"border-2 rounded-lg"}>
+              <MyWallet />
+            </div>
           </div>
         </div>
       </div>

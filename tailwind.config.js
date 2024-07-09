@@ -18,7 +18,6 @@ export default {
         93: "347px",
       },
       colors: {
-        customGray: "#383f48",
         primary: "rgb(59 130 246)",
         primaryHover: "rgb(59 130 246 / 90%)",
       },

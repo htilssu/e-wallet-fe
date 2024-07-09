@@ -14,6 +14,10 @@ export const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
+        index: true,
+        element: <HomePage />,
+      },
+      {
         path: "topup",
         element: <TopUp />,
       },
@@ -32,7 +36,12 @@ export const router = createBrowserRouter([
       {
         path: "qrpayment",
         element: <QRPayment />,
-      }
+      },
+      {
+        path: "user/:name?",
+        element: <AtmLinked />,
+      },
+
       ,
       {
         path: "homepage",

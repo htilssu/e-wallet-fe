@@ -1,4 +1,3 @@
-import "./LoginRegister.css"; //add css
 import LoginForm from "./LoginForm.jsx";
 import RegistrationForm from "./RegistrationForm.jsx";
 import { useState } from "react";
@@ -17,7 +16,7 @@ const LoginRegister = () => {
     <div className="bodyLogin">
       <div className={`wrapper${action}`}>
         <LoginForm registerLink={registerLink}></LoginForm>
-        <RegistrationForm loginLink={loginLink}></RegistrationForm>
+        {/*<RegistrationForm loginLink={loginLink}></RegistrationForm>*/}
       </div>
     </div>
   );
