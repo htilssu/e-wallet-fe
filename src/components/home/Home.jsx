@@ -5,6 +5,7 @@ import {HiOutlineViewGridAdd} from "react-icons/hi";
 import {useNavigate} from "react-router-dom";
 import PersonalInfoForm from "../infoAccount/PersonalInfoForm.jsx";
 import {PiHandWithdrawBold} from "react-icons/pi";
+import { FaBook } from "react-icons/fa";
 
 const Card = ({icon, title, onClick}) => {
     return (
@@ -31,10 +32,18 @@ const HomePage = () => {
         e.preventDefault();
         navigate('/qrpayment');
     };
+    const handleservicePayent = (e) => {
+        e.preventDefault();
+        navigate('/servicepayment');
+    };
+    const handleTranHistory = (e) => {
+        e.preventDefault();
+        navigate('/transactions');
+    };
 
     return (
         <div className={"flex flex-col bg-gray-100"}>
-            <div className={"flex justify-center items-center flex-1"}>
+            <div className={"flex justify-center items-center "}>
                 <div className={"flex flex-col md-[1000px]:flex-row"}>
                     <div className={"order-first md:order-last md:ml-9"}>
                         <PersonalInfoForm/>
@@ -54,10 +63,11 @@ const HomePage = () => {
                                           onClick={handleTopup}/> {/* Sửa onclick thành onClick */}
                                     <Card icon={<FaUpload size={30} className={"text-green-500"}/>} title="Chuyển tiền" onClick={handleTopup}/>
                                     <Card icon={<PiHandWithdrawBold size={30} className={"text-green-500"}/>} title="Rút tiền" onClick={handleTopup}/>
-                                    <Card icon={<MdOutlinePayments size={30} className={"text-green-500"}/>} title="Thanh toán QR" onClick={handleQRPayent}/>
+                                    <Card icon={<MdOutlinePayments size={30} className={"text-green-500"}/>} title="QR Thanh toán" onClick={handleQRPayent}/>
                                     <Card icon={<FaChartLine size={30} className={"text-green-500"}/>} title="Biến động số dư" onClick={handleTopup}/>
+                                    <Card icon={<FaBook size={30} className={"text-green-500"}/>} title="Lịch sử giao dịch" onClick={handleTranHistory}/>
                                     <Card icon={<HiOutlineViewGridAdd size={30} className={"text-green-500"}/>} title="Xem thêm dịch vụ"
-                                          onClick={handleTopup}/>
+                                          onClick={handleservicePayent}/>
                                 </div>
                             </div>
                         </div>
