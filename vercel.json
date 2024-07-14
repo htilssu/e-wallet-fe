@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/remoteEntry.js",
-      "destination": "/remoteEntry.js"
+      "destination": "/assets/remoteEntry.js"
     },
     {
       "source": "/(.*)",
