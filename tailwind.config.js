@@ -36,5 +36,16 @@ export default {
       expandHeight:
         "expandHeight 0.4s cubic-bezier(0.000, 0.000, 0.580, 1.000) forwards",
     },
+
+    screens: {
+      'ssm': '445px',
+      'tm': '525px',
+      //
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    }
   },
 };
