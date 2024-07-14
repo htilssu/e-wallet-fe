@@ -10,12 +10,19 @@ import WithdrawMoney from "../../components/withdraw_money/WithdrawMoney.jsx";
 import BalanceFilter from "../../components/bdsd/bdsd.jsx";
 import AddInfoAtm from "../../components/add_atm_linked/AddInfoAtm.jsx";
 import HomePage from "../../components/home/Home.jsx";
+import ServicePayment from "../../components/bank/paymentMethods/ServicePayment.jsx";
+import TranHistory from "../../components/history/ TranHistory.jsx";
+import TransactionDetail from "../../components/history/TransactionDetail.jsx";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
+      {
+        path: "homepage",
+        element: <HomePage />,
+      },
       {
         path: "topup",
         element: <TopUp />,
@@ -46,8 +53,18 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: "homepage",
-        element: <HomePage />,
+        path: "servicepayment",
+        element: <ServicePayment />,
+      }
+      ,
+      {
+        path: "transactions",
+        element: <TranHistory />,
+      }
+      ,
+      {
+        path: "transactions/transactiondetail",
+        element: <TransactionDetail/>,
       }
     ],
     errorElement: <PageNotFound />,
