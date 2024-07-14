@@ -36,7 +36,6 @@ function TopUpBtn() {
 
     const handleTopup = (e) => {
         e.preventDefault();
-        // Logic xác thực người dùng ở đây
         navigate('/topup');
     };
     return (

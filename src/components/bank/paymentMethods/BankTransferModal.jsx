@@ -58,7 +58,7 @@ const BankTransferModal = () => {
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
+        <div className="flex justify-center items-center min-h-screen bg-gray-100">
             {bank ? (
                 <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl">
                     <div

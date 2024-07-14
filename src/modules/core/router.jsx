@@ -9,6 +9,7 @@ import QRPayment from "../../components/bank/paymentMethods/QRPayment.jsx";
 import WithdrawMoney from "../../components/withdraw_money/WithdrawMoney.jsx";
 import BalanceFilter from "../../components/bdsd/bdsd.jsx";
 import AddInfoAtm from "../../components/add_atm_linked/AddInfoAtm.jsx";
+import HomePage from "../../components/home/Home.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,11 @@ export const router = createBrowserRouter([
       {
         path: "withdraw",
         element: <WithdrawMoney/>
+      }
+      ,
+      {
+        path: "homepage",
+        element: <HomePage />,
       }
     ],
     errorElement: <PageNotFound />,
