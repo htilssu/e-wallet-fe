@@ -39,8 +39,12 @@ export const router = createBrowserRouter([
       {
         path: "withdraw",
         element: <WithdrawMoney/>
-      }
-      ,
+      },
+      {
+        path: "bdsd",
+        element: <BalanceFilter/>,
+      },
+
       {
         path: "homepage",
         element: <HomePage />,
@@ -48,10 +52,7 @@ export const router = createBrowserRouter([
     ],
     errorElement: <PageNotFound />,
   },
-  {
-    path: "bdsd",
-    element: <BalanceFilter/>,
-  },
+
   {
     children: [
       {

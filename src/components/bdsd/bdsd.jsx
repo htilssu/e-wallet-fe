@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { TiDeleteOutline } from 'react-icons/ti';
 
-const BalanceFilter = ({ onFilter }) => {
+// eslint-disable-next-line react/prop-types
+const Bdsd = ({ onFilter }) => {
     const [month, setMonth] = useState('');
     const [year, setYear] = useState('');
     const [filteredData, setFilteredData] = useState([]);
@@ -38,8 +39,8 @@ const BalanceFilter = ({ onFilter }) => {
 
     const renderFinancialData = () => {
         return filteredData.map((record, index) => (
-            <div key={index} className=" flex flex-row md:grid md:grid-cols-7 gap-2 p-2 space-x-1">
-                <div>{record.date}</div>
+            <div key={index} className="flex flex-row md:grid md:grid-cols-7 gap-2 p-2 space-x-1">
+                <div>{`${record.date}/${month}`}</div>
                 <div>{record.startingBalance}</div>
                 <div>{record.totalDeposits}</div>
                 <div>{record.numDepositTransactions}</div>
@@ -136,4 +137,4 @@ const BalanceFilter = ({ onFilter }) => {
     );
 };
 
-export default BalanceFilter;
+export default Bdsd;
