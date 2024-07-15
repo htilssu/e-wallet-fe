@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{js,jsx,ts,tsx}", "./node_modules/flowbite/**/*.js"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       height: {
@@ -62,5 +62,4 @@ export default {
       '2xl': '1536px',
     }
   },
-  plugins: [require("flowbite/plugin")],
 };

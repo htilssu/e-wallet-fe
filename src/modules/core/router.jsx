@@ -1,6 +1,6 @@
 ﻿import { createBrowserRouter } from "react-router-dom";
 import { MainLayout } from "./layouts/MainLayout.jsx";
-import LoginForm from "../../components/auth/LoginForm.jsx";
+import LoginForm from "../../components/auth/AuthForm.jsx";
 import TopUp from "../../components/topup/TopUp.jsx";
 import AtmLinked from "../../components/atm_linked/AtmLinked.jsx";
 import { PageNotFound } from "./system-component/PageNotFound.jsx";
@@ -18,6 +18,7 @@ import SettingAdmitTransaction
   from "../../components/infoAccount/managementPersonal/settingAdmitTransaction/SettingAdmitTransaction.jsx";
 import ChangePassword from "../../components/infoAccount/managementPersonal/changePassword/ChangePassword.jsx";
 import SendOTP from "../../components/infoAccount/managementPersonal/changePassword/SendOTP.jsx";
+import RegistrationForm from "../../components/auth/RegistrationForm.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -25,7 +26,7 @@ export const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
-        path: "homepage",
+        index: true,
         element: <HomePage />,
       },
       {
@@ -47,18 +48,23 @@ export const router = createBrowserRouter([
       {
         path: "qrpayment",
         element: <QRPayment />,
-      }
-      ,
+      },
+      {
+        path: "homepage",
+        element: <HomePage />,
+      },
+      {
+        path: "user/:name?",
+        element: <AtmLinked />,
+      },
       {
         path: "servicepayment",
         element: <ServicePayment />,
-      }
-      ,
+      },
       {
         path: "transactions",
         element: <TranHistory />,
-      }
-      ,
+      },
       {
         path: "transactions/transactiondetail",
         element: <TransactionDetail/>,
@@ -103,6 +109,10 @@ export const router = createBrowserRouter([
       {
         path: "login",
         element: <LoginForm />,
+      },
+      {
+        path: "register",
+        element: <RegistrationForm />,
       },
     ],
     errorElement: <PageNotFound />,
