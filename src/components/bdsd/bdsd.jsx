@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { TiDeleteOutline } from 'react-icons/ti';
 
-// eslint-disable-next-line react/prop-types
 const Bdsd = ({ onFilter }) => {
     const [month, setMonth] = useState('');
     const [year, setYear] = useState('');
@@ -22,12 +21,14 @@ const Bdsd = ({ onFilter }) => {
 
         // Simulate fetching filtered data (replace with actual API call)
         const filteredRecords = [
-            { date: '01', startingBalance: '1000000', totalDeposits: '500000', numDepositTransactions: '2', totalWithdrawals: '200000', numWithdrawalTransactions: '1', endingBalance: '1300000' },
-            { date: '02', startingBalance: '1300000', totalDeposits: '600000', numDepositTransactions: '3', totalWithdrawals: '250000', numWithdrawalTransactions: '2', endingBalance: '1600000' }
+            { date: '01', startingBalance: '1000000', totalDeposits: '500000', numDepositTransactions: '2', totalWithdrawals: '200000', numWithdrawalTransactions: '1', endingBalance: '1300000', year: '2023' },
+            { date: '02', startingBalance: '1300000', totalDeposits: '600000', numDepositTransactions: '3', totalWithdrawals: '250000', numWithdrawalTransactions: '2', endingBalance: '1600000', year: '2023' }
             // Add more records as needed
         ];
 
-        setFilteredData(filteredRecords);
+        // Filter records by selected year
+        const filteredDataByYear = filteredRecords.filter(record => record.year === year);
+        setFilteredData(filteredDataByYear);
     };
 
     const handleClearFilters = () => {
@@ -39,15 +40,15 @@ const Bdsd = ({ onFilter }) => {
 
     const renderFinancialData = () => {
         return filteredData.map((record, index) => (
-            <div key={index} className="flex flex-row md:grid md:grid-cols-7 gap-2 p-2 space-x-1">
-                <div>{`${record.date}/${month}`}</div>
-                <div>{record.startingBalance}</div>
-                <div>{record.totalDeposits}</div>
-                <div>{record.numDepositTransactions}</div>
-                <div>{record.totalWithdrawals}</div>
-                <div>{record.numWithdrawalTransactions}</div>
-                <div>{record.endingBalance}</div>
-            </div>
+            <tr key={index} className="bg-white">
+                <td className="border px-4 py-2">{`${record.date}/${month}`}</td>
+                <td className="border px-4 py-2">{record.startingBalance}</td>
+                <td className="border px-4 py-2">{record.totalDeposits}</td>
+                <td className="border px-4 py-2">{record.numDepositTransactions}</td>
+                <td className="border px-4 py-2">{record.totalWithdrawals}</td>
+                <td className="border px-4 py-2">{record.numWithdrawalTransactions}</td>
+                <td className="border px-4 py-2">{record.endingBalance}</td>
+            </tr>
         ));
     };
 
@@ -76,7 +77,7 @@ const Bdsd = ({ onFilter }) => {
                         <div className="flex w-auto items-center">
                             <p className="text-sm">Lọc theo:</p>
                         </div>
-                        <div className={"w-full"}>
+                        <div className="w-full">
                             <select
                                 value={month}
                                 onChange={(e) => setMonth(e.target.value)}
@@ -86,7 +87,7 @@ const Bdsd = ({ onFilter }) => {
                                 {renderMonthOptions()}
                             </select>
                         </div>
-                        <div className={"w-full mt-5 md:mt-0"}>
+                        <div className="w-full mt-5 md:mt-0">
                             <select
                                 value={year}
                                 onChange={(e) => setYear(e.target.value)}
@@ -109,7 +110,7 @@ const Bdsd = ({ onFilter }) => {
                             <TiDeleteOutline onClick={handleClearFilters} />
                         </div>
                         <div className="text-gray-500">
-                            <span className={"hover: cursor-pointer"} onClick={handleClearFilters}>Xóa bộ lọc </span>
+                            <span className="hover:cursor-pointer" onClick={handleClearFilters}>Xóa bộ lọc</span>
                         </div>
                         <button className="h-full px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 md:w-auto">
                             Xuất Excel
@@ -117,17 +118,23 @@ const Bdsd = ({ onFilter }) => {
                     </div>
                 </div>
                 {filteredData.length > 0 ? (
-                    <div className="mt-5">
-                        <div className="grid grid-cols-7 gap-2 bg-gray-100 p-2 space-x-1">
-                            <div className="font-semibold">Ngày</div>
-                            <div className="font-semibold">Số dư đầu kỳ (VND)</div>
-                            <div className="font-semibold">Tổng nạp (VND)</div>
-                            <div className="font-semibold">Số GD nạp</div>
-                            <div className="font-semibold">Tổng rút (VND)</div>
-                            <div className="font-semibold">Số GD rút</div>
-                            <div className="font-semibold">Số dư cuối kỳ (VND)</div>
-                        </div>
-                        {renderFinancialData()}
+                    <div className="mt-5 overflow-x-auto">
+                        <table className="min-w-full bg-white border-collapse border border-gray-300">
+                            <thead>
+                            <tr className="bg-gray-100">
+                                <th className="border px-4 py-2 text-left">Ngày</th>
+                                <th className="border px-4 py-2 text-left">Số dư đầu kỳ (VND)</th>
+                                <th className="border px-4 py-2 text-left">Tổng nạp (VND)</th>
+                                <th className="border px-4 py-2 text-left">Số GD nạp</th>
+                                <th className="border px-4 py-2 text-left">Tổng rút (VND)</th>
+                                <th className="border px-4 py-2 text-left">Số GD rút</th>
+                                <th className="border px-4 py-2 text-left">Số dư cuối kỳ (VND)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {renderFinancialData()}
+                            </tbody>
+                        </table>
                     </div>
                 ) : (
                     <div className="mt-5 text-gray-500">Không có kết quả.</div>

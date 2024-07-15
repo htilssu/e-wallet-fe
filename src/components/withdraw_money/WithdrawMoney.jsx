@@ -52,7 +52,7 @@ const WithdrawMoney = () => {
                     </div>
                     <div className="mb-2 flex flex-col">
                         <div className="flex items-center mb-4">
-                            <label className="mr-4 text-gray-700 text-sm font-bold mb-2" htmlFor="amount">
+                            <label className="mr-4 text-gray-700 text-sm font-bold mb-2 " htmlFor="amount">
                                 Số Tiền
                             </label>
                             <input
