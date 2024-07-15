@@ -4,6 +4,7 @@ import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { MdOutlinePayments } from "react-icons/md";
 import { MyWallet } from "../../infoAccount/PersonalInfoForm.jsx";
 import {BiBarcode, BiBarcodeReader} from "react-icons/bi";
+import {ScrollRestoration} from "react-router-dom";
 
 const QRPayment = () => {
     const [showQRCode, setShowQRCode] = useState(true);
@@ -59,6 +60,7 @@ const QRPayment = () => {
                     </div>
                 </div>
             </div>
+            <ScrollRestoration/>
         </div>
     );
 };

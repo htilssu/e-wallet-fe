@@ -13,6 +13,8 @@ import HomePage from "../../components/home/Home.jsx";
 import ServicePayment from "../../components/bank/paymentMethods/ServicePayment.jsx";
 import TranHistory from "../../components/history/ TranHistory.jsx";
 import TransactionDetail from "../../components/history/TransactionDetail.jsx";
+import Example from "../../components/history/test.jsx";
+import OTPverification from "../../components/otpverify/OTPverification.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -65,6 +67,14 @@ export const router = createBrowserRouter([
       {
         path: "transactions/transactiondetail",
         element: <TransactionDetail/>,
+      },
+      {
+        path: "otpverification",
+        element: <OTPverification/>,
+      },
+      {
+        path: "test",
+        element: <Example/>,
       }
     ],
     errorElement: <PageNotFound />,
