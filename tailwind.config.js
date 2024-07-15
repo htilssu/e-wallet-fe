@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./node_modules/flowbite/**/*.js"],
@@ -8,8 +9,12 @@ export default {
         128: "32rem",
         144: "70rem",
       },
+      maxHeight: {
+        75: "300px",
+      },
       minWidth: {
         18: "75px",
+        40: "303.8px"
       },
       borderWidth: {
         1: "1px",
@@ -17,8 +22,19 @@ export default {
       spacing: {
         93: "347px",
       },
+      padding: {
+        0.7: "3px",
+      },
+      margin: {
+        0.7: "3px",
+      },
       colors: {
         customGray: "#383f48",
+        textGray: "#747373",
+        textGray0: "#A1A1A1",
+        dimPrimaryColor: "#bce0fb",
+        primaryColor: "#0f8be8",
+        borderColor: " #0000001A",
       },
       inset: {
         "-29": "-113px",
