@@ -45,8 +45,8 @@ const OtpVerification = () => {
 
     return (
         <div>
-            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-                <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+            <div className="flex flex-col items-center min-h-screen bg-gray-100 p-4">
+                <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md mt-6">
                     <div className="flex flex-col items-center">
                         <img src="otp_veri.png" alt="OTP Verification" className="w-24 mb-4"/>
                         <h2 className="text-2xl font-semibold text-gray-800 mb-2">Xác thực OTP</h2>
