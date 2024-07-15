@@ -12,6 +12,12 @@ import TranHistory from "../../components/history/ TranHistory.jsx";
 import TransactionDetail from "../../components/history/TransactionDetail.jsx";
 import Example from "../../components/history/test.jsx";
 import OTPverification from "../../components/otpverify/OTPverification.jsx";
+import ManagementPersonalInfo from "../../components/infoAccount/managementPersonal/ManagementPersonalInfo.jsx";
+import InfoAccount from "../../components/infoAccount/managementPersonal/infoAccountAuth/InfoAccount.jsx";
+import SettingAdmitTransaction
+  from "../../components/infoAccount/managementPersonal/settingAdmitTransaction/SettingAdmitTransaction.jsx";
+import ChangePassword from "../../components/infoAccount/managementPersonal/changePassword/ChangePassword.jsx";
+import SendOTP from "../../components/infoAccount/managementPersonal/changePassword/SendOTP.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +66,30 @@ export const router = createBrowserRouter([
       {
         path: "otpverification",
         element: <OTPverification/>,
+      },
+      {
+        path: "management-personal",
+        element: <ManagementPersonalInfo />,
+        children: [
+          {
+            path: "info-account",
+            element: <InfoAccount />,
+          },
+          {
+            path: "transaction-account",
+            element: <SettingAdmitTransaction />,
+          },
+          {
+            path: "change-password",
+            element: <ChangePassword />,
+            children:[
+              {
+                path: "send-otp",
+                element: <SendOTP />,
+              },
+            ]
+          },
+        ]
       },
       {
         path: "test",
