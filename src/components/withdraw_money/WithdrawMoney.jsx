@@ -96,7 +96,7 @@ const WithdrawMoney = () => {
                         <label className="block text-gray-700 text-sm font-bold mb-3 mt-5">
                             CHỌN PHƯƠNG THỨC NẠP
                         </label>
-                        <div className="flex border-[1px] h-[100px] w-full rounded-xl items-center justify-center bg-amber-100">
+                        <div className="flex border-[1px] h-[100px] w-full md:w-1/2 rounded-xl items-center justify-center bg-amber-100">
                             <div className="text-5xl text-amber-500 mr-5">
                                 <CiBank/>
                             </div>
