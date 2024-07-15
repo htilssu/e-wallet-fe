@@ -2,7 +2,7 @@ import {BsFillMenuButtonWideFill} from "react-icons/bs";
 import {FaChartLine, FaDownload, FaUpload} from "react-icons/fa";
 import {MdOutlinePayments} from "react-icons/md";
 import {HiOutlineViewGridAdd} from "react-icons/hi";
-import {useNavigate} from "react-router-dom";
+import {ScrollRestoration, useNavigate} from "react-router-dom";
 import PersonalInfoForm from "../infoAccount/PersonalInfoForm.jsx";
 import {PiHandWithdrawBold} from "react-icons/pi";
 import { FaBook } from "react-icons/fa";
@@ -74,6 +74,7 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
+            <ScrollRestoration/>
         </div>
     );
 };
