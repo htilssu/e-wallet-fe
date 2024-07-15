@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { MyWallet } from "../infoAccount/PersonalInfoForm.jsx";
+import {ScrollRestoration} from "react-router-dom";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -24,6 +25,7 @@ const TopUp = () => {
           </div>
         </div>
       </div>
+      <ScrollRestoration/>
     </div>
   );
 };

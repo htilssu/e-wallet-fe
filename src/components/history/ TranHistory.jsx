@@ -144,7 +144,7 @@ const TransactionHistory = () => {
 
     return (
         <div className={"mb-4"}>
-            <div className="flex flex-col items-center min-h-screen bg-gray-100 p-2">
+            <div className="flex flex-col items-center min-h-screen">
                 <div>
                     <h2 className="text-3xl font-semibold text-center text-gray-700 p-2">
                         Lịch Sử Giao Dịch
