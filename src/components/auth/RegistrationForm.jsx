@@ -1,48 +1,63 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
-import { FaLock, FaUserAlt } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
+import { useForm } from "@mantine/form";
+import dayjs from "dayjs";
+import { Stepper } from "@mantine/core";
+
+const steps = [
+  {
+    step: 1,
+    description: "Nhập thông tin tài khoản",
+  },
+  {
+    step: 2,
+    description: "Xác thực Email",
+  },
+];
 
 // eslint-disable-next-line react/prop-types
 const RegistrationForm = ({ loginLink }) => {
+  const form = useForm({
+    name: "registerform",
+    initialValues: {
+      email: "",
+      password: "",
+      confirmPassword: "",
+      firstName: "",
+      lastName: "",
+      fullName: "",
+      phoneNumber: "",
+      address: "",
+      dob: dayjs(),
+      gender: null,
+      userName: "",
+    },
+  });
+
   return (
-    <div className="form-box register">
+    <div className="form-box register p-4">
       <form action="">
-        <h1>Register</h1>
-        <div className="input-box">
-          <input type="text" required />
-          <label>Username</label>
-          <FaUserAlt className="icon" />
-        </div>
-        <div className="input-box">
-          <input type="email" required />
-          <label>Email</label>
-          <MdEmail className="icon" />
-        </div>
-        <div className="input-box">
-          <input type="password" required />
-          <label>Password</label>
-          <FaLock className="icon" />
-        </div>
-        <div className="input-box">
-          <input type="password" required />
-          <label>Enter the Password</label>
-          <FaLock className="icon" />
-        </div>
-        <div className="remember-forgot">
-          <label>
-            <input type="checkbox" />I agree to the terms & conditions
-          </label>
-        </div>
-        <button type="submit">Register</button>
-        <div className="register-link">
-          <p>
-            Already have an account ?
-            <a href="#" onClick={loginLink}>
-              Login
-            </a>
-          </p>
-        </div>
+        <Stepper
+          styles={{
+            stepIcon: {
+              backgroundColor: "white",
+            },
+            stepCompletedIcon: {
+              backgroundColor: "#40c057",
+              borderRadius: "100%",
+            },
+          }}
+          color="green"
+          active={1}
+        >
+          {steps.map((step) => (
+            <Stepper.Step
+              key={step.step}
+              label={"Bước " + step.step}
+              description={step.description}
+            />
+          ))}
+        </Stepper>
       </form>
     </div>
   );

@@ -3,14 +3,16 @@ import { TiThMenu } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import NavbarAvatar from "./Navbar.Avatar.jsx";
 import NavbarLinkItem from "./Navbar.LinkItem.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const navbarItem = [
   {
     name: "Home",
+    link: "/",
   },
   {
     name: "Test",
+    link: "/test",
     items: [
       {
         name: "Test 1",
@@ -36,15 +38,32 @@ const Navbar = () => {
   const { user, setUser } = useAuth();
   const [isShowLinkItem, setIsShowLinkItem] = useState(false);
 
+  function resetDropdownStatus() {
+    if (window.innerWidth >= 786) setIsShowLinkItem(false);
+  }
+
+  useEffect(() => {
+    addEventListener("resize", resetDropdownStatus);
+
+    return () => {
+      removeEventListener("resize", resetDropdownStatus);
+    };
+  }, []);
+
+  function handleLogout() {
+    setUser(null);
+    location.reload();
+  }
+
   return (
     <nav className="w-full h-20 items-center z-10 shadow bg-white fixed top-0 left-0 border-gray-200 ">
-      <div className="h-full md:px-20 w-full max-w-screen-xl flex items-center justify-between mx-auto p-4">
+      <div className="h-full md:px-20 sm:px-10 w-full max-w-screen-xl flex items-center justify-between mx-auto p-4">
         <a
           href="/"
           className="h-full flex items-center space-x-3 rtl:space-x-reverse"
         >
           <img src="/e-wallet.png" className="h-full" alt="logo" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap text-primary">
+          <span className="self-center hidden md:block text-2xl font-semibold whitespace-nowrap text-primary">
             EWallet
           </span>
         </a>
@@ -59,7 +78,7 @@ const Navbar = () => {
               </button>
             </Link>
           ) : (
-            <NavbarAvatar />
+            <NavbarAvatar logout={handleLogout} />
           )}
 
           <button
@@ -78,10 +97,10 @@ const Navbar = () => {
         <div
           className={
             `${isShowLinkItem ? "max-h-56 " : "max-h-0 "}` +
-            "order-1 md:static absolute h-auto transition-all shadow md:shadow-none rounded-b-lg md:rounded-none left-0 px-2 bg-white md:w-auto md:h-auto top-full overflow-hidden w-full z-10"
+            "order-1 md:static absolute  md:max-h-none h-auto transition-all md:transition-none shadow md:shadow-none rounded-b-lg md:rounded-none left-0 px-2 bg-white md:w-auto top-full overflow-hidden w-full z-10"
           }
         >
-          <NavbarLinkItem />
+          <NavbarLinkItem item={navbarItem} logout={handleLogout} />
         </div>
       </div>
     </nav>

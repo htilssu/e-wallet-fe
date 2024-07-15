@@ -11,7 +11,7 @@ export default defineConfig({
       exposes: {
         "./Remote": "src/modules/core/system-component/remoteEntry.jsx",
       },
-      shared: ["react", "react-dom"],
+      shared: ["react", "react-dom", "@mantine/core", "@mantine/form"],
     }),
   ],
   build: {

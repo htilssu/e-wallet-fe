@@ -12,6 +12,7 @@ import TranHistory from "../../components/history/ TranHistory.jsx";
 import TransactionDetail from "../../components/history/TransactionDetail.jsx";
 import Example from "../../components/history/test.jsx";
 import OTPverification from "../../components/otpverify/OTPverification.jsx";
+import RegistrationForm from "../../components/auth/RegistrationForm.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -43,21 +44,21 @@ export const router = createBrowserRouter([
         element: <QRPayment />,
       },
       {
+        path: "homepage",
+        element: <HomePage />,
+      },
+      {
         path: "user/:name?",
         element: <AtmLinked />,
       },
-
-      ,
       {
         path: "servicepayment",
         element: <ServicePayment />,
-      }
-      ,
+      },
       {
         path: "transactions",
         element: <TranHistory />,
-      }
-      ,
+      },
       {
         path: "transactions/transactiondetail",
         element: <TransactionDetail/>,
@@ -78,6 +79,10 @@ export const router = createBrowserRouter([
       {
         path: "login",
         element: <LoginForm />,
+      },
+      {
+        path: "register",
+        element: <RegistrationForm />,
       },
     ],
     errorElement: <PageNotFound />,

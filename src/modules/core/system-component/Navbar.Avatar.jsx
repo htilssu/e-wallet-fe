@@ -1,6 +1,7 @@
-﻿import React, { useRef } from "react";
+﻿import { useRef } from "react";
+import { Link } from "react-router-dom";
 
-const NavbarAvatar = () => {
+const NavbarAvatar = ({ logout }) => {
   const dropDownSection = useRef();
 
   let isShowUserDropDown = false;
@@ -30,6 +31,7 @@ const NavbarAvatar = () => {
       clearTimeout(hideShowUserDropDownTimeout);
     }
   }
+
   return (
     <div className={"h-full"}>
       <button
@@ -86,12 +88,13 @@ const NavbarAvatar = () => {
             </a>
           </li>
           <li>
-            <a
-              href="#"
+            <Link
+              onClick={logout}
+              to={"/"}
               className="block px-4 py-2 text-sm hover:bg-blue-200 transition-colors ease-in-out"
             >
               Sign out
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
