@@ -1,7 +1,7 @@
 import { FaEdit } from "react-icons/fa";
-import { MdAccountCircle } from "react-icons/md";
 import { HiMiniCheckBadge } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
+import AvatarWithStatus from "../library component/AvatarWithStatus.jsx";
 
 function MyWallet() {
     return (
@@ -83,13 +83,20 @@ const PersonalInfoForm = () => {
                                 </div>
                             </div>
                             <div className="flex items-center px-6 py-4">
-                                <MdAccountCircle size={70}
-                                                 className="text-white text-lg hover:text-green-400 cursor-pointer mr-4"/>
+                                {/*<MdAccountCircle size={70}*/}
+                                {/*                 className="text-white text-lg hover:text-green-400 cursor-pointer mr-4"/>*/}
+                                <div className="flex cursor-pointer mr-4 border-2 border-white rounded-full">
+                                    <AvatarWithStatus
+                                        src="/avatarH.png"
+                                        alt="avatar"
+                                        size="w-16 h-16"
+                                    />
+                                </div>
                                 <div>
                                     <p className="text-white text-lg font-semibold">{user.name}</p>
                                     <div className="flex items-center">
-                                        <p className="text-green-500 font-semibold mr-2">{user.isVerify ? "Tài khoản đã chứng thực" : "Tài khoản chưa chứng thực"}</p>
-                                        <HiMiniCheckBadge size={20} className="text-blue-700"/>
+                                        <p className="text-emerald-300 font-semibold mr-2">{user.isVerify ? "Tài khoản đã chứng thực" : "Tài khoản chưa chứng thực"}</p>
+                                        <HiMiniCheckBadge size={20} className="text-blue-600"/>
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +105,7 @@ const PersonalInfoForm = () => {
                     <div className="max-w-lg mx-auto bg-white shadow-md rounded-lg overflow-hidden mt-1 p-6">
                         <div className="mb-2">
                             <label className="block text-gray-700 text-base font-extralight mb-0.5">
-                                Loại tài khoản
+                            Loại tài khoản
                             </label>
                             <p className="text-gray-900 font-semibold">{user.typeAccount}</p>
                         </div>
