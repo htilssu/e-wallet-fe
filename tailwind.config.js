@@ -1,27 +1,40 @@
 /** @type {import('tailwindcss').Config} */
- export default {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+export default {
+  content: ["./src/**/*.{js,jsx,ts,tsx}", "./node_modules/flowbite/**/*.js"],
   theme: {
     extend: {
       height: {
-        '128': '32rem',
-        '144': '70rem',
+        18: "75px",
+        128: "32rem",
+        144: "70rem",
+      },
+      minWidth: {
+        18: "75px",
       },
       borderWidth: {
-        '1': '1px',
+        1: "1px",
       },
       spacing: {
-        '93': '363px',
+        93: "347px",
       },
       colors: {
-        customGray: '#383f48',
+        customGray: "#383f48",
       },
       inset: {
-        '-29': '-113px',
+        "-29": "-113px",
+        18: "94px",
       },
     },
+    keyframes: {
+      expandHeight: {
+        "0%": { maxHeight: "0px", opacity: "0" },
+        "100%": { maxHeight: "180px", opacity: "1" },
+      },
+    },
+    animation: {
+      expandHeight:
+        "expandHeight 0.4s cubic-bezier(0.000, 0.000, 0.580, 1.000) forwards",
+    },
   },
-  plugins: [],
-}
+  plugins: [require("flowbite/plugin")],
+};
