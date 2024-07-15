@@ -67,6 +67,12 @@ const PersonalInfoForm = () => {
     surplus: amount,
   };
 
+    const navigate = useNavigate();
+    const handleMpersonal = (e) => {
+        e.preventDefault();
+        navigate('/management-personal');
+    };
+
     return (
         <div>
             <div className="max-w-lg mx-auto bg-white shadow-md rounded-lg overflow-hidden mb-9">
@@ -77,7 +83,7 @@ const PersonalInfoForm = () => {
                                 <div>
                                     <h2 className="text-white text-3xl font-bold mb-2">Thông tin cá nhân</h2>
                                 </div>
-                                <div className="flex items-center text-red-400 hover:text-green-400">
+                                <div className="flex items-center text-red-400 hover:text-green-400" onClick={handleMpersonal}>
                                     <FaEdit size={20} className="cursor-pointer mr-2"/>
                                     <span className="cursor-pointer">Sửa</span>
                                 </div>
@@ -85,7 +91,8 @@ const PersonalInfoForm = () => {
                             <div className="flex items-center px-6 py-4">
                                 {/*<MdAccountCircle size={70}*/}
                                 {/*                 className="text-white text-lg hover:text-green-400 cursor-pointer mr-4"/>*/}
-                                <div className="flex cursor-pointer mr-4 border-2 border-white rounded-full">
+                                <div className="flex cursor-pointer mr-4 border-2 border-white rounded-full"
+                                    onClick={handleMpersonal}>
                                     <AvatarWithStatus
                                         src="/avatarH.png"
                                         alt="avatar"
