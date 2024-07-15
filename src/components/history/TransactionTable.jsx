@@ -1,6 +1,6 @@
 import { MdRemoveRedEye } from "react-icons/md";
 import {FaCreditCard, FaExchangeAlt, FaUndoAlt, FaDownload, FaUpload} from "react-icons/fa";
-import {useNavigate} from "react-router-dom";
+import {ScrollRestoration, useNavigate} from "react-router-dom";
 
 const transactionIcons = {
     "NẠP TIỀN": <FaDownload />,
@@ -52,11 +52,11 @@ const TransactionTable = ({ transactions }) => {
                                 </div>
                                 {transaction.transactionType}
                             </td>
-                            <td className="py-6">{transaction.amount.toLocaleString()} VND</td>
+                            <td className="py-6 text-red-600">{transaction.amount.toLocaleString()} VND</td>
                             <td className="py-6">{transaction.createdTime}</td>
-                            <td className={`py-6 ${statusColor[transaction.status]}`}>{transaction.status}</td>
+                            <td className={`py-6 font-semibold ${statusColor[transaction.status]}`}>{transaction.status}</td>
                             <td className="py-6">{transaction.receiverAccount}</td>
-                            <td className="py-6 font-semibold text-gray-700 hover:text-blue-600 cursor-pointer flex justify-center"
+                            <td className="py-6 font-semibold text-gray-700 hover:text-green-400 cursor-pointer flex justify-center"
                                 onClick={() => handleSelectTran(transaction)}>
                                 <MdRemoveRedEye size={25}/>
                             </td>
@@ -87,6 +87,7 @@ const TransactionTable = ({ transactions }) => {
                     </div>
                 ))}
             </div>
+            <ScrollRestoration/>
         </>
     );
 };

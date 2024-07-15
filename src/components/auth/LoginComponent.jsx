@@ -8,7 +8,7 @@ const LoginComponent = ({ registerLink }) => {
     const handleLogin = (e) => {
         e.preventDefault();
         // Logic xác thực người dùng ở đây
-        navigate('/home');
+        navigate('homepage');
     };
 
     return (

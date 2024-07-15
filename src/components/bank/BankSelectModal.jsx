@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {ScrollRestoration, useNavigate} from "react-router-dom";
 
 const banks = [
   {
@@ -116,8 +116,8 @@ const BankSelectModal = ({show, onClose, amount, methodPay}) => {
                                 <div
                                     key={bank.name}
                                     onClick={() => handleBankSelect(bank)}
-                                    className={`border-2 border-b-cyan-800 flex items-center w-full py-2 px-4  text-slate-950 rounded-lg hover:bg-green-200 focus:outline-none focus:shadow-outline transition duration-300 cursor-pointer ${
-                                        selectedBank?.name === bank.name ? 'bg-green-500' : ''
+                                    className={`border-2 border-b-cyan-800 flex items-center w-full py-2 px-4  text-slate-950 rounded-lg focus:outline-none focus:shadow-outline transition duration-300 cursor-pointer ${
+                                        selectedBank?.name === bank.name ? 'bg-green-300' : ''
                                     }`}
                                 >
                                     <img src={bank.logo} alt={bank.name} className="w-[85px] max-h-full mr-4"/>
@@ -152,6 +152,7 @@ const BankSelectModal = ({show, onClose, amount, methodPay}) => {
                     </div>
                 </div>
             </div>
+            <ScrollRestoration/>
         </div>
     );
 };
