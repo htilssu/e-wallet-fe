@@ -7,22 +7,22 @@ import PersonalInfoForm from "../infoAccount/PersonalInfoForm.jsx";
 import {PiHandWithdrawBold} from "react-icons/pi";
 import { FaBook } from "react-icons/fa";
 
-const Card = ({icon, title, onClick}) => {
-    return (
-        <div
-            className="bg-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer"
-            onClick={onClick}
-        >
-            <div className="p-8 flex flex-col items-center">
-                {icon}
-                <h2 className="text-xl font-semibold mt-4">{title}</h2>
-            </div>
-        </div>
-    );
+const Card = ({ icon, title, onClick }) => {
+  return (
+    <div
+      className="bg-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer"
+      onClick={onClick}
+    >
+      <div className="p-8 flex flex-col items-center">
+        {icon}
+        <h2 className="text-xl font-semibold mt-4">{title}</h2>
+      </div>
+    </div>
+  );
 };
 
 const HomePage = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
     const handleTopup = (e) => {
         e.preventDefault();
