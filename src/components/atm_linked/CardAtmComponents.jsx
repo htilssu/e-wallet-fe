@@ -15,7 +15,7 @@ const CardAtmComponents = ({ title, text, link, onClick }) => {
     };
 
     return (
-        <div className="cart card-atm w-full  md:w-2/5 text-sm whitespace-nowrap h-[150px] p-3 mt-4 bg-white border-[2px] border-dashed border-gray rounded-3xl flex flex-col justify-center items-center hover:bg-amber-300 transition duration-300 ease-in-out" onClick={handleClick}>
+        <div className="cart card-atm w-[400px] h-[220px] p-5 mt-4 bg-white border-[2px] border-dashed border-gray rounded-3xl flex flex-col justify-center items-center hover:bg-amber-300 transition duration-300 ease-in-out" onClick={handleClick}>
             <div className="card-body">
                 <div className="card-icon text-3xl text-[#FF7F50FF] flex justify-center items-center">
                     <IoIosAddCircle />
