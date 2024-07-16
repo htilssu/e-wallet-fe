@@ -60,7 +60,7 @@ const HomePage = () => {
                                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
                                     {/* Card components */}
                                     <Card icon={<FaDownload size={30} className={"text-green-500"}/>} title="Nạp tiền"
-                                          onClick={handleTopup}/> {/* Sửa onclick thành onClick */}
+                                          onClick={handleTopup}/>
                                     <Card icon={<FaUpload size={30} className={"text-green-500"}/>} title="Chuyển tiền" onClick={handleTopup}/>
                                     <Card icon={<PiHandWithdrawBold size={30} className={"text-green-500"}/>} title="Rút tiền" onClick={handleTopup}/>
                                     <Card icon={<MdOutlinePayments size={30} className={"text-green-500"}/>} title="QR Thanh toán" onClick={handleQRPayent}/>

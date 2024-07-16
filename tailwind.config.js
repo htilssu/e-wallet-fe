@@ -13,7 +13,7 @@ export default {
       },
       minWidth: {
         18: "75px",
-        40: "303.8px"
+        40: "303.8px",
       },
       borderWidth: {
         1: "1px",
@@ -34,6 +34,7 @@ export default {
         dimPrimaryColor: "#bce0fb",
         primaryColor: "#0f8be8",
         borderColor: " #0000001A",
+        primary: "#000000",
       },
       inset: {
         "-29": "-113px",
@@ -52,14 +53,14 @@ export default {
     },
 
     screens: {
-      'ssm': '445px',
-      'tm': '525px',
+      ssm: "445px",
+      tm: "525px",
       //
-      'sm': '640px',
-      'md': '768px',
-      'lg': '1024px',
-      'xl': '1280px',
-      '2xl': '1536px',
-    }
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+    },
   },
 };
