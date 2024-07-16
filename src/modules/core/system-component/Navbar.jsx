@@ -60,7 +60,7 @@ const Navbar = () => {
       <div className="h-full md:px-20 sm:px-10 w-full max-w-screen-xl flex items-center justify-between mx-auto p-4">
         <a
           href="/"
-          className="h-full flex items-center space-x-3 rtl:space-x-reverse"
+          className="h-full hover:no-underline flex items-center space-x-3 rtl:space-x-reverse"
         >
           <img src="/e-wallet.png" className="h-full" alt="logo" />
           <span className="self-center hidden md:block text-2xl font-semibold whitespace-nowrap text-primary">
