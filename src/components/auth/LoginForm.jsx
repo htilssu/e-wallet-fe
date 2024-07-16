@@ -42,12 +42,15 @@ const LoginForm = ({ imageLink, registrationLink }) => {
         isRemember: form.values.isRemember,
       })
         .then((res) => {
-          const user = JSON.parse(res.data.user);
-          setUser(user);
+          if (res.data.user) {
+            setUser(res.data.user);
+          }
           location.href = "/";
         })
         .catch((res) => {
-          console.log(res);
+          if (res.data.message) {
+            setError(res.data.message);
+          }
         });
     }
   }
