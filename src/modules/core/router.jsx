@@ -1,6 +1,6 @@
 ﻿import { createBrowserRouter } from "react-router-dom";
 import { MainLayout } from "./layouts/MainLayout.jsx";
-import LoginForm from "../../components/auth/LoginForm.jsx";
+import LoginForm from "../../components/auth/AuthForm.jsx";
 import TopUp from "../../components/topup/TopUp.jsx";
 import AtmLinked from "../../components/atm_linked/AtmLinked.jsx";
 import { PageNotFound } from "./system-component/PageNotFound.jsx";
@@ -15,6 +15,13 @@ import TranHistory from "../../components/history/ TranHistory.jsx";
 import TransactionDetail from "../../components/history/TransactionDetail.jsx";
 import Example from "../../components/history/test.jsx";
 import OTPverification from "../../components/otpverify/OTPverification.jsx";
+import ManagementPersonalInfo from "../../components/infoAccount/managementPersonal/ManagementPersonalInfo.jsx";
+import InfoAccount from "../../components/infoAccount/managementPersonal/infoAccountAuth/InfoAccount.jsx";
+import SettingAdmitTransaction
+  from "../../components/infoAccount/managementPersonal/settingAdmitTransaction/SettingAdmitTransaction.jsx";
+import ChangePassword from "../../components/infoAccount/managementPersonal/changePassword/ChangePassword.jsx";
+import SendOTP from "../../components/infoAccount/managementPersonal/changePassword/SendOTP.jsx";
+import RegistrationForm from "../../components/auth/RegistrationForm.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -22,7 +29,7 @@ export const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
-        path: "homepage",
+        index: true,
         element: <HomePage />,
       },
       {
@@ -57,13 +64,11 @@ export const router = createBrowserRouter([
       {
         path: "servicepayment",
         element: <ServicePayment />,
-      }
-      ,
+      },
       {
         path: "transactions",
         element: <TranHistory />,
-      }
-      ,
+      },
       {
         path: "transactions/transactiondetail",
         element: <TransactionDetail/>,
@@ -71,6 +76,30 @@ export const router = createBrowserRouter([
       {
         path: "otpverification",
         element: <OTPverification/>,
+      },
+      {
+        path: "management-personal",
+        element: <ManagementPersonalInfo />,
+        children: [
+          {
+            path: "info-account",
+            element: <InfoAccount />,
+          },
+          {
+            path: "transaction-account",
+            element: <SettingAdmitTransaction />,
+          },
+          {
+            path: "change-password",
+            element: <ChangePassword />,
+            children:[
+              {
+                path: "send-otp",
+                element: <SendOTP />,
+              },
+            ]
+          },
+        ]
       },
       {
         path: "test",
@@ -85,6 +114,10 @@ export const router = createBrowserRouter([
       {
         path: "login",
         element: <LoginForm />,
+      },
+      {
+        path: "register",
+        element: <RegistrationForm />,
       },
     ],
     errorElement: <PageNotFound />,

@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{js,jsx,ts,tsx}", "./node_modules/flowbite/**/*.js"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       height: {
@@ -8,17 +8,33 @@ export default {
         128: "32rem",
         144: "70rem",
       },
+      maxHeight: {
+        75: "300px",
+      },
       minWidth: {
         18: "75px",
+        40: "303.8px",
       },
       borderWidth: {
         1: "1px",
+      },
+      padding: {
+        0.7: "3px",
+      },
+      margin: {
+        0.7: "3px",
       },
       spacing: {
         93: "347px",
       },
       colors: {
         customGray: "#383f48",
+        textGray: "#747373",
+        textGray0: "#A1A1A1",
+        dimPrimaryColor: "#bce0fb",
+        primaryColor: "#0f8be8",
+        borderColor: " #0000001A",
+        primary: "#000000",
       },
       inset: {
         "-29": "-113px",
@@ -37,15 +53,14 @@ export default {
     },
 
     screens: {
-      'ssm': '445px',
-      'tm': '525px',
+      ssm: "445px",
+      tm: "525px",
       //
-      'sm': '640px',
-      'md': '768px',
-      'lg': '1024px',
-      'xl': '1280px',
-      '2xl': '1536px',
-    }
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+    },
   },
-  plugins: [require("flowbite/plugin")],
 };

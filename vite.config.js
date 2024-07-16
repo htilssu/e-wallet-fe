@@ -6,12 +6,12 @@ export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: "remote-app",
+      name: "remote",
       filename: "remoteEntry.js",
       exposes: {
-        Login: "src/components/auth/LoginForm.jsx",
+        "./Remote": "src/modules/core/system-component/remoteEntry.jsx",
       },
-      shared: ["react", "react-dom"],
+      shared: ["react", "react-dom", "@mantine/core", "@mantine/form"],
     }),
   ],
   build: {
@@ -29,6 +29,6 @@ export default defineConfig({
         },
       },
     },
-    cssCodeSplit: true,
+    cssCodeSplit: false,
   },
 });
