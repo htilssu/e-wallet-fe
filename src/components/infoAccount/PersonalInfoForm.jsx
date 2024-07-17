@@ -100,10 +100,13 @@ const PersonalInfoForm = () => {
                                     />
                                 </div>
                                 <div>
-                                    <p className="text-white text-lg font-semibold">{user.name}</p>
+                                    <div className={"flex flex-grow justify-center items-center gap-2"}>
+                                        <p className="text-white text-lg font-semibold">{user.name}</p>
+                                        <HiMiniCheckBadge size={22} className="text-blue-600"/>
+                                    </div>
                                     <div className="flex items-center">
                                         <p className="text-emerald-300 font-semibold mr-2">{user.isVerify ? "Tài khoản đã chứng thực" : "Tài khoản chưa chứng thực"}</p>
-                                        <HiMiniCheckBadge size={20} className="text-blue-600"/>
+
                                     </div>
                                 </div>
                             </div>

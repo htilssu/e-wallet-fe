@@ -84,7 +84,7 @@ const ServicePayment = () => {
                         </div>
                         <div>
                             <button
-                                className="w-full bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600 transition duration-300 text-lg font-semibold"
+                                className="w-full p-2 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600 transition duration-300 text-lg font-semibold"
                             >
                                 Xác Nhận Thanh Toán
                             </button>
