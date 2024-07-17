@@ -6,6 +6,9 @@ import AtmLinked from "../../components/atm_linked/AtmLinked.jsx";
 import { PageNotFound } from "./system-component/PageNotFound.jsx";
 import BankTransferModal from "../../components/bank/paymentMethods/BankTransferModal.jsx";
 import QRPayment from "../../components/bank/paymentMethods/QRPayment.jsx";
+import WithdrawMoney from "../../components/withdraw_money/WithdrawMoney.jsx";
+import BalanceFilter from "../../components/bdsd/bdsd.jsx";
+import AddInfoAtm from "../../components/add_atm_linked/AddInfoAtm.jsx";
 import HomePage from "../../components/home/Home.jsx";
 import ServicePayment from "../../components/bank/paymentMethods/ServicePayment.jsx";
 import TranHistory from "../../components/history/ TranHistory.jsx";
@@ -34,8 +37,8 @@ export const router = createBrowserRouter([
         element: <TopUp />,
       },
       {
-        path: "atm/link",
-        element: <AtmLinked />,
+        path: "AddInfoAtm",
+        element: <AddInfoAtm/>,
       },
       {
         path: "atm/link",
@@ -50,13 +53,14 @@ export const router = createBrowserRouter([
         element: <QRPayment />,
       },
       {
-        path: "homepage",
-        element: <HomePage />,
+        path: "withdraw",
+        element: <WithdrawMoney/>
       },
       {
-        path: "user/:name?",
-        element: <AtmLinked />,
+        path: "bdsd",
+        element: <BalanceFilter/>,
       },
+
       {
         path: "servicepayment",
         element: <ServicePayment />,
@@ -104,6 +108,7 @@ export const router = createBrowserRouter([
     ],
     errorElement: <PageNotFound />,
   },
+
   {
     children: [
       {
