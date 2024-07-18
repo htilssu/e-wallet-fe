@@ -86,6 +86,7 @@ const LoginForm = ({ imageLink, registrationLink }) => {
                 <form onSubmit={form.onSubmit(handeLogin)}>
                   <div>
                     <TextInput
+                      size={"md"}
                       key={form.key("userName")}
                       placeholder={"Nhập email"}
                       {...form.getInputProps("userName")}
@@ -93,6 +94,7 @@ const LoginForm = ({ imageLink, registrationLink }) => {
                   </div>
                   <div className="mt-3">
                     <PasswordInput
+                      size={"md"}
                       key={form.key("password")}
                       placeholder={"Nhập mật khẩu"}
                       {...form.getInputProps("password")}

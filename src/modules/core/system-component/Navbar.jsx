@@ -35,7 +35,7 @@ const navbarItem = [
 ];
 
 const Navbar = () => {
-  const { user, setUser, logout } = useAuth();
+  const { user, logout } = useAuth();
   const [isShowLinkItem, setIsShowLinkItem] = useState(false);
   function resetDropdownStatus() {
     if (window.innerWidth >= 786) setIsShowLinkItem(false);
