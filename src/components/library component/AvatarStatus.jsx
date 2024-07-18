@@ -1,5 +1,5 @@
 
-const AvatarWithStatus = ({ src, alt, size }) => {
+const AvatarStatus = ({ src, alt, size }) => {
     return (
         <div className="relative">
             <img
@@ -12,4 +12,4 @@ const AvatarWithStatus = ({ src, alt, size }) => {
     );
 };
 
-export default AvatarWithStatus;
+export default AvatarStatus;
