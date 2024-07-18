@@ -1,4 +1,3 @@
-// src/components/AtmLinked.js
 import { useNavigate } from 'react-router-dom';
 import { GrTransaction } from 'react-icons/gr';
 import { IoIosAddCircle } from 'react-icons/io';
@@ -10,45 +9,45 @@ const AtmLinked = () => {
 
     const handleShowNganHang = (event) => {
         event.preventDefault();
-        navigate('/AddInfoAtm'); // Điều hướng đến trang AddInfoAtm
+        navigate('/AddInfoAtm'); // Navigate to AddInfoAtm page
     };
 
     // Sample data for ATM cards
     const atmCards = [
-        { cardNumber: '13213213213213221', cardHolder: 'Út Tún',expiryDate: '12/12' , bankName: 'VietTinBank' },
-        { cardNumber: '9876543210987654',cardHolder: 'Lam vu',expiryDate: '12/12' , bankName: 'ACB Bank'}
+        { cardNumber: '13213213213213221', cardHolder: 'Út Tún', expiryDate: '12/12', bankName: 'VietTinBank' },
+        { cardNumber: '9876543210987654', cardHolder: 'Lam vu', expiryDate: '12/12', bankName: 'ACB Bank' }
         // Add more cards as needed
     ];
 
     return (
         <div className="md:p-6 flex items-center justify-center">
-            <div className="form-box w-full max-w-[900px] my-auto mx-0 p-5 bg-white border-0 md:border-[1px] border-solid border-amber-500 rounded-3xl">
+            <div className="form-box w-full max-w-[900px] my-auto mx-0 p-5 bg-white border-0 md:border-[1px] border-solid border-green-500 rounded-3xl">
                 <form>
                     {/* Form Header */}
                     <div className="head-form flex items-center mb-5">
-                        <div className="icons mr-2 text-[#FF7F50FF]">
+                        <div className="icons mr-2 text-green-500">
                             <GrTransaction />
                         </div>
-                        <div className="head-title">
+                        <div className="head-title text-green-500">
                             <p>Thẻ/Tài khoản ngân hàng</p>
                         </div>
                     </div>
 
                     {/* Form Body */}
-                    <div className="body-title mb-2 font-semibold flex items-start border-b-[1px] border-black">
+                    <div className="body-title mb-2 font-semibold text-green-500 flex items-start border-b-[1px] border-black">
                         <p>Thẻ/tài khoản nội địa(rút)</p>
                     </div>
                     <div className="body-section">
                         {/* Body Section Header */}
                         <div className="body-section-head flex justify-between items-center pb-2 mb-2">
-                            <div className="body-section-head-left flex items-center relative">
+                            <div className="body-section-head-left flex items-center relative text-green-500">
                                 <p>THẺ ATM</p>
                             </div>
                             <div className="body-section-head-right flex items-center relative">
-                                <div className="icon-body-head text-[#FF7F50FF] text-sm" onClick={handleShowNganHang}>
+                                <div className="icon-body-head text-green-500 text-sm" onClick={handleShowNganHang}>
                                     <IoIosAddCircle />
                                 </div>
-                                <div className="body-section-head-right-p ml-1 flex items-center text-[#FF7F50FF]" onClick={handleShowNganHang}>
+                                <div className="body-section-head-right-p ml-1 flex items-center text-green-500" onClick={handleShowNganHang}>
                                     <p>Thẻ ATM</p>
                                 </div>
                             </div>
@@ -75,21 +74,21 @@ const AtmLinked = () => {
                             />
                         </div>
                         <div className="body-section-bottom flex justify-between items-center pb-2 mt-4">
-                            <div className="body-section-bottom-left flex items-center relative">
+                            <div className="body-section-bottom-left text-green-500 flex items-center relative">
                                 <p>TÀI KHOẢN NGÂN HÀNG</p>
                             </div>
                             <div className="body-section-bottom-right flex items-center relative">
-                                <div className="icon-body-bottom relative text-[#FF7F50FF] text-sm" onClick={handleShowNganHang}>
+                                <div className="icon-body-bottom relative text-green-500 text-sm" onClick={handleShowNganHang}>
                                     <IoIosAddCircle />
                                 </div>
-                                <div className="body-section-bottom-right-p flex items-center text-[#FF7F50FF]" onClick={handleShowNganHang}>
+                                <div className="body-section-bottom-right-p flex items-center text-green-500" onClick={handleShowNganHang}>
                                     <p>Thẻ tài khoản</p>
                                 </div>
                             </div>
                         </div>
 
                         {/* Second Card */}
-                        <div className="nganhang md:w-1/2">
+                        <div className="nganhang w-full md:w-1/2 mt-2">
                             <CardAtmComponents
                                 title="Thêm tài khoản ngân hàng"
                                 text="Bạn có thể thêm tài khoản ngân hàng vào đây"

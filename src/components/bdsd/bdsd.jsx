@@ -1,10 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { TiDeleteOutline } from 'react-icons/ti';
 
 const Bdsd = ({ onFilter }) => {
     const [month, setMonth] = useState('');
     const [year, setYear] = useState('');
     const [filteredData, setFilteredData] = useState([]);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Call once to set initial state
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const handleFilter = () => {
         const currentYear = new Date().getFullYear();
@@ -49,6 +61,25 @@ const Bdsd = ({ onFilter }) => {
                 <td className="border px-4 py-2">{record.numWithdrawalTransactions}</td>
                 <td className="border px-4 py-2">{record.endingBalance}</td>
             </tr>
+        ));
+    };
+
+    const renderFinancialDataCards = () => {
+        return filteredData.map((record, index) => (
+            <div key={index} className="bg-white p-4 mb-4 rounded-2xl shadow border-1 border-green-500 ">
+                <div className="flex items-center justify-between">
+                   <strong>Ngày:</strong>
+                    <span className="">{`${record.date}/${month}/${record.year}`}</span>
+                </div>
+                <div className="mt-2 mb-2 ">
+                    <div className={"flex justify-between"}><strong>Số dư đầu kỳ:</strong> {record.startingBalance} VND</div>
+                    <div className={"flex justify-between"}><strong>Tổng nạp:</strong> {record.totalDeposits} VND</div>
+                    <div className={"flex justify-between"}><strong>Số GD nạp:</strong> {record.numDepositTransactions}</div>
+                    <div className={"flex justify-between"}><strong>Tổng rút:</strong> {record.totalWithdrawals} VND</div>
+                    <div className={"flex justify-between"}><strong>Số GD rút:</strong> {record.numWithdrawalTransactions}</div>
+                    <div className={"flex justify-between"}><strong>Số dư cuối kỳ:</strong> {record.endingBalance} VND</div>
+                </div>
+            </div>
         ));
     };
 
@@ -119,22 +150,26 @@ const Bdsd = ({ onFilter }) => {
                 </div>
                 {filteredData.length > 0 ? (
                     <div className="mt-5 overflow-x-auto">
-                        <table className="min-w-full bg-white border-collapse border border-gray-300">
-                            <thead>
-                            <tr className="bg-gray-100">
-                                <th className="border px-4 py-2 text-left">Ngày</th>
-                                <th className="border px-4 py-2 text-left">Số dư đầu kỳ (VND)</th>
-                                <th className="border px-4 py-2 text-left">Tổng nạp (VND)</th>
-                                <th className="border px-4 py-2 text-left">Số GD nạp</th>
-                                <th className="border px-4 py-2 text-left">Tổng rút (VND)</th>
-                                <th className="border px-4 py-2 text-left">Số GD rút</th>
-                                <th className="border px-4 py-2 text-left">Số dư cuối kỳ (VND)</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {renderFinancialData()}
-                            </tbody>
-                        </table>
+                        {isMobile ? (
+                            renderFinancialDataCards()
+                        ) : (
+                            <table className="min-w-full bg-white border-collapse border border-gray-300">
+                                <thead>
+                                <tr className="bg-gray-100">
+                                    <th className="border px-4 py-2 text-left">Ngày</th>
+                                    <th className="border px-4 py-2 text-left">Số dư đầu kỳ (VND)</th>
+                                    <th className="border px-4 py-2 text-left">Tổng nạp (VND)</th>
+                                    <th className="border px-4 py-2 text-left">Số GD nạp</th>
+                                    <th className="border px-4 py-2 text-left">Tổng rút (VND)</th>
+                                    <th className="border px-4 py-2 text-left">Số GD rút</th>
+                                    <th className="border px-4 py-2 text-left">Số dư cuối kỳ (VND)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {renderFinancialData()}
+                                </tbody>
+                            </table>
+                        )}
                     </div>
                 ) : (
                     <div className="mt-5 text-gray-500">Không có kết quả.</div>

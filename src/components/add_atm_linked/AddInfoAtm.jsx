@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const fetchBankList = () => {
-  return axios.get("https://api.vietqr.io/v2/banks");
+    return axios.get("https://api.vietqr.io/v2/banks");
 };
 
 const AddInfoAtm = () => {
@@ -30,6 +32,13 @@ const AddInfoAtm = () => {
 
     const selectBank = (shortName) => {
         setSelectedBank(shortName);
+    };
+
+    const handleCardNumberChange = (e) => {
+        let value = e.target.value;
+        value = value.replace(/\D/g, '');
+        value = value.slice(0, 16);
+        setAccountNumber(value);
     };
 
     const validateDate = (date) => {
@@ -115,29 +124,44 @@ const AddInfoAtm = () => {
     const handleSubmit = () => {
         if (handleValidation()) {
             console.log('Form is valid');
-            setSuccessMessage('Thông tin đã được cập nhật thành công.');
+            toast.success('Thông tin đã được cập nhật thành công.', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
         }
     };
 
     return (
-        <div className={"md:p-6 flex items-center justify-center"}>
+        <div className="md:p-6 flex items-center justify-center">
+            <ToastContainer />
             <div className="Add-app flex flex-wrap justify-center items-center max-w-[1200px] w-full bg-white border-[1px] mt-5 p-8 rounded-2xl">
-                <div className="w-full md:flex " >
-                    <div className="w-full md:w-1/2 justify-center p-4 bg-gray-100 border border-gray-300 rounded-2xl mb-5 md:mb-0 h-full">
-                        <div className="mb-4">
-                            <p className="text-lg">{accountName}</p>
-                        </div>
-                        <div className="mb-4">
-                            <p className="stk font-medium text-gray-700">Số tài khoản:</p>
-                            <p className="text-lg">{accountNumber}</p>
-                        </div>
-                        <div className="mb-5">
-                            <p className="nganhang font-medium text-gray-700">Ngân hàng:</p>
-                            <p className="text-lg">{selectedBank}</p>
-                        </div>
-                        <div className="mb-5">
-                            <p className="font-medium text-gray-700">Ngày phát hành:</p>
-                            <p className="text-lg">{ngayphathanh}</p>
+                <div className="w-full md:flex">
+                    <div className="mb-5 w-full md:w-[400px]">
+                        <div className="w-full h-auto bg-sky-300 rounded-xl shadow-md overflow-hidden p-5 relative">
+                            <div className="text-white text-center text-xl font-semibold mb-2">{selectedBank}</div>
+                            <div className="flex flex-col items-center">
+                                <div className="w-full h-24 rounded-xl flex items-center justify-center mb-2 relative bg-opacity-50">
+                                    <img src={"/src/assets/chip.png"} alt="Chip" className="absolute top-2 left-4 w-10" />
+                                    <div className="text-white text-xl font-mono mt-5">{accountNumber}</div>
+                                </div>
+                                <div className="w-full flex justify-between text-white mt-4">
+                                    <div className="flex flex-col">
+                                        <span className="text-xs text-gray-400">Expiry Date</span>
+                                        <span className="text-sm font-semibold">{ngayphathanh}</span>
+                                        <span className="text-sm font-semibold">{accountName}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="absolute bottom-2 right-2">
+                                <img src={"/src/assets/Mastercard.png"} alt="MasterCard" className="w-12" />
+                            </div>
                         </div>
                     </div>
 
@@ -150,7 +174,7 @@ const AddInfoAtm = () => {
                                     value={selectedBank}
                                     onChange={(e) => selectBank(e.target.value)}
                                 >
-                                    <option value="" disabled selected hidden>Chọn ngân hàng</option>
+                                    <option value="" disabled hidden>Chọn ngân hàng</option>
                                     {bankList.map((bank, index) => (
                                         <option key={index} value={bank.shortName}>
                                             {bank.shortName}
@@ -167,21 +191,23 @@ const AddInfoAtm = () => {
                                     readOnly
                                 />
                             </div>
+
                             <div className="flex items-center flex-col">
-                                <div className="flex  w-full mb-4 items-baseline">
-                                    <div className="w-1/4 text-right mr-4 text-md items-baseline ">
+                                <div className="flex w-full mb-4 items-baseline">
+                                    <div className="w-1/4 text-right mr-4 text-md items-baseline">
                                         <span>Số thẻ:</span>
                                     </div>
                                     <div className="w-3/4">
                                         <div className="relative">
                                             <input
-                                                className="w-full p-2 border border-gray-300 focus:outline-none align-baseline"
+                                                className="w-full p-2 border border-gray-300 focus:outline-none"
                                                 type="text"
                                                 value={accountNumber}
-                                                onChange={(e) => setAccountNumber(e.target.value)}
+                                                onChange={handleCardNumberChange}
+                                                maxLength={16}
                                             />
                                             {errors.accountNumber && (
-                                                <p className="text-red-500 mt-1 left-0">{errors.accountNumber}</p>
+                                                <p className="text-red-500 mt-1">{errors.accountNumber}</p>
                                             )}
                                         </div>
                                     </div>
@@ -189,12 +215,12 @@ const AddInfoAtm = () => {
                             </div>
 
                             <div className="flex items-center flex-col border-b-2 border-gray-300 pb-6">
-                                <div className="flex items-ceter w-full mb-4 items-baseline ">
-                                    <div className="w-1/4 textn-right mr-4 text-md ">
+                                <div className="flex items-center w-full mb-4">
+                                    <div className="w-1/4 text-right mr-4 text-md">
                                         <span>Ngày phát hành thẻ:</span>
                                     </div>
-                                    <div className="w-3/4 ">
-                                        <div className="">
+                                    <div className="w-3/4">
+                                        <div>
                                             <input
                                                 className="w-full p-2 border border-gray-300 focus:outline-none"
                                                 type="text"
@@ -202,7 +228,6 @@ const AddInfoAtm = () => {
                                                 value={ngayphathanh}
                                                 onChange={handleDateChange}
                                             />
-
                                             {errors.ngayphathanh && (
                                                 <p className="text-red-500 mt-1">{errors.ngayphathanh}</p>
                                             )}
@@ -213,10 +238,10 @@ const AddInfoAtm = () => {
 
                             <div className="button-bottom flex justify-end">
                                 <button
-                                    className="button-update text-amber-500 p-3 rounded-2xl mr-3 font-bold bg-white"
+                                    className="button-update text-green-500 p-3 rounded-2xl mr-3 font-bold"
                                     onClick={() => {
                                         setAccountNumber('');
-                                        setNgayphathanh(previousNgayphathanh); // Khôi phục giá trị trước đó
+                                        setNgayphathanh(previousNgayphathanh);
                                         setSelectedBank('');
                                         setErrors({});
                                         setSuccessMessage('');
@@ -224,14 +249,16 @@ const AddInfoAtm = () => {
                                 >
                                     Hủy bỏ
                                 </button>
-                                <button className="button-update p-3 rounded-2xl bg-orange-500 font-bold text-white"
-                                        onClick={handleSubmit}>Cập nhật
+                                <button
+                                    className="button-update p-3 rounded-2xl bg-green-500 font-bold text-white"
+                                    onClick={handleSubmit}
+                                >
+                                    Cập nhật
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                {successMessage && <p className="text-green-500">{successMessage}</p>}
             </div>
         </div>
     );
