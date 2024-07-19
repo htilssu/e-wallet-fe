@@ -29,7 +29,7 @@ const ScrollableCardList = () => {
             <div className="rs-text-medium text-sm sm:text-lg">
                 Các dịch vụ đề xuất
             </div>
-            <div className="border-2 p-2">
+            <div className="border-2 px-2">
                 <div className="relative overflow-hidden bg-gray-100">
                     <Swiper
                         spaceBetween={10}

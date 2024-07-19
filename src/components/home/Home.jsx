@@ -8,12 +8,12 @@ import Slider from "../library component/Slider.jsx";
 const Card = ({ icon, title, onClick }) => {
   return (
     <div
-      className="bg-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer"
+      className="w-full h-32 sm:h-36 bg-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer"
       onClick={onClick}
     >
-      <div className="p-8 flex flex-col items-center">
+      <div className="p-8 flex flex-col items-center justify-center">
         {icon}
-        <h2 className="text-xl font-semibold mt-4">{title}</h2>
+        <h2 className="text-sm sm:text-xl font-semibold mt-4">{title}</h2>
       </div>
     </div>
   );
@@ -21,10 +21,10 @@ const Card = ({ icon, title, onClick }) => {
 
 const HomePage = () => {
   return (
-    <div className={"flex flex-col bg-gray-100 px-10"}>
+    <div className={"flex flex-col bg-gray-100 "}>
       <div className={"flex w-full justify-center items-center "}>
-        <div className={"flex w-full flex-col md:flex-row"}>
-          <div className={"order-first md:order-last md:ml-9"}>
+        <div className={"flex w-full flex-col xg:flex-row justify-center"}>
+          <div className={"order-first xg:order-last md:ml-9"}>
             <PersonalInfoForm />
           </div>
           <div className="min-h-screen flex flex-col max-w-3xl">
@@ -55,7 +55,7 @@ const HomePage = () => {
               </div>
             </div>
             <div className={"w-full flex flex-col p-4 mb-28 sm:mt-2"}>
-              <div className={"flex flex-col justify-center "}>
+              <div className={"flex flex-col justify-center gap-4"}>
                 <div className={"rs-text-medium text-lg"}>
                   Có thể bạn quan tâm
                 </div>
