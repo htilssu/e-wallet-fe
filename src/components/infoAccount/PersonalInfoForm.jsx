@@ -1,7 +1,7 @@
 import { FaEdit } from "react-icons/fa";
 import { HiMiniCheckBadge } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
-import AvatarWithStatus from "../library component/AvatarWithStatus.jsx";
+import AvatarStatus from "../library component/AvatarStatus.jsx";
 
 function MyWallet() {
     return (
@@ -93,7 +93,7 @@ const PersonalInfoForm = () => {
                                 {/*                 className="text-white text-lg hover:text-green-400 cursor-pointer mr-4"/>*/}
                                 <div className="flex cursor-pointer mr-4 border-2 border-white rounded-full"
                                     onClick={handleMpersonal}>
-                                    <AvatarWithStatus
+                                    <AvatarStatus
                                         src="/avatarH.png"
                                         alt="avatar"
                                         size="w-16 h-16"
