@@ -51,7 +51,7 @@ const LoginForm = ({ imageLink, registrationLink }) => {
           }
         })
         .catch((res) => {
-          if (res.data.message) {
+          if (res.data && res.data.message) {
             setError(res.data.message);
           }
         });
