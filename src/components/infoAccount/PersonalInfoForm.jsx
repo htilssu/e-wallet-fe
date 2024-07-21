@@ -1,7 +1,7 @@
 import { FaEdit } from "react-icons/fa";
 import { HiMiniCheckBadge } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
-import AvatarWithStatus from "../library component/AvatarWithStatus.jsx";
+import AvatarStatus from "../library component/AvatarStatus.jsx";
 
 function MyWallet() {
     return (
@@ -93,17 +93,20 @@ const PersonalInfoForm = () => {
                                 {/*                 className="text-white text-lg hover:text-green-400 cursor-pointer mr-4"/>*/}
                                 <div className="flex cursor-pointer mr-4 border-2 border-white rounded-full"
                                     onClick={handleMpersonal}>
-                                    <AvatarWithStatus
+                                    <AvatarStatus
                                         src="/avatarH.png"
                                         alt="avatar"
                                         size="w-16 h-16"
                                     />
                                 </div>
                                 <div>
-                                    <p className="text-white text-lg font-semibold">{user.name}</p>
+                                    <div className={"flex flex-grow justify-center items-center gap-2"}>
+                                        <p className="text-white text-lg font-semibold">{user.name}</p>
+                                        <HiMiniCheckBadge size={22} className="text-blue-600"/>
+                                    </div>
                                     <div className="flex items-center">
                                         <p className="text-emerald-300 font-semibold mr-2">{user.isVerify ? "Tài khoản đã chứng thực" : "Tài khoản chưa chứng thực"}</p>
-                                        <HiMiniCheckBadge size={20} className="text-blue-600"/>
+
                                     </div>
                                 </div>
                             </div>
