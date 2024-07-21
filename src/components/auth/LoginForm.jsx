@@ -31,10 +31,11 @@ const LoginForm = ({ imageLink, registrationLink }) => {
     },
   });
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
 
   async function handeLogin() {
     form.validate();
+
     if (form.isValid) {
       post("/v1/auth/login", {
         username: form.values.userName,
@@ -44,14 +45,18 @@ const LoginForm = ({ imageLink, registrationLink }) => {
         .then((res) => {
           if (res.data.user) {
             setUser(res.data.user);
+            location.href = "/";
+          } else {
+            setError(res.data.message);
           }
-          location.href = "/";
         })
         .catch((res) => {
           if (res.data.message) {
             setError(res.data.message);
           }
         });
+    } else {
+      setError(null);
     }
   }
 
@@ -101,8 +106,8 @@ const LoginForm = ({ imageLink, registrationLink }) => {
                     />
                   </div>
                   <div>
-                    {error !== "" && (
-                      <div className={"px-2 text-sm mt-1"}>
+                    {error && (
+                      <div className={"text-sm mt-1"}>
                         <p className={"text-red-400"}>{error}</p>
                       </div>
                     )}

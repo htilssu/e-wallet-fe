@@ -2,7 +2,7 @@
 import { getCookie } from "./cookieUtil.js";
 
 // const apiUrl = "http://ewalletapi.htilssu.id.vn/api";
-const apiUrl = "http://localhost:8080/api";
+const apiUrl = "http://api.htilssu.com";
 
 const request = axios.create({
   baseURL: apiUrl,
