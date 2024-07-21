@@ -6,12 +6,21 @@ import AtmLinked from "../../components/atm_linked/AtmLinked.jsx";
 import { PageNotFound } from "./system-component/PageNotFound.jsx";
 import BankTransferModal from "../../components/bank/paymentMethods/BankTransferModal.jsx";
 import QRPayment from "../../components/bank/paymentMethods/QRPayment.jsx";
+import WithdrawMoney from "../../components/withdraw_money/WithdrawMoney.jsx";
+import BalanceFilter from "../../components/bdsd/bdsd.jsx";
+import AddInfoAtm from "../../components/add_atm_linked/AddInfoAtm.jsx";
 import HomePage from "../../components/home/Home.jsx";
 import ServicePayment from "../../components/bank/paymentMethods/ServicePayment.jsx";
 import TranHistory from "../../components/history/ TranHistory.jsx";
 import TransactionDetail from "../../components/history/TransactionDetail.jsx";
 import Example from "../../components/history/test.jsx";
 import OTPverification from "../../components/otpverify/OTPverification.jsx";
+import ManagementPersonalInfo from "../../components/infoAccount/managementPersonal/ManagementPersonalInfo.jsx";
+import InfoAccount from "../../components/infoAccount/managementPersonal/infoAccountAuth/InfoAccount.jsx";
+import SettingAdmitTransaction
+  from "../../components/infoAccount/managementPersonal/settingAdmitTransaction/SettingAdmitTransaction.jsx";
+import ChangePassword from "../../components/infoAccount/managementPersonal/changePassword/ChangePassword.jsx";
+import SendOTP from "../../components/infoAccount/managementPersonal/changePassword/SendOTP.jsx";
 import RegistrationForm from "../../components/auth/RegistrationForm.jsx";
 
 export const router = createBrowserRouter([
@@ -28,8 +37,8 @@ export const router = createBrowserRouter([
         element: <TopUp />,
       },
       {
-        path: "atm/link",
-        element: <AtmLinked />,
+        path: "addInfoAtm",
+        element: <AddInfoAtm/>,
       },
       {
         path: "atm/link",
@@ -44,13 +53,14 @@ export const router = createBrowserRouter([
         element: <QRPayment />,
       },
       {
-        path: "homepage",
-        element: <HomePage />,
+        path: "withdraw",
+        element: <WithdrawMoney/>
       },
       {
-        path: "user/:name?",
-        element: <AtmLinked />,
+        path: "bdsd",
+        element: <BalanceFilter/>,
       },
+
       {
         path: "servicepayment",
         element: <ServicePayment />,
@@ -68,12 +78,37 @@ export const router = createBrowserRouter([
         element: <OTPverification/>,
       },
       {
+        path: "management-personal",
+        element: <ManagementPersonalInfo />,
+        children: [
+          {
+            path: "info-account",
+            element: <InfoAccount />,
+          },
+          {
+            path: "transaction-account",
+            element: <SettingAdmitTransaction />,
+          },
+          {
+            path: "change-password",
+            element: <ChangePassword />,
+            children:[
+              {
+                path: "send-otp",
+                element: <SendOTP />,
+              },
+            ]
+          },
+        ]
+      },
+      {
         path: "test",
         element: <Example/>,
       }
     ],
     errorElement: <PageNotFound />,
   },
+
   {
     children: [
       {

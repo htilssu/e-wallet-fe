@@ -1,7 +1,7 @@
 import { FaEdit } from "react-icons/fa";
 import { HiMiniCheckBadge } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
-import AvatarWithStatus from "../library component/AvatarWithStatus.jsx";
+import AvatarStatus from "../library component/AvatarStatus.jsx";
 
 function MyWallet() {
     return (
@@ -67,6 +67,12 @@ const PersonalInfoForm = () => {
     surplus: amount,
   };
 
+    const navigate = useNavigate();
+    const handleMpersonal = (e) => {
+        e.preventDefault();
+        navigate('/management-personal');
+    };
+
     return (
         <div>
             <div className="max-w-lg mx-auto bg-white shadow-md rounded-lg overflow-hidden mb-9">
@@ -77,7 +83,7 @@ const PersonalInfoForm = () => {
                                 <div>
                                     <h2 className="text-white text-3xl font-bold mb-2">Thông tin cá nhân</h2>
                                 </div>
-                                <div className="flex items-center text-red-400 hover:text-green-400">
+                                <div className="flex items-center text-red-400 hover:text-green-400" onClick={handleMpersonal}>
                                     <FaEdit size={20} className="cursor-pointer mr-2"/>
                                     <span className="cursor-pointer">Sửa</span>
                                 </div>
@@ -85,18 +91,22 @@ const PersonalInfoForm = () => {
                             <div className="flex items-center px-6 py-4">
                                 {/*<MdAccountCircle size={70}*/}
                                 {/*                 className="text-white text-lg hover:text-green-400 cursor-pointer mr-4"/>*/}
-                                <div className="flex cursor-pointer mr-4 border-2 border-white rounded-full">
-                                    <AvatarWithStatus
+                                <div className="flex cursor-pointer mr-4 border-2 border-white rounded-full"
+                                    onClick={handleMpersonal}>
+                                    <AvatarStatus
                                         src="/avatarH.png"
                                         alt="avatar"
                                         size="w-16 h-16"
                                     />
                                 </div>
                                 <div>
-                                    <p className="text-white text-lg font-semibold">{user.name}</p>
+                                    <div className={"flex flex-grow justify-center items-center gap-2"}>
+                                        <p className="text-white text-lg font-semibold">{user.name}</p>
+                                        <HiMiniCheckBadge size={22} className="text-blue-600"/>
+                                    </div>
                                     <div className="flex items-center">
                                         <p className="text-emerald-300 font-semibold mr-2">{user.isVerify ? "Tài khoản đã chứng thực" : "Tài khoản chưa chứng thực"}</p>
-                                        <HiMiniCheckBadge size={20} className="text-blue-600"/>
+
                                     </div>
                                 </div>
                             </div>

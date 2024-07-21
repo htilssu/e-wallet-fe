@@ -52,8 +52,19 @@ const transactions = [
     }
 ];
 
+//Tạo Thành Phần Button:
+const FilterButton = ({ label, filterValue, currentFilter, onClick }) => {
+    const isActive = currentFilter === filterValue;
+    const buttonClass = `px-4 py-2 rounded border-1 hover:bg-green-300 ${isActive ? 'bg-green-500 text-white' : 'bg-slate-100'}`;
+    return (
+        <button className={buttonClass} onClick={() => onClick(filterValue)}>
+            {label}
+        </button>
+    );
+};
+
 const TransactionHistory = () => {
-    const [filter, setFilter] = useState("");
+    const [filter, setFilter] = useState("all");
     const [statusFilter, setStatusFilter] = useState("");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
@@ -121,26 +132,20 @@ const TransactionHistory = () => {
     // Xử lý chọn loại giao dịch để lọc
     const handleTransactionTypeFilter = (type) => {
         setTransactionTypeFilter(type);
-    };
-    //Tạo Thành Phần Button:
-    const FilterButton = ({ label, filterValue, currentFilter, onClick }) => {
-        const isActive = currentFilter === filterValue;
-        const buttonClass = `px-4 py-2 rounded border-1 hover:bg-green-300 ${isActive ? 'bg-green-500 text-white' : 'bg-slate-100'}`;
-        return (
-            <button className={buttonClass} onClick={() => onClick(filterValue)}>
-                {label}
-            </button>
-        );
+        setFilter(type.toLowerCase().replace(' ', '-')); // Cập nhật giá trị lọc tương ứng
     };
 
     const clearFilters = () => {
         setStatusFilter("");
         setStartDate("");
         setEndDate("");
+        setTransactionTypeFilter("");
+        setFilter("all"); // Thêm này để xóa bộ lọc loại giao dịch và đồng bộ hóa với dropdown
     };
 
     // Lấy các giao dịch đã lọc
     const filteredTransactions = filterTransactions(transactions, filter);
+
 
     return (
         <div className={"mb-4"}>
@@ -167,59 +172,58 @@ const TransactionHistory = () => {
                                 <FilterButton
                                     label="TẤT CẢ"
                                     filterValue=""
-                                    currentFilter={transactionTypeFilter}
+                                    currentFilter={filter}
                                     onClick={handleTransactionTypeFilter}
                                 />
                                 <FilterButton
                                     label="THANH TOÁN"
                                     filterValue="THANH TOÁN"
-                                    currentFilter={transactionTypeFilter}
+                                    currentFilter={filter}
                                     onClick={handleTransactionTypeFilter}
                                 />
                                 <FilterButton
                                     label="NẠP TIỀN"
                                     filterValue="NẠP TIỀN"
-                                    currentFilter={transactionTypeFilter}
+                                    currentFilter={filter}
                                     onClick={handleTransactionTypeFilter}
                                 />
                                 <FilterButton
                                     label="RÚT TIỀN"
                                     filterValue="RÚT TIỀN"
-                                    currentFilter={transactionTypeFilter}
+                                    currentFilter={filter}
                                     onClick={handleTransactionTypeFilter}
                                 />
                                 <FilterButton
                                     label="CHUYỂN TIỀN"
                                     filterValue="CHUYỂN TIỀN"
-                                    currentFilter={transactionTypeFilter}
+                                    currentFilter={filter}
                                     onClick={handleTransactionTypeFilter}
                                 />
                                 <FilterButton
                                     label="NHẬN TIỀN"
                                     filterValue="NHẬN TIỀN"
-                                    currentFilter={transactionTypeFilter}
+                                    currentFilter={filter}
                                     onClick={handleTransactionTypeFilter}
                                 />
                                 <FilterButton
                                     label="HOÀN TIỀN"
                                     filterValue="HOÀN TIỀN"
-                                    currentFilter={transactionTypeFilter}
+                                    currentFilter={filter}
                                     onClick={handleTransactionTypeFilter}
                                 />
                             </div>
                         ) : (
                             <select
                                 className="px-4 py-2 border rounded w-full"
-                                onChange={(e) => setFilter(e.target.value)}
-                                value={filter}
+                                onChange={(e) => handleTransactionTypeFilter(e.target.value)}
+                                value={transactionTypeFilter}
                             >
-                                <option value="">Chọn loại giao dịch</option>
-                                <option value="all">TẤT CẢ</option>
-                                <option value="payment">THANH TOÁN</option>
-                                <option value="deposit">NẠP TIỀN</option>
-                                <option value="withdraw">RÚT TIỀN</option>
-                                <option value="transfer">CHUYỂN TIỀN</option>
-                                <option value="refund">HOÀN TIỀN</option>
+                                <option value="TẤT CẢ">TẤT CẢ CÁC GIAO DỊCH</option>
+                                <option value="THANH TOÁN">THANH TOÁN</option>
+                                <option value="NẠP TIỀN">NẠP TIỀN</option>
+                                <option value="RÚT TIỀN">RÚT TIỀN</option>
+                                <option value="CHUYỂN TIỀN">CHUYỂN TIỀN</option>
+                                <option value="HOÀN TIỀN">HOÀN TIỀN</option>
                             </select>
                         )}
                     </div>
@@ -277,7 +281,7 @@ const TransactionHistory = () => {
                     {filteredTransactions.length === 0 ? (
                         <NotFound/>
                     ) : (
-                        <TransactionTable transactions={filteredTransactions} />
+                        <TransactionTable transactions={filteredTransactions}/>
                     )}
                 </div>
             </div>
