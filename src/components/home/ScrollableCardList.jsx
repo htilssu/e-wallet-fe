@@ -11,7 +11,7 @@ import { BiSolidMoviePlay } from "react-icons/bi";
 import { FaAnchorLock, FaGroupArrowsRotate } from "react-icons/fa6"; // Import các icon từ thư viện React Icons
 
 const items = [
-    { link: "/pay", icon: <TbCreditCardPay size={35} className="text-green-500" />, title: "Thanh toán hóa đơn" },
+    { link: "/servicepayment", icon: <TbCreditCardPay size={35} className="text-green-500" />, title: "Thanh toán hóa đơn" },
     { link: "/atm/link", icon: <FaLink size={30} className="text-yellow-400" />, title: "Liên kết thẻ" },
     { link: "/profile", icon: <MdOutlineLtePlusMobiledata size={45} className="text-blue-500" />, title: "Data 4G/5G" },
     { link: "/cards", icon: <FaCreditCard size={30} className="text-red-500" />, title: "Thẻ tín dụng" },
@@ -26,7 +26,7 @@ const items = [
 const ScrollableCardList = () => {
     return (
         <div>
-            <div className="rs-text-medium text-sm sm:text-lg">
+            <div className="rs-text-medium text-sm sm:text-lg sm:mb-1 mb-2">
                 Các dịch vụ đề xuất
             </div>
             <div className="border-2 px-2">
@@ -53,7 +53,7 @@ const ScrollableCardList = () => {
                                             {item.icon}
                                         </div>
                                         <div className="p-2 text-center">
-                                            <h2 className="text-sm font-semibold mb-1 sm:text-lg">{item.title}</h2>
+                                            <div className="font-semibold mb-1">{item.title}</div>
                                         </div>
                                     </div>
                                 </a>

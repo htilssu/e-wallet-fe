@@ -4,7 +4,7 @@ import LoginForm from "../../components/auth/AuthForm.jsx";
 import TopUp from "../../components/topup/TopUp.jsx";
 import AtmLinked from "../../components/atm_linked/AtmLinked.jsx";
 import { PageNotFound } from "./system-component/PageNotFound.jsx";
-import BankTransferModal from "../../components/bank/paymentMethods/BankTransferModal.jsx";
+import BankTransferModal from "../../components/topup/BankTransferModal.jsx";
 import QRPayment from "../../components/bank/paymentMethods/QRPayment.jsx";
 import WithdrawMoney from "../../components/withdraw_money/WithdrawMoney.jsx";
 import BalanceFilter from "../../components/bdsd/bdsd.jsx";
@@ -22,6 +22,7 @@ import SettingAdmitTransaction
 import ChangePassword from "../../components/infoAccount/managementPersonal/changePassword/ChangePassword.jsx";
 import SendOTP from "../../components/infoAccount/managementPersonal/changePassword/SendOTP.jsx";
 import RegistrationForm from "../../components/auth/RegistrationForm.jsx";
+import TransferMoney from "../../components/bank/paymentMethods/TransferMoney.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,11 @@ export const router = createBrowserRouter([
       {
         path: "qrpayment",
         element: <QRPayment />,
+      }
+      ,
+      {
+        path: "transfermoney",
+        element: <TransferMoney />,
       },
       {
         path: "withdraw",
