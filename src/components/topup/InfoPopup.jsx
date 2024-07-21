@@ -1,6 +1,6 @@
 import { FaDownload } from "react-icons/fa";
 import { useState } from "react";
-import BankSelectModal from "../bank/BankSelectModal.jsx";
+import BankSelect from "../library component/BankSelect.jsx";
 import {ScrollRestoration} from "react-router-dom";
 
 const InfoPopup = () => {
@@ -129,8 +129,8 @@ const InfoPopup = () => {
                         một số Ngân hàng sẽ không hỗ trợ kiểm tra sau 19h00: Agribank, Đông Á, Sacombank, Vietinbank,
                         Vietcombank.</p>
                 </div>
-                <BankSelectModal show={showModal} onClose={() => setShowModal(false)} amount={amount}
-                                 methodPay={methodPay}/>
+                <BankSelect show={showModal} onClose={() => setShowModal(false)} amount={amount}
+                            methodPay={methodPay}/>
             </div>
             <ScrollRestoration/>
         </div>

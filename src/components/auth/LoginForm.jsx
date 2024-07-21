@@ -37,7 +37,7 @@ const LoginForm = ({ imageLink, registrationLink }) => {
     form.validate();
 
     if (form.isValid) {
-      post("/v1/auth/login", {
+      post("/api/v1/auth/login", {
         username: form.values.userName,
         password: form.values.password,
         isRemember: form.values.isRemember,

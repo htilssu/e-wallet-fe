@@ -24,7 +24,7 @@ const OtpVerification = () => {
         }
 
         try {
-            post("/api/v1/otp", {
+            post("/api/v1/otp/verify", {
                 otp: otp
             }).then((res => {
                 notify('Xác thực thành công!', 'success');

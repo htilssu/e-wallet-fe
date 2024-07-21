@@ -1,6 +1,9 @@
 
 import 'react-toastify/dist/ReactToastify.css';
 import {ScrollRestoration, useNavigate} from "react-router-dom";
+import {post} from "../../../util/requestUtil.js";
+import {useState} from "react";
+import {toast, ToastContainer} from "react-toastify";
 
 const ServicePayment = () => {
     const paymentInf = {
@@ -11,16 +14,42 @@ const ServicePayment = () => {
         promotion: 50000,
         transactionCode: "HD123456",
     };
+    const user = {
+        name: "NGUYỄN ANH TUẤN",
+        email: "tuanmeo980provip@gmail.com",
+    };
+
     //chuyen trang
     const navigate = useNavigate();
-
     const handleOTPverify = () => {
         navigate('/otpverification');
     };
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        handleOTPverify();
+        setLoading(true); // Bắt đầu loading
+
+        try {
+            post("/api/v1/otp", {
+                otpType: 'email',
+                sendTo: user.email
+            }).then((res) => {
+                toast.success('Đã gửi OTP!');
+                setError(null);
+                setLoading(false);
+                handleOTPverify();
+            }).catch((e) => {
+                toast.error('Đã xảy ra lỗi!');
+                setError('Đã xảy ra lỗi! Vui lòng thử lại.');
+                setLoading(false);
+            });
+        } catch (error) {
+            toast.error('Đã xảy ra lỗi trong quá trình gửi OTP!', 'error');
+            setError('Đã xảy ra lỗi trong quá trình gửi OTP!');
+            setLoading(false);
+        }
     };
 
     const totalAmount = paymentInf.amount - paymentInf.promotion;
@@ -85,13 +114,20 @@ const ServicePayment = () => {
                         <div>
                             <button
                                 className="w-full p-2 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600 transition duration-300 text-lg font-semibold"
+                                disabled={loading} // Disable button when loading
                             >
-                                Xác Nhận Thanh Toán
+                                {loading ? 'Đang gửi OTP...' : 'Xác Nhận Thanh Toán'}
                             </button>
                         </div>
+                        {error && (
+                            <div className="text-red-500 text-center mt-4">
+                                {error}
+                            </div>
+                        )}
                     </form>
                 </div>
             </div>
+            <ToastContainer stacked />
             <ScrollRestoration/>
         </>
     );

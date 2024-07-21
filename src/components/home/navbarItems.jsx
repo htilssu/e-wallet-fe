@@ -32,7 +32,7 @@ const navbarItems = [
         title: "Lịch sử giao dịch"
     },
     {
-        link: "/servicepayment",
+        link: "/",
         icon: <HiOutlineViewGridAdd size={30} className="text-green-500" />,
         title: "Xem thêm dịch vụ"
     }

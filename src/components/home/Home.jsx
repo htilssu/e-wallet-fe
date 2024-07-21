@@ -49,7 +49,7 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
-            <div className={"flex flex-col p-4 mt-9 sm:mt-2"}>
+            <div className={"flex flex-col p-4 sm:mt-2"}>
               <div className={""}>
                 <ScrollableCardList />
               </div>
