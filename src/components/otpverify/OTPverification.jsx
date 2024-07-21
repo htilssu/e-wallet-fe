@@ -30,8 +30,8 @@ const OtpVerification = () => {
                 notify('Xác thực thành công!', 'success');
                 setError(null);
             })).catch((e) => {
-                notify('OTP không hợp lệ!', 'error');
-                setError('OTP không hợp lệ!');
+                notify('Đã xảy ra lỗi!', 'error');
+                setError('Đã xảy ra lỗi!');
             })
 
         } catch (error) {

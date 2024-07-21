@@ -4,7 +4,7 @@ import Navbar from "../system-component/Navbar.jsx";
 
 export function MainLayout() {
   return (
-    <div>
+    <div className={"w-full"}>
       <Navbar />
 
       <div className={"mt-24"}>

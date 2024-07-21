@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
         element: <TopUp />,
       },
       {
-        path: "AddInfoAtm",
+        path: "addInfoAtm",
         element: <AddInfoAtm/>,
       },
       {
