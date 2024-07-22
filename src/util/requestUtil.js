@@ -2,7 +2,7 @@
 import { getCookie } from "./cookieUtil.js";
 
 // const apiUrl = "http://ewalletapi.htilssu.id.vn/api";
-const apiUrl = "https://api.htilssu.com/";
+const apiUrl = "https://api.htilssu.com";
 // const apiUrl = "http://localhost:8080/";
 
 const request = axios.create({
@@ -13,8 +13,6 @@ const request = axios.create({
 const post = async (url, data) => {
   //get cookies from browser
   const token = localStorage.getItem("token");
-  console.log(document.cookie);
-  console.log(token);
   if (token) {
     request.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }
