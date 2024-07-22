@@ -45,6 +45,7 @@ const LoginForm = ({ imageLink, registrationLink }) => {
         .then((res) => {
           if (res.data.user) {
             setUser(res.data.user);
+            localStorage.setItem("token", res.data.token);
             location.href = "/";
           } else {
             setError(res.data.message);
