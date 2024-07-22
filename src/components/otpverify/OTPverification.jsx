@@ -1,22 +1,22 @@
 import { useState, useEffect } from 'react';
-import { Bounce, toast, ToastContainer } from 'react-toastify';
-import { ScrollRestoration } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import {ScrollRestoration, useNavigate} from 'react-router-dom';
 import { PinInput } from '@mantine/core';
 import {post} from "../../util/requestUtil.js";
 
 const user = {
-    email: 'tuan980blue@gmail.com',
+    name: "NGUYỄN ANH TUẤN",
+    email: "tuanmeo980provip@gmail.com",
 };
 
 const OtpVerification = () => {
     const [otp, setOtp] = useState('');
-    const [resendTime, setResendTime] = useState(10);
+    const [resendTime, setResendTime] = useState(50);
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        //debug
-        console.log({otp});
 
         if (otp.length === 0 || otp.length < 6) {
             setError('Vui lòng nhập đầy đủ OTP!');
@@ -27,15 +27,15 @@ const OtpVerification = () => {
             post("/api/v1/otp/verify", {
                 otp: otp
             }).then((res => {
-                notify('Xác thực thành công!', 'success');
+                toast.success(res.data.message);
                 setError(null);
+                handleSuccess();
             })).catch((e) => {
-                notify('Đã xảy ra lỗi!', 'error');
-                setError('Đã xảy ra lỗi!');
+                setError(e.response.data.message);
             })
 
         } catch (error) {
-            notify('Đã xảy ra lỗi trong quá trình xác thực OTP!', 'error');
+            toast.error('Đã xảy ra lỗi trong quá trình xác thực OTP!');
             setError('Đã xảy ra lỗi trong quá trình xác thực OTP!');
         }
     };
@@ -47,13 +47,27 @@ const OtpVerification = () => {
 
     const handleResendOtp = async () => {
         setOtp('');
-        setResendTime(10);
         setError(null);
+        setLoading(true); // Bắt đầu loading
 
         try {
-            //Xử lý sau
+            post("/api/v1/otp", {
+                otpType: 'email',
+                sendTo: user.email
+            }).then((res) => {
+                toast.success(res.data.message);
+                setError(null);
+                setLoading(false);
+                setResendTime(50);
+            }).catch((e) => {
+                toast.error('Đã xảy ra lỗi!');
+                setError('Đã xảy ra lỗi! Vui lòng thử lại.');
+                setLoading(false);
+            });
         } catch (error) {
-            notify('Đã xảy ra lỗi trong quá trình gửi lại OTP!', 'error');
+            toast.error('Đã xảy ra lỗi trong quá trình gửi OTP!');
+            setError('Đã xảy ra lỗi trong quá trình gửi OTP!');
+            setLoading(false);
         }
     };
 
@@ -66,24 +80,17 @@ const OtpVerification = () => {
         }
     }, [resendTime]);
 
-    const notify = (message, type) => {
-        toast[type](message, {
-            position: 'top-right',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: 'dark',
-            transition: Bounce,
-        });
+
+    // Chuyển trang
+    const navigate = useNavigate();
+    const handleSuccess = () => {
+        navigate('success');
     };
 
     return (
         <div>
             <div className="flex flex-col items-center min-h-screen bg-gray-100 p-4">
-                <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md mt-6">
+                <div className="bg-white rounded-lg shadow-md w-full max-w-md mt-6">
                     <div className="flex flex-col items-center">
                         <img src="otp_veri.png" alt="OTP Verification" className="w-24 mb-4" />
                         <h2 className="text-2xl font-semibold text-gray-800 mb-2">Xác thực OTP</h2>
@@ -122,8 +129,8 @@ const OtpVerification = () => {
                                 Mã OTP hết hiệu lực sau: <span className="font-medium text-red-600">{resendTime}s</span>
                             </p>
                         ) : (
-                            <button onClick={handleResendOtp} className="text-blue-500 hover:underline">
-                                Gửi lại OTP
+                            <button onClick={handleResendOtp} disabled={loading} className="text-blue-500 hover:underline">
+                                {loading ? 'Đang gửi lại...' : 'Gửi lại OTP' }
                             </button>
                         )}
                     </div>
