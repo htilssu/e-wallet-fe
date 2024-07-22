@@ -60,7 +60,7 @@ const banks = [
 ];
 
 // eslint-disable-next-line react/prop-types
-const BankSelectModal = ({show, onClose, amount, methodPay}) => {
+const BankSelect = ({show, onClose, amount, methodPay}) => {
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedBank, setSelectedBank] = useState(null);
@@ -157,4 +157,4 @@ const BankSelectModal = ({show, onClose, amount, methodPay}) => {
     );
 };
 
-export default BankSelectModal;
+export default BankSelect;

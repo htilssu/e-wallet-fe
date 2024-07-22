@@ -106,7 +106,6 @@ const PersonalInfoForm = () => {
                                     </div>
                                     <div className="flex items-center">
                                         <p className="text-emerald-300 font-semibold mr-2">{user.isVerify ? "Tài khoản đã chứng thực" : "Tài khoản chưa chứng thực"}</p>
-
                                     </div>
                                 </div>
                             </div>
