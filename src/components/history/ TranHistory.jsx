@@ -13,6 +13,15 @@ const transactions = [
         receiverAccount: "tuanmeo980provip@gmail.com"
     },
     {
+        transactionCode: "138262548",
+        billCode: "NT12345",
+        transactionType: "NẠP TIỀN",
+        amount: 50000,
+        createdTime: "18:44:51 13/07/2024",
+        status: "Thành công",
+        receiverAccount: "tuanmeo980provip@gmail.com"
+    },
+    {
         transactionCode: "138096951",
         billCode: "CT12345",
         transactionType: "CHUYỂN TIỀN",
@@ -151,7 +160,7 @@ const TransactionHistory = () => {
         <div className={"mb-4"}>
             <div className="flex flex-col items-center min-h-screen">
                 <div>
-                    <h2 className="text-3xl font-semibold text-center text-gray-700 p-2">
+                    <h2 className="text-3xl font-semibold text-center text-gray-800 p-2">
                         Lịch Sử Giao Dịch
                     </h2>
                 </div>

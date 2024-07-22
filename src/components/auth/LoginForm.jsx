@@ -37,7 +37,7 @@ const LoginForm = ({ imageLink, registrationLink }) => {
     form.validate();
 
     if (form.isValid) {
-      post("/v1/auth/login", {
+      post("/api/v1/auth/login", {
         username: form.values.userName,
         password: form.values.password,
         isRemember: form.values.isRemember,
@@ -45,13 +45,14 @@ const LoginForm = ({ imageLink, registrationLink }) => {
         .then((res) => {
           if (res.data.user) {
             setUser(res.data.user);
+            localStorage.setItem("token", res.data.token);
             location.href = "/";
           } else {
             setError(res.data.message);
           }
         })
         .catch((res) => {
-          if (res.data.message) {
+          if (res.data && res.data.message) {
             setError(res.data.message);
           }
         });
