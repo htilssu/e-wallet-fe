@@ -23,6 +23,7 @@ import ChangePassword from "../../components/infoAccount/managementPersonal/chan
 import SendOTP from "../../components/infoAccount/managementPersonal/changePassword/SendOTP.jsx";
 import RegistrationForm from "../../components/auth/RegistrationForm.jsx";
 import TransferMoney from "../../components/bank/paymentMethods/TransferMoney.jsx";
+import TransactionSuccess from "../../components/bank/statusTransaction/TransactionSuccess.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +58,11 @@ export const router = createBrowserRouter([
       {
         path: "transfermoney",
         element: <TransferMoney />,
+      }
+      ,
+      {
+        path: "transfermoney/success",
+        element: <TransactionSuccess />,
       },
       {
         path: "withdraw",
