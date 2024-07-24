@@ -1,8 +1,9 @@
 ﻿import axios from "axios";
 import { getCookie } from "./cookieUtil.js";
 
-// const apiUrl = "http://ewalletapi.htilssu.id.vn";
-const apiUrl = "http://localhost:8080";
+// const apiUrl = "http://ewalletapi.htilssu.id.vn/api";
+const apiUrl = "https://api.htilssu.com";
+// const apiUrl = "http://localhost:8080/";
 
 const request = axios.create({
   baseURL: apiUrl,
@@ -11,8 +12,10 @@ const request = axios.create({
 
 const post = async (url, data) => {
   //get cookies from browser
-  const token = getCookie("token");
-  request.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  const token = localStorage.getItem("token");
+  if (token) {
+    request.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  }
   request.defaults.headers.common["Accept"] = `*`;
   return await request.post(url, data);
 };

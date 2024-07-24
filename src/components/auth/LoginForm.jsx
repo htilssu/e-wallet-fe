@@ -31,24 +31,33 @@ const LoginForm = ({ imageLink, registrationLink }) => {
     },
   });
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
 
   async function handeLogin() {
     form.validate();
+
     if (form.isValid) {
-      post("/v1/auth/login", {
+      post("/api/v1/auth/login", {
         username: form.values.userName,
         password: form.values.password,
         isRemember: form.values.isRemember,
       })
         .then((res) => {
-          const user = JSON.parse(res.data.user);
-          setUser(user);
-          location.href = "/";
+          if (res.data.user) {
+            setUser(res.data.user);
+            localStorage.setItem("token", res.data.token);
+            location.href = "/";
+          } else {
+            setError(res.data.message);
+          }
         })
         .catch((res) => {
-          console.log(res);
+          if (res.data && res.data.message) {
+            setError(res.data.message);
+          }
         });
+    } else {
+      setError(null);
     }
   }
 
@@ -83,6 +92,7 @@ const LoginForm = ({ imageLink, registrationLink }) => {
                 <form onSubmit={form.onSubmit(handeLogin)}>
                   <div>
                     <TextInput
+                      size={"md"}
                       key={form.key("userName")}
                       placeholder={"Nhập email"}
                       {...form.getInputProps("userName")}
@@ -90,14 +100,15 @@ const LoginForm = ({ imageLink, registrationLink }) => {
                   </div>
                   <div className="mt-3">
                     <PasswordInput
+                      size={"md"}
                       key={form.key("password")}
                       placeholder={"Nhập mật khẩu"}
                       {...form.getInputProps("password")}
                     />
                   </div>
                   <div>
-                    {error !== "" && (
-                      <div className={"px-2 text-sm mt-1"}>
+                    {error && (
+                      <div className={"text-sm mt-1"}>
                         <p className={"text-red-400"}>{error}</p>
                       </div>
                     )}

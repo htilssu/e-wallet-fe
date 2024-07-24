@@ -28,7 +28,6 @@ export default {
         93: "347px",
       },
       colors: {
-        customGray: "#383f48",
         textGray: "#747373",
         textGray0: "#A1A1A1",
         dimPrimaryColor: "#bce0fb",
