@@ -1,7 +1,6 @@
 ﻿import axios from "axios";
 import { getCookie } from "./cookieUtil.js";
 
-// const apiUrl = "http://ewalletapi.htilssu.id.vn/api";
 const apiUrl = "https://api.htilssu.com";
 // const apiUrl = "http://localhost:8080/";
 

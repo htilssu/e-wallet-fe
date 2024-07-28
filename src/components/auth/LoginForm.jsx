@@ -5,11 +5,8 @@ import { PasswordInput, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { post } from "../../util/requestUtil.js";
 import { useState } from "react";
-import { useAuth } from "../../hooks/useAuth.jsx";
 
 const LoginForm = ({ imageLink, registrationLink }) => {
-  const { setUser } = useAuth();
-
   const form = useForm({
     initialValues: {
       userName: "",
@@ -44,7 +41,7 @@ const LoginForm = ({ imageLink, registrationLink }) => {
       })
         .then((res) => {
           if (res.data.user) {
-            setUser(res.data.user);
+            localStorage.setItem("user", JSON.stringify(res.data.user));
             localStorage.setItem("token", res.data.token);
             location.href = "/";
           } else {
@@ -52,8 +49,8 @@ const LoginForm = ({ imageLink, registrationLink }) => {
           }
         })
         .catch((res) => {
-          if (res.data && res.data.message) {
-            setError(res.data.message);
+          if (res.response && res.response.data.message) {
+            setError(res.response.data.message);
           }
         });
     } else {

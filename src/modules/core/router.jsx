@@ -17,13 +17,13 @@ import Example from "../../components/history/test.jsx";
 import OTPverification from "../../components/otpverify/OTPverification.jsx";
 import ManagementPersonalInfo from "../../components/infoAccount/managementPersonal/ManagementPersonalInfo.jsx";
 import InfoAccount from "../../components/infoAccount/managementPersonal/infoAccountAuth/InfoAccount.jsx";
-import SettingAdmitTransaction
-  from "../../components/infoAccount/managementPersonal/settingAdmitTransaction/SettingAdmitTransaction.jsx";
+import SettingAdmitTransaction from "../../components/infoAccount/managementPersonal/settingAdmitTransaction/SettingAdmitTransaction.jsx";
 import ChangePassword from "../../components/infoAccount/managementPersonal/changePassword/ChangePassword.jsx";
 import SendOTP from "../../components/infoAccount/managementPersonal/changePassword/SendOTP.jsx";
 import RegistrationForm from "../../components/auth/RegistrationForm.jsx";
 import TransferMoney from "../../components/bank/paymentMethods/TransferMoney.jsx";
 import TransactionSuccess from "../../components/bank/statusTransaction/TransactionSuccess.jsx";
+import Docs from "../../routes/Docs.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "addInfoAtm",
-        element: <AddInfoAtm/>,
+        element: <AddInfoAtm />,
       },
       {
         path: "atm/link",
@@ -53,24 +53,22 @@ export const router = createBrowserRouter([
       {
         path: "qrpayment",
         element: <QRPayment />,
-      }
-      ,
+      },
       {
         path: "transfermoney",
         element: <TransferMoney />,
-      }
-      ,
+      },
       {
         path: "transfermoney/success",
         element: <TransactionSuccess />,
       },
       {
         path: "withdraw",
-        element: <WithdrawMoney/>
+        element: <WithdrawMoney />,
       },
       {
         path: "bdsd",
-        element: <BalanceFilter/>,
+        element: <BalanceFilter />,
       },
 
       {
@@ -83,11 +81,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "transactions/transactiondetail",
-        element: <TransactionDetail/>,
+        element: <TransactionDetail />,
       },
       {
         path: "otpverification",
-        element: <OTPverification/>,
+        element: <OTPverification />,
       },
       {
         path: "management-personal",
@@ -104,19 +102,19 @@ export const router = createBrowserRouter([
           {
             path: "change-password",
             element: <ChangePassword />,
-            children:[
+            children: [
               {
                 path: "send-otp",
                 element: <SendOTP />,
               },
-            ]
+            ],
           },
-        ]
+        ],
       },
       {
         path: "test",
-        element: <Example/>,
-      }
+        element: <Example />,
+      },
     ],
     errorElement: <PageNotFound />,
   },
@@ -130,6 +128,10 @@ export const router = createBrowserRouter([
       {
         path: "register",
         element: <RegistrationForm />,
+      },
+      {
+        path: "docs",
+        element: <Docs />,
       },
     ],
     errorElement: <PageNotFound />,
