@@ -8,6 +8,9 @@ export default defineConfig({
     federation({
       name: "remote",
       filename: "remoteEntry.js",
+      remotes: {
+        remote: "https://htilssu.com/assets/remoteEntry.js",
+      },
       exposes: {
         "./Remote": "src/modules/core/system-component/remoteEntry.jsx",
       },
