@@ -14,10 +14,6 @@ const ServicePayment = () => {
         promotion: 50000,
         transactionCode: "HD123456",
     };
-    const user = {
-        name: "NGUYỄN ANH TUẤN",
-        email: "tuanmeo980provip@gmail.com",
-    };
 
     //chuyen trang
     const navigate = useNavigate();
@@ -33,8 +29,7 @@ const ServicePayment = () => {
 
         try {
             post("/api/v1/otp", {
-                otpType: 'email',
-                sendTo: user.email
+                otpType: 'email'
             }).then((res) => {
                 toast.success(res.data.message);
                 setError(null);

@@ -24,6 +24,7 @@ import RegistrationForm from "../../components/auth/RegistrationForm.jsx";
 import TransferMoney from "../../components/bank/paymentMethods/TransferMoney.jsx";
 import TransactionSuccess from "../../components/bank/statusTransaction/TransactionSuccess.jsx";
 import Docs from "../../routes/Docs.jsx";
+import Dashboard from "../../components/admin/dashboard/Dashboard.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -110,6 +111,10 @@ export const router = createBrowserRouter([
             ],
           },
         ],
+      },
+      {
+        path: "dashboard",
+        element: <Dashboard />,
       },
       {
         path: "test",

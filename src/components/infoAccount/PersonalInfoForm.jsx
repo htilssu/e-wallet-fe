@@ -1,7 +1,10 @@
-import { FaEdit } from "react-icons/fa";
-import { HiMiniCheckBadge } from "react-icons/hi2";
-import { useNavigate } from "react-router-dom";
+import {FaEdit} from "react-icons/fa";
+import {HiMiniCheckBadge} from "react-icons/hi2";
+import {useNavigate} from "react-router-dom";
 import AvatarStatus from "../library component/AvatarStatus.jsx";
+import {get} from "../../util/requestUtil.js";
+import {toast, ToastContainer} from "react-toastify";
+import {useEffect, useState} from "react";
 
 function MyWallet() {
     return (
@@ -32,7 +35,7 @@ function MyWallet() {
 }
 
 function TopUpBtn() {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleTopup = (e) => {
         e.preventDefault();
@@ -51,7 +54,7 @@ function TopUpBtn() {
 }
 
 function formatCurrency(amount) {
-  return amount.toLocaleString("vi-VN", { style: "currency", currency: "VND" });
+    return amount.toLocaleString("vi-VN", {style: "currency", currency: "VND"});
 }
 
 // Ví dụ sử dụng
@@ -59,13 +62,15 @@ const amount = 99000020457;
 const formattedAmount = formatCurrency(amount);
 
 const PersonalInfoForm = () => {
-  const user = {
-    name: "NGUYỄN ANH TUẤN",
-    email: "tuanmeo980provip@gmail.com",
-    typeAccount: "Tài khoản cá nhân",
-    isVerify: true,
-    surplus: amount,
-  };
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        get("/api/v1/user").then((res) => {
+            setUser(res.data);
+        }).catch((e) => {
+            toast.error('Không lấy thông tin User!');
+        });
+    }, []);
 
     const navigate = useNavigate();
     const handleMpersonal = (e) => {
@@ -83,16 +88,15 @@ const PersonalInfoForm = () => {
                                 <div>
                                     <h2 className="text-white text-3xl font-bold mb-2">Thông tin cá nhân</h2>
                                 </div>
-                                <div className="flex items-center text-red-400 hover:text-green-400" onClick={handleMpersonal}>
+                                <div className="flex items-center text-red-400 hover:text-green-400"
+                                     onClick={handleMpersonal}>
                                     <FaEdit size={20} className="cursor-pointer mr-2"/>
                                     <span className="cursor-pointer">Sửa</span>
                                 </div>
                             </div>
                             <div className="flex items-center px-6 py-4">
-                                {/*<MdAccountCircle size={70}*/}
-                                {/*                 className="text-white text-lg hover:text-green-400 cursor-pointer mr-4"/>*/}
                                 <div className="flex cursor-pointer mr-4 border-2 border-white rounded-full"
-                                    onClick={handleMpersonal}>
+                                     onClick={handleMpersonal}>
                                     <AvatarStatus
                                         src="/avatarH.png"
                                         alt="avatar"
@@ -100,12 +104,12 @@ const PersonalInfoForm = () => {
                                     />
                                 </div>
                                 <div>
-                                    <div className={"flex flex-grow justify-center items-center gap-2"}>
-                                        <p className="text-white text-lg font-semibold">{user.name}</p>
+                                    <div className={"flex flex-grow justify-start items-center gap-2"}>
+                                        <p className="text-white text-lg font-semibold">{user.lastName +" "+ user.firstName}</p>
                                         <HiMiniCheckBadge size={22} className="text-blue-600"/>
                                     </div>
                                     <div className="flex items-center">
-                                        <p className="text-emerald-300 font-semibold mr-2">{user.isVerify ? "Tài khoản đã chứng thực" : "Tài khoản chưa chứng thực"}</p>
+                                        <p className="text-emerald-300 font-semibold mr-2">{user.verified ? "Tài khoản đã chứng thực" : "Tài khoản chưa chứng thực"}</p>
                                     </div>
                                 </div>
                             </div>
@@ -114,9 +118,9 @@ const PersonalInfoForm = () => {
                     <div className="max-w-lg mx-auto bg-white shadow-md rounded-lg overflow-hidden mt-1 p-6">
                         <div className="mb-2">
                             <label className="block text-gray-700 text-base font-extralight mb-0.5">
-                            Loại tài khoản
+                                Loại tài khoản
                             </label>
-                            <p className="text-gray-900 font-semibold">{user.typeAccount}</p>
+                            <p className="text-gray-900 font-semibold">Tài khoản cá nhân</p>
                         </div>
                         <div className="mb-2">
                             <label className="block text-gray-700 text-base font-extralight mb-0.5">
@@ -129,9 +133,10 @@ const PersonalInfoForm = () => {
                 <MyWallet/>
                 <TopUpBtn/>
             </div>
+            <ToastContainer stacked/>
         </div>
     );
 };
 
 export default PersonalInfoForm;
-export { MyWallet, TopUpBtn };
+export {MyWallet, TopUpBtn};
