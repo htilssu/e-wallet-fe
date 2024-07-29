@@ -33,6 +33,7 @@
     "react-switch": "^7.0.0",
     "react-toastify": "^10.0.5",
     "rsuite": "^5.65.1",
+    "swagger-ui-react": "^5.17.14",
     "swiper": "^11.1.5"
   },
   "devDependencies": {
