@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Bar, Line } from 'react-chartjs-2';
 import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, PointElement, LineElement, Filler, } from 'chart.js';
-import SidebarManage from './SidebarManage';
-import AvatarStatus from '../../library component/AvatarStatus';
 
 ChartJS.register(CategoryScale,LinearScale,
   BarElement,
@@ -36,11 +34,6 @@ const Dashboard = () => {
     ],
   });
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -99,13 +92,6 @@ const Dashboard = () => {
 
   return (
     <div className="p-6">
-      <div className='flex w-full'>
-        <button onClick={toggleSidebar} className="mb-4 bg-primaryColor hover:bg-blue-500 text-white px-4 py-2 rounded mt-4 lg:mt-0">
-          Menu
-        </button>
-        <p className='justify-end flex items-center text-end ml-auto font-medium text-base lg:text-lg gap-x-4 '>Nguyễn Anh Tuấn <AvatarStatus src="/avatarH.png" alt="avatar" size="w-12" /></p>
-      </div>
-      <SidebarManage isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         <div className="bg-white shadow-lg rounded-lg p-4">
