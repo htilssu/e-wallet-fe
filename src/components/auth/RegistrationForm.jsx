@@ -12,138 +12,40 @@ dayjs.extend(customParseFormat);
 dayjs("05/02/2024 01:02:03 PM -05:00", "DD/MM/YYYY HH:mm:ss A Z");
 
 const RegistrationForm = ({ loginLink }) => {
-  const form = useForm({
-    name: "registerForm",
-    initialValues: {
-      email: "",
-      password: "",
-      confirmPassword: "",
-      firstName: "",
-      lastName: "",
-      fullName: "",
-      phoneNumber: "",
-      address: "",
-      dob: dayjs(),
-      gender: null,
-      userName: "",
+  const [steps, setSteps] = useState([
+    {
+      step: 1,
+      description: "Nhập thông tin",
     },
-    validate: {
-      userName: (email) => {
-        if (email === "") {
-          return "Hãy nhập email";
-        }
-      },
-      password: (pass) => {
-        if (pass === "") {
-          return "Yêu cầu điền mât khẩu";
-        }
-      },
-      lastName: (lastName) => {
-        if (lastName === "") {
-          return "Không được để trống";
-        }
-      },
-      firstName: (firstName) => {
-        if (firstName === "") {
-          return "Không được để trống";
-        }
-      },
+    {
+      step: 2,
+      description: "Xác thực email",
     },
-  });
+  ]);
 
   function onNextHandle() {
     // form.validate();
     setStep(step + 1);
   }
 
-  const VerifyEmail = ({ email }) => {
-    return (
-      <div>
-        <div>
-          <OtpVerification to={email} />
-          <Button onclick={onNextHandle} />
-        </div>
-      </div>
-    );
-  };
+  useEffect(() => {
+    const InputInformationForm = () => {
+      return <>1</>;
+    };
 
-  const InputInformationForm = () => {
-    return (
-      <form className="w-full bg-white p-4 rounded-lg" action="">
+    const VerifyEmail = ({ email }) => {
+      return (
         <div>
-          <div className={"flex gap-3"}>
-            <TextInput
-              className={"w-full"}
-              {...form.getInputProps("lastName")}
-              placeholder="Họ"
-              size={"md"}
-              label="Họ"
-              required
-            />
-            <TextInput
-              className={"w-full"}
-              {...form.getInputProps("firstName")}
-              placeholder="Tên"
-              size={"md"}
-              label="Tên"
-              required
-            />
+          <div>
+            <OtpVerification to={email} />
+            <Button onclick={onNextHandle} />
           </div>
-          <TextInput
-            placeholder="Email"
-            {...form.getInputProps("email")}
-            label="Email"
-            size={"md"}
-            required
-          />
-          <PasswordInput
-            placeholder="Mật khẩu"
-            {...form.getInputProps("password")}
-            label="Mật khẩu"
-            type="password"
-            size={"md"}
-            required
-          />
-          <PasswordInput
-            placeholder="Nhập lại mật khẩu"
-            {...form.getInputProps("confirmPassword")}
-            label="Nhập lại mật khẩu"
-            type="password"
-            size={"md"}
-            required
-          />
-
-          <DateInput
-            size={"md"}
-            placeholder="Ngày sinh"
-            {...form.getInputProps("dob")}
-            label="Ngày sinh"
-            required
-          />
         </div>
-        <div className={"flex justify-end mt-3"}>
-          <Button onClick={onNextHandle} type={"submit"}>
-            Đăng ký
-          </Button>
-        </div>
-      </form>
-    );
-  };
+      );
+    };
+  }, []);
 
   const [step, setStep] = useState(0);
-
-  const steps = [
-    {
-      step: 1,
-      description: "Nhập thông tin tài khoản",
-      element: <InputInformationForm />,
-    },
-    {
-      step: 2,
-      description: "Xác thực Email",
-      element: <VerifyEmail email={form.values.email} />,
-    },
-  ];
 
   return (
     <div className="form-box register md:p-4 h-0 flex items-center min-h-screen justify-center">
