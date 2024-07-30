@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { Button, PasswordInput, Stepper, TextInput } from "@mantine/core";
 import "@mantine/dates/styles.css";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import OtpVerification from "../otpverify/OTPVerification.jsx";
+import OTPverification from "../otpverify/OTPverification.jsx";
 import InputInformationForm from "./InputInformationForm.jsx";
 
 dayjs.extend(customParseFormat);
