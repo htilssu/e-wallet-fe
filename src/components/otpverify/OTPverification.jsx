@@ -1,6 +1,6 @@
 ﻿import { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { ScrollRestoration, useNavigate } from "react-router-dom";
+import {ScrollRestoration, useLocation, useNavigate} from "react-router-dom";
 import { PinInput } from "@mantine/core";
 import { post } from "../../util/requestUtil.js";
 
@@ -14,12 +14,16 @@ const OTPverification = () => {
   const [resendTime, setResendTime] = useState(50);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
+  //nhận type từ các trang chuyển đến OTP...
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const type = urlParams.get("type");
 
-  console.log(type);
+  //nhận số tiền và email
+  const location = useLocation();
+  const { amount, recipientEmail } = location.state || {};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,13 +35,12 @@ const OTPverification = () => {
 
     try {
       post("/api/v1/otp/verify", {
-        otp: otp,
-        type: type,
+        otp: otp
       })
         .then((res) => {
           toast.success(res.data.message);
           setError(null);
-          handleSuccess();
+          handleSendMoney();
         })
         .catch((e) => {
           setError(e.response.data.message);
@@ -60,8 +63,7 @@ const OTPverification = () => {
 
     try {
       post("/api/v1/otp", {
-        otpType: "email",
-        sendTo: user.email,
+        otpType: "email"
       })
         .then((res) => {
           toast.success(res.data.message);
@@ -70,8 +72,8 @@ const OTPverification = () => {
           setResendTime(50);
         })
         .catch((e) => {
-          toast.error("Đã xảy ra lỗi!");
-          setError("Đã xảy ra lỗi! Vui lòng thử lại.");
+          toast.error("Đã xảy ra lỗi gửi lại OTP!");
+          setError("Đã xảy ra lỗi gửi lại OTP! Vui lòng thử lại.");
           setLoading(false);
         });
     } catch (error) {
@@ -90,10 +92,31 @@ const OTPverification = () => {
     }
   }, [resendTime]);
 
-  // Chuyển trang
-  const navigate = useNavigate();
-  const handleSuccess = () => {
-    if (type === "email") navigate("success");
+  const handleSendMoney = () => {
+    try {
+        post("/api/v1/transfer", {
+          transactionTarget: "wallet",
+          type: type,
+          sendTo: recipientEmail,
+          money: amount
+        })
+            .then((res) => {
+              toast.success(res.data.message);
+              setError(null);
+              setLoading(false);
+              //chuyển thành công chuyển sang trang success kèm theo id Transaction
+              navigate(`/transactions/transaction/success/${res.data.id}`);
+            })
+            .catch((e) => {
+              toast.error("Đã xảy ra lỗi Chuyển tiền!");
+              setError("Đã xảy ra lỗi khi Chuyển tiền! Vui lòng thử lại.");
+              setLoading(false);
+            });
+      } catch (error) {
+        toast.error("Đã xảy ra lỗi trong quá trình Chuyển tiền!");
+        setError("Đã xảy ra lỗi trong quá trình Chuyển tiền!");
+        setLoading(false);
+      }
   };
 
   return (
