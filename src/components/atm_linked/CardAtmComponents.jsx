@@ -15,7 +15,7 @@ const CardAtmComponents = ({ title, text, link, onClick }) => {
 
     return (
         <div
-            className="cart card-atm w-full md:w-[400px] h-[220px] p-5 mt-4 bg-white border-[2px] border-dashed border-gray-300 rounded-3xl flex flex-col justify-center items-center hover:bg-amber-300 transition duration-300 ease-in-out cursor-pointer"
+            className="cart card-atm w-full md:w-[400px] h-[220px] p-5 mt-4 bg-white border-[2px] border-dashed border-gray-300 rounded-3xl flex flex-col justify-center items-center  transition duration-300 ease-in-out cursor-pointer"
             onClick={handleClick}
         >
             <div className="card-body text-center">

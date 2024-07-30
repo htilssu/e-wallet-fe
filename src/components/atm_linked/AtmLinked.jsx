@@ -3,21 +3,44 @@ import { GrTransaction } from 'react-icons/gr';
 import { IoIosAddCircle } from 'react-icons/io';
 import CardAtmComponents from './CardAtmComponents'; // Import the CardAtmComponents component
 import Card from "./Card.jsx";
+import {useEffect, useState} from "react";
+import {get} from "../../util/requestUtil.js";
+import {toast} from "react-toastify";
 
 const AtmLinked = () => {
     const navigate = useNavigate();
-
+    const [bankInfo, setBankInfo] = useState()
     const handleShowNganHang = (event) => {
         event.preventDefault();
         navigate('/AddInfoAtm'); // Navigate to AddInfoAtm page
     };
 
     // Sample data for ATM cards
-    const atmCards = [
-        { cardNumber: '13213213213213221', cardHolder: 'Út Tún', expiryDate: '12/12', bankName: 'VietTinBank' },
-        { cardNumber: '9876543210987654', cardHolder: 'Lam vu', expiryDate: '12/12', bankName: 'ACB Bank' }
-        // Add more cards as needed
-    ];
+    useEffect(() => {
+        get("/api/v1/card")
+            .then((res) => {
+                console.log('API response:', res); // Log toàn bộ response để kiểm tra
+                if (res.data && Array.isArray(res.data)) {
+                    setBankInfo(res.data);
+                } else {
+                    console.error('Dữ liệu trả về không đúng định dạng:', res.data);
+                    toast.error('Dữ liệu trả về không đúng định dạng!');
+                }
+            })
+            .catch((error) => {
+                console.error('Lỗi khi lấy thông tin thẻ:', error);
+                toast.error('Lỗi khi lấy thông tin thẻ!');
+            });
+    }, []);
+    const handleDelete = (cardNumber) => {
+        del(`/api/v1/card/${cardNumber}`).then(() => {
+            setBankInfo(prev => prev.filter(card => card.cardNumber !== cardNumber));
+            toast.success('Thẻ đã được xóa thành công!');
+        }).catch(() => {
+            toast.error('Lỗi khi xóa thẻ!');
+        });
+    };
+
 
     return (
         <div className="md:p-6 flex items-center justify-center">
@@ -56,13 +79,12 @@ const AtmLinked = () => {
                         {/* Cards Container */}
                         <div className="atm-container grid grid-cols-1 md:grid-cols-2 gap-3">
                             {/* Render ATM cards dynamically */}
-                            {atmCards.map((card, index) => (
+                            {bankInfo && bankInfo.map((card, index) => (
                                 <Card
                                     key={index}
-                                    cardNumber={card.cardNumber}
-                                    cardHolder={card.cardHolder}
-                                    expiryDate={card.expiryDate}
-                                    bankName={card.bankName}
+                                   cardNumber={card.cardNumber}
+                                    expiryDate={card.expired}
+                                    cardHolder={card.holderName}
                                 />
                             ))}
 
