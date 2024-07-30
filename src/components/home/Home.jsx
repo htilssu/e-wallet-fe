@@ -4,6 +4,7 @@ import PersonalInfoForm from "../infoAccount/PersonalInfoForm.jsx";
 import navbarItems from "./navbarItems.jsx";
 import ScrollableCardList from "./ScrollableCardList.jsx";
 import Slider from "../library component/Slider.jsx";
+import Statistical from "./Statistical.jsx";
 
 const Card = ({ icon, title, onClick }) => {
   return (
@@ -54,7 +55,7 @@ const HomePage = () => {
                 <ScrollableCardList />
               </div>
             </div>
-            <div className={"w-full flex flex-col p-4 mb-28 sm:mt-2"}>
+            <div className={"w-full flex flex-col p-4 mb-10 sm:mt-2"}>
               <div className={"flex flex-col justify-center gap-4"}>
                 <div className={"rs-text-medium text-lg"}>
                   Có thể bạn quan tâm
@@ -66,6 +67,12 @@ const HomePage = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className={"md:px-10 border-t-2"}>
+        <div className={"rs-text-medium text-lg md:ml-6"}>
+          Thống kê giao dịch
+        </div>
+        <Statistical/>
       </div>
       <ScrollRestoration />
     </div>

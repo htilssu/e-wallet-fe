@@ -24,7 +24,7 @@ const TransferMoney = () => {
     const [transferMethod, setTransferMethod] = useState('Chuyển ngay');
     const [feeBearer, setFeeBearer] = useState('Người nhận');
     const [content, setContent] = useState('');
-    const [isVerified, setIsVerified] = useState(false);
+    const [checked, setChecked] = useState(false);
 
     const suggestedAmounts = [20000, 50000, 100000, 200000, 500000, 1000000];
 
@@ -41,6 +41,11 @@ const TransferMoney = () => {
 
     const calculateTotal = (amount, fee) => {
         setTotal(amount + fee);
+    };
+
+    //checked
+    const handleChange = () => {
+        setChecked(!checked);
     };
 
     // Chuyển trang
@@ -197,8 +202,7 @@ const TransferMoney = () => {
                                     <Checkbox
                                         color="primary"
                                         size="medium"
-                                        value={isVerified}
-                                        onChange={(e) => setIsVerified(e.target.checked)}
+                                        onChange={handleChange}
                                     />
                                     Tôi không phải là người máy
                                 </label>
@@ -210,8 +214,8 @@ const TransferMoney = () => {
                     {/* Nút Tiếp tục */}
                     <button
                         type="button"
-                        disabled={!amount || !recipientEmail}
-                        className={`w-full py-3 px-4 rounded-lg text-white font-bold text-lg' ${!amount || !recipientEmail ? 'bg-green-200 cursor-not-allowed' : 'bg-gradient-to-r from-cyan-500 to-green-500'}`}
+                        disabled={!checked || !amount || !recipientEmail}
+                        className={`w-full py-3 px-4 rounded-lg text-white font-bold text-lg' ${!checked || !amount || !recipientEmail ? 'bg-green-200 cursor-not-allowed' : 'bg-gradient-to-r from-cyan-500 to-green-500'}`}
                         onClick={handleOTPverify}
                     >
                         Tiếp tục

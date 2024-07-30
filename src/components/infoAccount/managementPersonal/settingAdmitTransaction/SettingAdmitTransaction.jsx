@@ -5,7 +5,7 @@ import { FaCheckCircle } from "react-icons/fa";//check-icon
 const SettingAdmitTransaction = () => {
     //ManagementAccount <- SettingAdmitTransaction(Outlet)
     return(
-        <div className="transaction-account grid grid-rows-10 gap-x-3 ml-2 bg-slate-100 w-auto h-auto rounded-lg p-2 pb-9">
+        <div className="transaction-account grid grid-rows-10 gap-x-3 ml-2 bg-white w-auto h-auto rounded-lg p-2 pb-9">
             <div className="info-header row-span-1 ml-2 items-center mt-2 flex mb-1">
                 <div className="text-primaryColor"><FaShield size={20}/></div>
                 <div className="font-normal text-md ml-2">CẤU HÌNH XÁC THỰC GIAO DỊCH</div>

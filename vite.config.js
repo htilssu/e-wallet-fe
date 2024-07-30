@@ -8,11 +8,8 @@ export default defineConfig({
     federation({
       name: "remote",
       filename: "remoteEntry.js",
-      remotes: {
-        remote: "https://htilssu.com/assets/remoteEntry.js",
-      },
       exposes: {
-        "./Remote": "src/modules/core/system-component/remoteEntry.jsx",
+        "./Login": "./src/components/auth/LoginForm.jsx",
       },
       shared: [
         "react",
@@ -24,20 +21,9 @@ export default defineConfig({
     }),
   ],
   build: {
-    target: "ESNext",
-    rollupOptions: {
-      output: {
-        manualChunks: (id) => {
-          if (
-            id.includes("react-router-dom") ||
-            id.includes("@remix-run") ||
-            id.includes("react-router")
-          ) {
-            return "@react-router";
-          }
-        },
-      },
-    },
+    modulePreload: false,
+    target: "esnext",
+    minify: false,
     cssCodeSplit: false,
   },
 });

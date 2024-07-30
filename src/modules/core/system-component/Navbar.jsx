@@ -11,26 +11,18 @@ const navbarItem = [
     link: "/",
   },
   {
-    name: "Test",
-    link: "/test",
+    name: "Nạp tiền",
+    link: "/topup",
     items: [
       {
         name: "Test 1",
         link: "/test1",
       },
-      {
-        name: "Test 1",
-        link: "/test1",
-      },
-      {
-        name: "Test 1",
-        link: "/test1",
-      },
-      {
-        name: "Test 1",
-        link: "/test1",
-      },
     ],
+  },
+  {
+    name: "Rút tiền",
+    link: "/withdraw",
   },
 ];
 
