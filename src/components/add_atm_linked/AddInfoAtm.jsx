@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import {useCallback, useEffect, useState} from "react";
 import axios from "axios";
-import { ToastContainer, toast, Bounce } from "react-toastify";
+import {ToastContainer, toast, Bounce} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { post} from "../../util/requestUtil.js";
+import {post} from "../../util/requestUtil.js";
 import {useNavigate} from "react-router-dom";
 
 
@@ -12,7 +12,7 @@ const fetchBankList = () => {
 const AddInfoAtm = () => {
     const [selectedBank, setSelectedBank] = useState('');
     const [bankList, setBankList] = useState([]);
-    const [accountName,setAccountName]=useState("");
+    const [accountName, setAccountName] = useState("");
     const [accountNumber, setAccountNumber] = useState('');
     const [expired, setexpired] = useState('');
     const [previousexpired, setPreviousexpired] = useState('');
@@ -21,7 +21,7 @@ const AddInfoAtm = () => {
         expired: ''
     });
 
-        useEffect(() => {
+    useEffect(() => {
         fetchBankList()
             .then(result => {
                 setBankList(result.data.data);
@@ -32,7 +32,7 @@ const AddInfoAtm = () => {
     }, []);
 
     const selectBank = (shortName) => {
-        setSelectedBank(shortName);
+        setSelectedBank(value => shortName);
     };
 
     const handleCardNumberChange = (e) => {
@@ -100,11 +100,16 @@ const AddInfoAtm = () => {
             }));
         }
     };
-
+    useEffect(() => {
+        const localAtm = localStorage.getItem("atm");
+        if (localAtm) {
+            setBankList(JSON.parse(localAtm));
+        }
+    }, []);
     const handleValidation = () => {
         let formIsValid = true;
         const newErrors = {
-            accountName:'',
+            accountName: '',
             accountNumber: '',
             expired: ''
         };
@@ -127,60 +132,63 @@ const AddInfoAtm = () => {
         setErrors(newErrors);
         return formIsValid;
     };
+
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const handleSubmit =(e) => {
+
+        e.preventDefault();
         if (handleValidation()) {
-              post("/api/v1/card",{
-                  cardNumber:accountNumber,
-                  holderName:accountName,
-                  expired:expired,
-                  atmId:selectedBank.split("|")[0],
-
-              }).then((res) => {
-
-                  if (res.data.card) {
-                      toast.success('Thông tin đã được cập nhật thành công.', {
-                          position: "top-right",
-                          autoClose: 1500,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                          theme: "light",
-                          transition: Bounce,
-                      });
-                      setTimeout(() => {
-                          navigate('/atm/link');
-                      }, 2000); // Delay 3 seconds before navigation
-
-
-                  } else {
-                      toast.error(res.data.message || 'Có lỗi xảy ra.');
-                  }
-              })
-                  .catch((error) => {
-                      console.error('Error:', error); // Kiểm tra lỗi
-                      toast.error(error.response?.data?.message || 'Có lỗi xảy ra.');
-                  });
+            post("/api/v1/card", {
+                cardNumber: accountNumber,
+                holderName: accountName,
+                expired: expired,
+                atmId: selectedBank.split('|')[0],
+            }).then((res) => {
+                if (res.data.card) {
+                    localStorage.setItem("atm", JSON.stringify(res.data.card));
+                    toast.success('Thông tin đã được cập nhật thành công.', {
+                        position: "top-right",
+                        autoClose: 1500,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        transition: Bounce,
+                    });
+                    setTimeout(() => {
+                        navigate('/atm/link');
+                    }, 3000);
+                } else {
+                    toast.error(res.data.message || 'Có lỗi xảy ra.');
+                }
+            })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    toast.error(error.response?.data?.message || 'Có lỗi xảy ra.');
+                });
         }
     };
 
 
-
     return (
         <div className="md:p-6 flex items-center justify-center">
-            <ToastContainer />
-            <div className="Add-app flex flex-wrap justify-center items-center max-w-[1200px] w-full bg-white border-[1px] mt-5 p-8 rounded-2xl">
+            <ToastContainer/>
+            <div
+                className="Add-app flex flex-wrap justify-center items-center max-w-[1200px] w-full bg-white border-[1px] mt-5 p-8 rounded-2xl">
                 <div className="w-full md:flex">
                     <div className="mb-5 w-full md:w-[400px]">
-                        <div className="w-full h-auto bg-[url('/src/assets/ava.png')] rounded-xl shadow-md overflow-hidden p-5 relative">
-                            <div className="text-white text-center text-xl font-semibold mb-2">{selectedBank.split("|")[1]}</div>
+                        <div
+                            className="w-full h-auto bg-[url('/src/assets/ava.png')] rounded-xl shadow-md overflow-hidden p-5 relative">
+                            <div
+                                className="text-white text-center text-xl font-semibold mb-2">{selectedBank.split("|")[1]}</div>
                             <div className="flex flex-col items-center">
-                                <div className="w-full h-24 rounded-xl flex items-center justify-center mb-2 relative bg-opacity-50">
-                                    <img src={"/src/assets/chip.png"} alt="Chip" className="absolute top-2 left-4 w-10" />
+                                <div
+                                    className="w-full h-24 rounded-xl flex items-center justify-center mb-2 relative bg-opacity-50">
+                                    <img src={"/src/assets/chip.png"} alt="Chip"
+                                         className="absolute top-2 left-4 w-10"/>
                                     <div className="text-white text-xl font-mono mt-5">{accountNumber}</div>
                                 </div>
                                 <div className="w-full flex justify-between text-white mt-4">
@@ -192,7 +200,7 @@ const AddInfoAtm = () => {
                                 </div>
                             </div>
                             <div className="absolute bottom-2 right-2">
-                                <img src={"/src/assets/Mastercard.png"} alt="MasterCard" className="w-12" />
+                                <img src={"/src/assets/Mastercard.png"} alt="MasterCard" className="w-12"/>
                             </div>
                         </div>
                     </div>
@@ -206,11 +214,12 @@ const AddInfoAtm = () => {
                                     value={selectedBank}
                                     onChange={(e) => {
                                         selectBank(e.target.value)
+                                        console.log(e.target.value)
                                     }}
                                 >
                                     <option value="" disabled hidden>Chọn ngân hàng</option>
                                     {bankList.map((bank, index) => (
-                                        <option key={index}  value={bank.id+"|"+bank.shortName}>
+                                        <option key={index} value={bank.id + "|" + bank.shortName}>
                                             {bank.shortName}
                                         </option>
                                     ))}
