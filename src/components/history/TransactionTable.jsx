@@ -35,7 +35,7 @@ const TransactionTable = ({ transactions }) => {
     // Hàm xử lý khi chọn giao dịch
     const handleSelectTran = (transaction) => {
         // Thực hiện điều hướng đến chi tiết giao dịch
-        navigate('transactiondetail', { state: { transaction } });
+        navigate(`/transactions/transaction/${transaction.id}`);
     };
 
     // Hàm xác định màu của số tiền
