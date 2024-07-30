@@ -61,7 +61,7 @@ export const router = createBrowserRouter([
         element: <TransferMoney />,
       },
       {
-        path: "transfermoney/success",
+        path: "transactions/transaction/success/:id?",
         element: <TransactionSuccess />,
       },
       {
@@ -82,7 +82,7 @@ export const router = createBrowserRouter([
         element: <TranHistory />,
       },
       {
-        path: "transactions/transactiondetail",
+        path: "transactions/transaction/:id",
         element: <TransactionDetail />,
       },
       {

@@ -7,6 +7,22 @@ import {toast, ToastContainer} from "react-toastify";
 import {useEffect, useState} from "react";
 
 function MyWallet() {
+    //lấy thông tin Ví
+    const [user, setUser] = useState({});
+    useEffect(() => {
+        get("/api/v1/user/wallet").then((res) => {
+            setUser(res.data);
+        }).catch((e) => {
+            toast.error('Không thể lấy thông tin Ví User!');
+        });
+    }, []);
+
+    // Hàm định dạng số tiền
+    const formatCurrency = (amount) => {
+        if (typeof amount !== 'number') return '';
+        return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    };
+
     return (
         <div className="p-4 border-2 border-gray-200 rounded-2xl bg-white">
             <div>
@@ -14,7 +30,7 @@ function MyWallet() {
                 <div className="flex flex-wrap">
                     <div className={"p-2 me-5"}>
                         <p className="text-sm text-gray-600">Số dư tổng</p>
-                        <p className="text-lg text-rose-600 font-semibold">{formattedAmount}</p>
+                        <p className="text-lg text-rose-600 font-semibold">{formatCurrency(user.balance)}</p>
                     </div>
                     <div className={"p-2 me-5 "}>
                         <p className="text-sm text-gray-600">Số dư khả dụng</p>
@@ -22,7 +38,7 @@ function MyWallet() {
                     </div>
                     <div className={"p-2 me-5 "}>
                         <p className="text-sm text-gray-600">Số dư đóng băng</p>
-                        <p className="text-lg font-semibold text-rose-600">{formattedAmount}</p>
+                        <p className="text-lg font-semibold text-rose-600">0 đ</p>
                     </div>
                     <div className={"p-2 me-5 "}>
                         <p className="text-sm text-gray-600">Số dư chờ chuyển</p>
@@ -53,13 +69,6 @@ function TopUpBtn() {
     )
 }
 
-function formatCurrency(amount) {
-    return amount.toLocaleString("vi-VN", {style: "currency", currency: "VND"});
-}
-
-// Ví dụ sử dụng
-const amount = 99000020457;
-const formattedAmount = formatCurrency(amount);
 
 const PersonalInfoForm = () => {
     const [user, setUser] = useState({});

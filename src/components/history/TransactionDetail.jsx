@@ -1,14 +1,16 @@
-import { FaCreditCard, FaExchangeAlt, FaUndoAlt, FaDownload, FaUpload } from "react-icons/fa";
-import {ScrollRestoration, useLocation, useNavigate} from "react-router-dom";
-import { IoArrowBackSharp } from "react-icons/io5";
+import {FaCreditCard, FaExchangeAlt, FaUndoAlt, FaDownload, FaUpload} from "react-icons/fa";
+import {ScrollRestoration, useNavigate, useParams} from "react-router-dom";
+import {IoArrowBackSharp} from "react-icons/io5";
+import {useEffect, useState} from "react";
+import {get} from "../../util/requestUtil.js";
 
 const transactionIcons = {
-    "NẠP TIỀN": <FaDownload />,
-    "RÚT TIỀN": <FaUpload />,
+    "NẠP TIỀN": <FaDownload/>,
+    "RÚT TIỀN": <FaUpload/>,
     "THANH TOÁN": <FaCreditCard/>,
-    "CHUYỂN TIỀN": <FaExchangeAlt />,
-    "NHẬN TIỀN": <FaDownload />,
-    "HOÀN TIỀN": <FaUndoAlt />,
+    "CHUYỂN TIỀN": <FaExchangeAlt/>,
+    "NHẬN TIỀN": <FaDownload/>,
+    "HOÀN TIỀN": <FaUndoAlt/>,
 };
 
 const statusColor = {
@@ -19,14 +21,22 @@ const statusColor = {
 };
 
 const TransactionDetail = () => {
-    const location = useLocation();
     const navigate = useNavigate();
-    const { transaction } = location.state;
+    const [transaction, setTransaction] = useState({});
+    const {id} = useParams();
+    useEffect(() => {
+        get(`/api/v1/transaction/${id}`).then(res =>{
+            setTransaction(res.data);
+            console.log(res.data);
+        }).catch((e) => {
+            navigate("/404")
+        });
+    }, []);
 
     return (
         <div className="p-2 bg-gray-100 mb-10">
             <div className="flex items-center mb-2 cursor-pointer text-blue-600" onClick={() => navigate(-1)}>
-                <IoArrowBackSharp size={24} />
+                <IoArrowBackSharp size={24}/>
                 <span className="ml-2">Quay lại</span>
             </div>
             <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
@@ -37,29 +47,29 @@ const TransactionDetail = () => {
                     <p className="text-2xl font-semibold ml-2">{transaction.transactionType}</p>
                 </div>
                 <div className="flex justify-between items-center mb-4">
-                    <p className="text-2xl font-semibold">{transaction.amount.toLocaleString()} VND</p>
+                    <p className="text-2xl font-semibold text-red-600">{transaction.money} VND</p>
                     <p className={`text-lg font-semibold ${statusColor[transaction.status]}`}>{transaction.status}</p>
                 </div>
                 <div className="border-t-2 pt-4">
                     <div className="mb-2">
                         <p className="font-semibold">Mã giao dịch:</p>
-                        <p>{transaction.transactionCode}</p>
+                        <p>{transaction.id}</p>
                     </div>
                     <div className="mb-2">
                         <p className="font-semibold">Mã hoá đơn:</p>
-                        <p>{transaction.billCode}</p>
+                        <p>null</p>
                     </div>
                     <div className="mb-2">
                         <p className="font-semibold">Thời gian tạo:</p>
-                        <p>{transaction.createdTime}</p>
+                        <p>{transaction.created}</p>
                     </div>
                     <div className="mb-2">
                         <p className="font-semibold">Tài khoản nhận:</p>
-                        <p>{transaction.receiverAccount}</p>
+                        <p>{transaction.receiverEmail}</p>
                     </div>
                     <div className="mb-2 border-b border-t p-3">
                         <p className="font-semibold">Nội dung:</p>
-                        <p>{transaction.description || "Không có nội dung"}</p>
+                        <p>{transaction.content || "Không có nội dung"}</p>
                     </div>
                 </div>
                 <div>
