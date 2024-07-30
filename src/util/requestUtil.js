@@ -28,4 +28,13 @@ const get = async (url) => {
   return await request.get(url);
 };
 
-export { request, post, get };
+const deleteR = async (url) => {
+  //get cookies from browser
+  const token = localStorage.getItem("token");
+  if (token) {
+    request.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  }
+  return await request.delete(url);
+};
+
+export { request, post, get, deleteR };

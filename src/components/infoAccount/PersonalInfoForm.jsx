@@ -84,7 +84,7 @@ const PersonalInfoForm = () => {
     const navigate = useNavigate();
     const handleMpersonal = (e) => {
         e.preventDefault();
-        navigate('/management-personal');
+        navigate('/management-personal/info-account');
     };
 
     return (
