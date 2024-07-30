@@ -55,7 +55,7 @@ const UserList = () => {
     return (
         <div className={""}>
             <div className="px-6 min-h-screen">
-                <div className="bg-white p-6 rounded shadow-md ">
+                <div className="bg-white p-6 rounded-lg shadow-md">
                     <div className={"flex justify-between"}>
                         <h2 className="text-2xl font-semibold mb-4">Users List</h2>
                         <div>
