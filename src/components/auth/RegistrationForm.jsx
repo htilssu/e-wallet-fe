@@ -3,9 +3,9 @@ import { useForm } from "@mantine/form";
 import dayjs from "dayjs";
 import { Button, PasswordInput, Stepper, TextInput } from "@mantine/core";
 import "@mantine/dates/styles.css";
-import { DateInput } from "@mantine/dates";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import OtpVerification from "../otpverify/OTPverification.jsx";
+import OtpVerification from "../otpverify/OTPVerification.jsx";
+import InputInformationForm from "./InputInformationForm.jsx";
 
 dayjs.extend(customParseFormat);
 
@@ -24,28 +24,10 @@ const RegistrationForm = ({ loginLink }) => {
   ]);
 
   function onNextHandle() {
-    // form.validate();
-    setStep(step + 1);
+    setCurrentStep(currentStep + 1);
   }
 
-  useEffect(() => {
-    const InputInformationForm = () => {
-      return <>1</>;
-    };
-
-    const VerifyEmail = ({ email }) => {
-      return (
-        <div>
-          <div>
-            <OtpVerification to={email} />
-            <Button onclick={onNextHandle} />
-          </div>
-        </div>
-      );
-    };
-  }, []);
-
-  const [step, setStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(0);
 
   return (
     <div className="form-box register md:p-4 h-0 flex items-center min-h-screen justify-center">
@@ -67,7 +49,7 @@ const RegistrationForm = ({ loginLink }) => {
                 },
               }}
               color="green"
-              active={step}
+              active={currentStep}
             >
               {steps.map((step) => (
                 <Stepper.Step
@@ -78,7 +60,7 @@ const RegistrationForm = ({ loginLink }) => {
               ))}
             </Stepper>
           </div>
-          <div className={"p-4"}>{steps[step].element}</div>
+          <div className={"p-4"}>{<InputInformationForm />}</div>
         </div>
       </div>
     </div>

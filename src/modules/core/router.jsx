@@ -14,7 +14,7 @@ import ServicePayment from "../../components/bank/paymentMethods/ServicePayment.
 import TranHistory from "../../components/history/ TranHistory.jsx";
 import TransactionDetail from "../../components/history/TransactionDetail.jsx";
 import Example from "../../components/history/test.jsx";
-import OTPverification from "../../components/otpverify/OTPverification.jsx";
+import OtpVerification from "../../components/otpverify/OTPVerification.jsx";
 import ManagementPersonalInfo from "../../components/infoAccount/managementPersonal/ManagementPersonalInfo.jsx";
 import InfoAccount from "../../components/infoAccount/managementPersonal/infoAccountAuth/InfoAccount.jsx";
 import SettingAdmitTransaction from "../../components/infoAccount/managementPersonal/settingAdmitTransaction/SettingAdmitTransaction.jsx";
@@ -87,7 +87,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "otpverification",
-        element: <OTPverification />,
+        element: <OtpVerification />,
       },
       {
         path: "management-personal",
