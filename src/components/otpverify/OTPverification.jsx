@@ -94,8 +94,6 @@ const OtpVerification = () => {
   const navigate = useNavigate();
   const handleSuccess = () => {
     if (type === "email") navigate("success");
-    else {
-    }
   };
 
   return (
