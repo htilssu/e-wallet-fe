@@ -48,11 +48,11 @@ const TransactionSuccess = () => {
                     </div>
                     <div className="flex justify-between items-center">
                         <span className="font-semibold text-gray-800">Người nhận:</span>
-                        <span className="text-gray-900">TRầN TRUNG HIếU</span>
+                        <span className="text-gray-900">{transaction.receiverName}</span>
                     </div>
                     <div className="flex justify-between items-center">
                         <span className="font-semibold text-gray-800">Nội dung:</span>
-                        <span className="text-gray-900">Chuyển tiền cafe</span>
+                        <span className="text-gray-900">Chuyển tiền cafe CHOI</span>
                     </div>
                 </div>
                 <div className="mt-6 flex flex-grow space-x-4">
