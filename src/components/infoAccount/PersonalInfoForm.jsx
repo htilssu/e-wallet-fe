@@ -115,10 +115,10 @@ const PersonalInfoForm = () => {
                                 <div>
                                     <div className={"flex flex-grow justify-start items-center gap-2"}>
                                         <p className="text-white text-lg font-semibold">{user.lastName +" "+ user.firstName}</p>
-                                        <HiMiniCheckBadge size={22} className= {user.verified ? "text-blue-600" : "text-gray-400"}/>
+                                        <HiMiniCheckBadge size={22} className= {user.isVerified ? "text-blue-600" : "text-gray-400"}/>
                                     </div>
                                     <div className="flex items-center">
-                                        <p className= {user.verified ? "text-emerald-300 font-semibold mr-2" : "text-gray-300 font-semibold mr-2"}>{user.verified ? "Đã chứng thực" : "Chưa chứng thực"}</p>
+                                        <p className= {user.isVerified ? "text-emerald-300 font-semibold mr-2" : "text-gray-300 font-semibold mr-2"}>{user.isVerified ? "Đã chứng thực" : "Chưa chứng thực"}</p>
                                     </div>
                                 </div>
                             </div>
