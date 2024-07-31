@@ -22,6 +22,21 @@ const OTPverification = () => {
   const location = useLocation();
   const { amount, recipientEmail } = location.state || {};
 
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    get("/api/v1/user")
+    .then((res) => 
+    {
+      setUser(res.data);
+    })
+    .catch((res) => {
+      if (res.data && res.data.message) {
+          toast.error(res.data.message);
+      }
+  });
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
