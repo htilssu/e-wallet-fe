@@ -15,6 +15,7 @@ const transactionIcons = {
 
 const statusColor = {
     "PENDING": "text-green-500",
+    "SUCCESS": "text-green-500",
     "Đang xử lý": "text-yellow-500",
     "Thất bại": "text-red-500",
     "Đã hủy": "text-red-500",
