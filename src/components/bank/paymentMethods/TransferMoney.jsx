@@ -194,13 +194,8 @@ const TransferMoney = () => {
                   Tên người nhận:
                 </div>
                 <div className="flex items-center">
-                  {receiver.fullName}
-                  {receiver.isVerify && (
-                    <HiMiniCheckBadge
-                      size={22}
-                      className="text-blue-600 ml-2"
-                    />
-                  )}
+                  <div className={"text-green-500 px-1"}>{receiver.fullName}</div>
+                  <HiMiniCheckBadge size={22} className= {user.isVerified ? "text-blue-600" : "text-gray-400"}/>
                 </div>
               </div>
             )}
