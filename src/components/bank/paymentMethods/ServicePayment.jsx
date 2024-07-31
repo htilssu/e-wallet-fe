@@ -16,6 +16,7 @@ const ServicePayment = () => {
     voucherId: undefined,
     partnerId: undefined,
     partnerName: undefined,
+    serviceName: undefined,
   });
   const { id } = useParams();
   useEffect(() => {

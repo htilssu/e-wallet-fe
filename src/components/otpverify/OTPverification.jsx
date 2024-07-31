@@ -40,7 +40,7 @@ const OTPverification = () => {
           if (type === "service") {
             handlePaymentRequest();
           }
-          if (type === "transaction") {
+          if (type === "transfer") {
             handleSendMoney();
           }
         })
