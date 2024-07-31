@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 const navbarItem = [
   {
     name: "Home",
-    link: "/",
+    link: "/home",
   },
   {
     name: "Nạp tiền",
