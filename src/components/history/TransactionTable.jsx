@@ -22,6 +22,12 @@ const statusColor = {
     // thêm các trạng thái khác nếu cần
 };
 
+// Hàm định dạng số tiền
+const formatCurrency = (amount) => {
+    if (typeof amount !== 'number') return '';
+    return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+};
+
 const TransactionTable = ({page, setPage, transactions, totalPages}) => {
     const navigate = useNavigate();
 
@@ -69,7 +75,7 @@ const TransactionTable = ({page, setPage, transactions, totalPages}) => {
                                     {transaction.transactionType === "transfer" ? "Chuyển Tiền" : "Thanh Toán" }
                                 </td>
                                 <td className={`py-6 ${getAmountColor(transaction.transactionType)}`}>
-                                    -{transaction.money} VND
+                                    -{formatCurrency(transaction.money)}
                                 </td>
                                 <td className="py-6">{transaction.created}</td>
                                 <td className={`py-6 font-semibold ${statusColor[transaction.status]}`}>{transaction.status}</td>
