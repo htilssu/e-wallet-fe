@@ -27,7 +27,7 @@ import Docs from "../../routes/Docs.jsx";
 import Dashboard from "../../components/admin/dashboard/Dashboard.jsx";
 import CustomerManange from "../../components/admin/customer/CustomerManange.jsx";
 import Admin from "../../components/admin/dashboard/Admin.jsx";
-import UnAuthHome from './../../components/home/UnAuthHome';
+import UnAuthHome from "./../../components/home/UnAuthHome";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +38,7 @@ export const router = createBrowserRouter([
         index: true,
         element: <UnAuthHome />,
       },
+      { path: "home", element: <HomePage /> },
       {
         path: "topup",
         element: <TopUp />,
