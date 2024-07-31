@@ -18,6 +18,13 @@ const TransactionSuccess = () => {
     const handleHome = () => {
         navigate('/');
     };
+
+    // Hàm định dạng số tiền
+    const formatCurrency = (amount) => {
+        if (typeof amount !== 'number') return '';
+        return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    };
+
     return (
         <div className="min-h-screen flex  justify-center bg-gray-100 p-4">
             <div className="bg-white p-4 md:p-8 rounded-lg shadow-lg w-full max-w-lg">
@@ -44,7 +51,7 @@ const TransactionSuccess = () => {
                     </div>
                     <div className="flex justify-between items-center">
                         <span className="font-semibold text-gray-800">Số tiền:</span>
-                        <span className="text-red-500">{transaction.money}</span>
+                        <span className="text-red-500">{formatCurrency(transaction.money)}</span>
                     </div>
                     <div className="flex justify-between items-center">
                         <span className="font-semibold text-gray-800">Người nhận:</span>

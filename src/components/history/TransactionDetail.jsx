@@ -4,20 +4,23 @@ import {IoArrowBackSharp} from "react-icons/io5";
 import {useEffect, useState} from "react";
 import {get} from "../../util/requestUtil.js";
 
+// Các icon và màu sắc trạng thái
 const transactionIcons = {
     "NẠP TIỀN": <FaDownload/>,
     "RÚT TIỀN": <FaUpload/>,
-    "THANH TOÁN": <FaCreditCard/>,
-    "CHUYỂN TIỀN": <FaExchangeAlt/>,
+    "service": <FaCreditCard/>,
+    "transfer": <FaExchangeAlt/>,
     "NHẬN TIỀN": <FaDownload/>,
     "HOÀN TIỀN": <FaUndoAlt/>,
 };
 
 const statusColor = {
-    "Thành công": "text-green-500",
+    "PENDING": "text-green-500",
+    "SUCCESS": "text-green-500",
     "Đang xử lý": "text-yellow-500",
     "Thất bại": "text-red-500",
     "Đã hủy": "text-red-500",
+    // thêm các trạng thái khác nếu cần
 };
 
 const TransactionDetail = () => {
@@ -33,6 +36,12 @@ const TransactionDetail = () => {
         });
     }, []);
 
+    // Hàm định dạng số tiền
+    const formatCurrency = (amount) => {
+        if (typeof amount !== 'number') return '';
+        return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    };
+
     return (
         <div className="p-2 bg-gray-100 mb-10">
             <div className="flex items-center mb-2 cursor-pointer text-blue-600" onClick={() => navigate(-1)}>
@@ -44,10 +53,10 @@ const TransactionDetail = () => {
                     <div className="text-2xl text-green-500">
                         {transactionIcons[transaction.transactionType]}
                     </div>
-                    <p className="text-2xl font-semibold ml-2">{transaction.transactionType}</p>
+                    <p className="text-2xl font-semibold ml-2">{transaction.transactionType === "transfer" ? "Chuyển Tiền" : "Thanh Toán" }</p>
                 </div>
                 <div className="flex justify-between items-center mb-4">
-                    <p className="text-2xl font-semibold text-red-600">{transaction.money} VND</p>
+                    <p className="text-2xl font-semibold text-red-600">{formatCurrency(transaction.money)}</p>
                     <p className={`text-lg font-semibold ${statusColor[transaction.status]}`}>{transaction.status}</p>
                 </div>
                 <div className="border-t-2 pt-4">
@@ -57,7 +66,7 @@ const TransactionDetail = () => {
                     </div>
                     <div className="mb-2">
                         <p className="font-semibold">Mã hoá đơn:</p>
-                        <p>null</p>
+                        <p>HD1010119299</p>
                     </div>
                     <div className="mb-2">
                         <p className="font-semibold">Thời gian tạo:</p>
