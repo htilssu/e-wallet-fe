@@ -158,7 +158,7 @@ const InfoAccount = () => {
               <div className="row-span-1 mt-4 lg:mt-3">
                 <p className="text-textGray0 font-medium text-sm">Tên người dùng</p>
                 <div className="type-account font-medium mt-2 text-base">
-                  <p>{user.userName ? user.userName : "Không có" } </p>
+                  <p>{user.userName ? user.userName : `User${user.id}`}</p>
                 </div>
               </div>
               <div className="row-span-1 mt-7 lg:mt-4">

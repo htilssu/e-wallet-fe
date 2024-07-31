@@ -3,11 +3,7 @@ import { toast, ToastContainer } from "react-toastify";
 import {ScrollRestoration, useLocation, useNavigate} from "react-router-dom";
 import { PinInput } from "@mantine/core";
 import { post } from "../../util/requestUtil.js";
-
-const user = {
-  name: "NGUYỄN ANH TUẤN",
-  email: "tuanmeo980provip@gmail.com",
-};
+import { get } from "../../util/requestUtil.js";
 
 const OTPverification = () => {
   const [otp, setOtp] = useState("");
@@ -24,6 +20,21 @@ const OTPverification = () => {
   //nhận số tiền và email
   const location = useLocation();
   const { amount, recipientEmail } = location.state || {};
+
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    get("/api/v1/user")
+    .then((res) => 
+    {
+      setUser(res.data);
+    })
+    .catch((res) => {
+      if (res.data && res.data.message) {
+          toast.error(res.data.message);
+      }
+  });
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
