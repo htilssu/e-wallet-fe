@@ -2,14 +2,32 @@ import { FaUserPlus } from "react-icons/fa6"; //user-sup-icon
 import { FaAngleRight } from "react-icons/fa6"; //right-icon
 import Switch from "react-switch"; //switch icon
 import { FaUserCircle } from "react-icons/fa"; //user-icon
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import IdentityAuth from "./IdentityAuth";
+import 'react-toastify/dist/ReactToastify.css';
+import { get } from '../../../../util/requestUtil';
+import { ToastContainer, toast } from 'react-toastify';
 
 const InfoAccount = () => {
   const [stateIdentity, setIdentity] = useState(false);
 
   // SwitchCheckBox
   const [state, setState] = useState(false);
+
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    get("/api/v1/user")
+    .then((res) => 
+    {
+      setUser(res.data);
+    })
+    .catch((res) => {
+      if (res.data && res.data.message) {
+          toast.error(res.data.message);
+      }
+  });
+  }, []);
 
   function handleChange(checked) {
     setState(checked);
@@ -22,6 +40,7 @@ const InfoAccount = () => {
   if (stateIdentity) {
     return <IdentityAuth />;
   }
+
 
   return (
     <div className="info-account grid grid-rows-2 gap-y-5">
@@ -42,14 +61,14 @@ const InfoAccount = () => {
                 <div className="row-span-1">
                   <p className="text-textGray0 font-medium text-sm">Mã tài khoản</p>
                   <div className="id-account font-medium mt-2 text-base">
-                    <p>194512</p>
+                    <p>{user.id}</p>
                   </div>
                 </div>
                 <div className="row-span-1 border-b-1 border-borderColor"></div>
                 <div className="row-span-1">
                   <p className="text-textGray0 font-medium text-sm">Trạng thái</p>
                   <div className="status-account font-medium mt-2 flex justify-between">
-                    <p className="text-sm bg-dimPrimaryColor items-center text-center rounded-2xl py-0.7 px-2 text-primaryColor">Chưa xác thực</p>
+                    <p className="text-sm bg-dimPrimaryColor items-center text-center rounded-2xl py-0.7 px-2 text-primaryColor">{user.isVerified ? "Đã xác thực" : "Chưa xác thực"}</p>
                     <div className="flex items-center mr-5 text-primaryColor cursor-pointer" onClick={handleIdentityAuthClick}>
                       <p className="text-xs font-medium mr-1">Chứng thực</p>
                       <div className="mt-0.7"><FaAngleRight size={9} /></div>
@@ -60,7 +79,7 @@ const InfoAccount = () => {
                 <div className="row-span-1">
                   <p className="text-textGray0 font-medium text-sm">Email</p>
                   <div className="email-account font-medium mt-2 text-base flex justify-between">
-                    <p>ewallet123@gmail.com</p>
+                    <p>{user.email}</p>
                     <div className="flex items-center mr-5 text-primaryColor">
                       <p className="text-xs font-medium mr-1">Thay đổi</p>
                       <div className="mt-0.7"><FaAngleRight size={9} /></div>
@@ -71,7 +90,7 @@ const InfoAccount = () => {
                 <div className="row-span-1">
                   <p className="text-textGray0 font-medium text-sm">Số điện thoại</p>
                   <div className="phone-account font-medium mt-2 text-base flex justify-between">
-                    <p>06969669696</p>
+                    <p>{user.phoneNumber}</p>
                     <div className="flex items-center mr-5 text-primaryColor">
                       <p className="text-xs font-medium mr-1">Thay đổi</p>
                       <div className="mt-0.7"><FaAngleRight size={9} /></div>
@@ -83,14 +102,14 @@ const InfoAccount = () => {
                 <div className="row-span-1">
                   <p className="text-textGray0 font-medium text-sm">Tên tài khoản</p>
                   <div className="name-account font-medium mt-2 text-base">
-                    <p>Nguyễn Anh Tuấn</p>
+                    <p>{user.lastName} {user.firstName}</p>
                   </div>
                 </div>
                 <div className="row-span-1 border-b-1 border-borderColor"></div>
                 <div className="row-span-1">
-                  <p className="text-textGray0 font-medium text-sm">Loại tài khoản</p>
+                  <p className="text-textGray0 font-medium text-sm">Ngày sinh</p>
                   <div className="type-account font-medium mt-2 text-base flex justify-between">
-                    <p>Tài khoản cá nhân</p>
+                    <p>{user.dob}</p>
                     <div className="flex items-center mr-5 text-primaryColor">
                       <p className="text-xs font-medium mr-1">Thay đổi</p>
                       <div className="mt-0.7"><FaAngleRight size={9} /></div>
@@ -120,7 +139,7 @@ const InfoAccount = () => {
 
       {/* Additional Information */}
       <div className="row-span-1">
-        <div className="info-sup-account grid grid-rows-9 gap-x-3 ml-2 bg-white w-full h-auto rounded-lg p-2 pb-6 mt-5">
+        <div className="info-sup-account grid grid-rows-6 gap-x-3 ml-2 bg-white w-full h-auto rounded-lg p-2 mt-5">
           {/* Header */}
           <div className="info-sup-header row-span-1 ml-2 items-center mt-2 flex mb-1">
             <div className="text-primaryColor"><FaUserPlus size={20} /></div>
@@ -128,62 +147,51 @@ const InfoAccount = () => {
           </div>
 
           {/* Content */}
-          <div className="info-sup-container row-span-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+          <div className="info-sup-container row-span-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
             <div className="col-span-1 grid grid-rows-4 ml-2 items-center">
               <div className="row-span-1">
                 <p className="text-textGray0 font-medium text-sm">Họ tên chủ tài khoản</p>
                 <div className="type-account font-medium mt-2 text-base">
-                  <p>NGUYỄN ANH TUẤN</p>
+                  <p>{user.lastName} {user.firstName}</p>
                 </div>
               </div>
-              <div className="row-span-1 mt-9 sm:mt-0">
-                <p className="text-textGray0 font-medium text-sm">Giấy chứng thực</p>
+              <div className="row-span-1 mt-4 lg:mt-3">
+                <p className="text-textGray0 font-medium text-sm">Tên người dùng</p>
                 <div className="type-account font-medium mt-2 text-base">
-                  <p></p>
+                  <p>{user.userName ? user.userName : "Không có" } </p>
                 </div>
               </div>
-              <div className="row-span-1 mt-9 sm:mt-0">
-                <p className="text-textGray0 font-medium text-sm">Địa chỉ thường trú</p>
-                <div className="type-account font-medium mt-2 text-base">
-                  <p>HUFLIT</p>
-                </div>
-              </div>
-              <div className="row-span-1 mt-9 sm:mt-0">
+              <div className="row-span-1 mt-7 lg:mt-4">
                 <p className="text-textGray0 font-medium text-sm">Nghề nghiệp</p>
                 <div className="type-account font-medium mt-2 text-base">
-                  <p>Giám đốc E-Wallet</p>
+                  <p>{user.job}</p>
                 </div>
               </div>
             </div>
             <div className="col-span-1 grid grid-rows-4 ml-2 items-center">
-              <div className="row-span-1 mt-9 sm:mt-0">
-                <p className="text-textGray0 font-medium text-sm">Mã số doanh nghiệp</p>
+              <div className="row-span-1 ">
+                <p className="text-textGray0 font-medium text-sm">Giới tính</p>
                 <div className="type-account font-medium mt-2 text-base">
-                  <p>432512</p>
+                  <p>{user.gender ? "Nam" : "Nữ"}</p>
                 </div>
               </div>
-              <div className="row-span-1 mt-9 sm:mt-0">
-                <p className="text-textGray0 font-medium text-sm">Giấy chứng thực</p>
+              <div className="row-span-1 mt-5 lg:mt-3">
+                <p className="text-textGray0 font-medium text-sm">Ngày tạo tài khoản</p>
                 <div className="type-account font-medium mt-2 text-base">
-                  <p></p>
+                  <p>{user.created}</p>
                 </div>
               </div>
-              <div className="row-span-1">
-                <p className="text-textGray0 font-medium text-sm">Địa chỉ liên lạc</p>
+              <div className="row-span-1 mt-8 lg:mt-4">
+                <p className="text-textGray0 font-medium text-sm">Trạng thái tài khoản</p>
                 <div className="type-account font-medium mt-2 text-base">
-                  <p>Nguyễn Văn Cừ, Q5</p>
-                </div>
-              </div>
-              <div className="row-span-1">
-                <p className="text-textGray0 font-medium text-sm">Nghề nghiệp</p>
-                <div className="type-account font-medium mt-2 text-base">
-                  <p></p>
+                  <p>{user.isActive ? "Đang hoạt động" : "Ngưng hoạt động"}</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

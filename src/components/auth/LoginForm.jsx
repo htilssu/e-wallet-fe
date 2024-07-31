@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import "rsuite/dist/rsuite.min.css";
 import { Checkbox } from "rsuite";
 import { MantineProvider, PasswordInput, TextInput } from "@mantine/core";
@@ -6,7 +5,7 @@ import { useForm } from "@mantine/form";
 import { post } from "../../util/requestUtil.js";
 import { useState } from "react";
 
-const LoginForm = ({ imageLink, registrationLink }) => {
+const LoginForm = ({ registrationLink }) => {
   const form = useForm({
     initialValues: {
       userName: "",
