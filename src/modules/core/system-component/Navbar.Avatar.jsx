@@ -1,5 +1,7 @@
-﻿import { useRef } from "react";
+﻿import {useEffect, useRef, useState} from "react";
 import { Link } from "react-router-dom";
+import {get} from "../../../util/requestUtil.js";
+import {toast} from "react-toastify";
 
 const NavbarAvatar = ({ logout }) => {
   const dropDownSection = useRef();
@@ -32,6 +34,16 @@ const NavbarAvatar = ({ logout }) => {
     }
   }
 
+  //lấy thông tin người dùng
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    get("/api/v1/user").then((res) => {
+      setUser(res.data);
+    }).catch((e) => {
+      toast.error('Không lấy thông tin User!');
+    });
+  }, []);
+
   return (
     <div className={"h-full"}>
       <button
@@ -57,9 +69,9 @@ const NavbarAvatar = ({ logout }) => {
         id="user-dropdown"
       >
         <div className="px-4 py-3">
-          <span className="block text-sm text-gray-900">Tran Trung Hiu</span>
+          <span className="block text-sm text-gray-900">{user.lastName +" "+ user.firstName}</span>
           <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">
-            Hisu
+            {user.job}
           </span>
         </div>
         <ul className="py-2" aria-labelledby="user-menu-button">

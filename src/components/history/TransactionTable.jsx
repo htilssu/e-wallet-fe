@@ -1,36 +1,28 @@
-import { useState } from 'react';
-import { MdRemoveRedEye } from "react-icons/md";
-import { FaCreditCard, FaExchangeAlt, FaUndoAlt, FaDownload, FaUpload } from "react-icons/fa";
+import {MdRemoveRedEye} from "react-icons/md";
+import {FaCreditCard, FaExchangeAlt, FaUndoAlt, FaDownload, FaUpload} from "react-icons/fa";
 import {ScrollRestoration, useNavigate} from "react-router-dom";
-import { Pagination, Paper } from '@mantine/core';
+import {Pagination, Paper} from '@mantine/core';
 
 // Các icon và màu sắc trạng thái
 const transactionIcons = {
-    "NẠP TIỀN": <FaDownload />,
-    "RÚT TIỀN": <FaUpload />,
-    "THANH TOÁN": <FaCreditCard />,
-    "CHUYỂN TIỀN": <FaExchangeAlt />,
-    "NHẬN TIỀN": <FaDownload />,
-    "HOÀN TIỀN": <FaUndoAlt />,
+    "NẠP TIỀN": <FaDownload/>,
+    "RÚT TIỀN": <FaUpload/>,
+    "service": <FaCreditCard/>,
+    "transfer": <FaExchangeAlt/>,
+    "NHẬN TIỀN": <FaDownload/>,
+    "HOÀN TIỀN": <FaUndoAlt/>,
 };
 
 const statusColor = {
-    "Thành công": "text-green-500",
+    "PENDING": "text-green-500",
     "Đang xử lý": "text-yellow-500",
     "Thất bại": "text-red-500",
     "Đã hủy": "text-red-500",
     // thêm các trạng thái khác nếu cần
 };
 
-const ITEMS_PER_PAGE = 5; // Số lượng phần tử mỗi trang
-
-const TransactionTable = ({ transactions }) => {
+const TransactionTable = ({page, setPage, transactions, totalPages}) => {
     const navigate = useNavigate();
-    const [currentPage, setCurrentPage] = useState(1);
-
-    // Tính toán dữ liệu cần hiển thị cho trang hiện tại
-    const offset = (currentPage - 1) * ITEMS_PER_PAGE;
-    const paginatedTransactions = transactions.slice(offset, offset + ITEMS_PER_PAGE);
 
     // Hàm xử lý khi chọn giao dịch
     const handleSelectTran = (transaction) => {
@@ -65,20 +57,20 @@ const TransactionTable = ({ transactions }) => {
                         </tr>
                         </thead>
                         <tbody>
-                        {paginatedTransactions.map((transaction, index) => (
+                        {transactions.map((transaction, index) => (
                             <tr key={index} className="border-2 border-gray-200 hover:bg-gray-100 text-center">
-                                <td className="py-6">{transaction.transactionCode}</td>
+                                <td className="py-6">{transaction.id}</td>
                                 <td className="py-6">{transaction.billCode}</td>
                                 <td className="py-6 flex items-center gap-2">
                                     <div className="text-xl text-green-500">
                                         {transactionIcons[transaction.transactionType]}
                                     </div>
-                                    {transaction.transactionType}
+                                    {transaction.transactionType === "transfer" ? "Chuyển Tiền" : "Thanh Toán" }
                                 </td>
                                 <td className={`py-6 ${getAmountColor(transaction.transactionType)}`}>
-                                    {transaction.amount.toLocaleString()} VND
+                                    -{transaction.money} VND
                                 </td>
-                                <td className="py-6">{transaction.createdTime}</td>
+                                <td className="py-6">{transaction.created}</td>
                                 <td className={`py-6 font-semibold ${statusColor[transaction.status]}`}>{transaction.status}</td>
                                 <td className="py-6">{transaction.receiverAccount}</td>
                                 <td className="py-6 font-semibold text-gray-700 hover:text-green-400 cursor-pointer flex justify-center"
@@ -92,16 +84,16 @@ const TransactionTable = ({ transactions }) => {
                 </Paper>
             </div>
             <div className="block lg:hidden">
-            {paginatedTransactions.map((transaction, index) => (
+                {transactions.map((transaction, index) => (
                     <div key={index} className="mb-4 p-4 border rounded-lg shadow-sm bg-gray-50">
                         <div className="flex items-center justify-between">
                             <div className={"flex flex-col"}>
                                 <p className="font-semibold flex items-center gap-2">{transactionIcons[transaction.transactionType]} {transaction.transactionType}</p>
-                                <p className="text-green-500">{transaction.amount.toLocaleString()} VND</p>
+                                <p className="text-green-500">{transaction.money} VND</p>
                             </div>
                         </div>
                         <div className="mt-2">
-                            <p><strong>Mã giao dịch: </strong> {transaction.transactionCode}</p>
+                            <p><strong>Mã giao dịch: </strong> {transaction.id}</p>
                             <p><strong>Mã hoá đơn:</strong> {transaction.billCode}</p>
                             <p>{transaction.status}</p>
                             <p><strong>Chuyển đến: </strong> {transaction.receiverAccount}</p>
@@ -115,15 +107,14 @@ const TransactionTable = ({ transactions }) => {
             </div>
             <div className={"flex justify-center items-center"}>
                 <Pagination
-                    page={currentPage}
-                    onChange={(page) => setCurrentPage(page)}
-                    total={Math.ceil(transactions.length / ITEMS_PER_PAGE)}
-                    size="lg"
-                    style={{ marginTop: '20px' }}
+                    page={page}
+                    onChange={(page) => setPage(page)}
+                    total={totalPages}
+                    style={{marginTop: '20px'}}
                 />
             </div>
 
-            <ScrollRestoration />
+            <ScrollRestoration/>
         </>
     );
 };

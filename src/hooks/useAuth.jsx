@@ -13,6 +13,7 @@ export const AuthProvider = (props) => {
 
   function handleLogout() {
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
     setUser(null);
   }
 
