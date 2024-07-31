@@ -1,15 +1,12 @@
 ﻿import { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import {ScrollRestoration, useLocation, useNavigate} from "react-router-dom";
+import { ScrollRestoration, useLocation, useNavigate } from "react-router-dom";
 import { PinInput } from "@mantine/core";
 import { post } from "../../util/requestUtil.js";
-
-const user = {
-  name: "NGUYỄN ANH TUẤN",
-  email: "tuanmeo980provip@gmail.com",
-};
+import { useAuth } from "../../hooks/useAuth.jsx";
 
 const OTPverification = () => {
+  const { user } = useAuth();
   const [otp, setOtp] = useState("");
   const [resendTime, setResendTime] = useState(50);
   const [error, setError] = useState(null);
@@ -35,12 +32,17 @@ const OTPverification = () => {
 
     try {
       post("/api/v1/otp/verify", {
-        otp: otp
+        otp: otp,
       })
         .then((res) => {
           toast.success(res.data.message);
           setError(null);
-          handleSendMoney();
+          if (type === "service") {
+            handlePaymentRequest();
+          }
+          if (type === "transaction") {
+            handleSendMoney();
+          }
         })
         .catch((e) => {
           setError(e.response.data.message);
@@ -63,7 +65,7 @@ const OTPverification = () => {
 
     try {
       post("/api/v1/otp", {
-        otpType: "email"
+        otpType: "email",
       })
         .then((res) => {
           toast.success(res.data.message);
@@ -92,31 +94,38 @@ const OTPverification = () => {
     }
   }, [resendTime]);
 
+  const handlePaymentRequest = () => {
+    const { pid } = location.state || {};
+    post(`/api/v1/prequest/${pid}`, {}).then((res) => {
+      navigate(`/transactions/transaction/success/${res.data.id}`);
+    });
+  };
+
   const handleSendMoney = () => {
     try {
-        post("/api/v1/transfer", {
-          transactionTarget: "wallet",
-          type: type,
-          sendTo: recipientEmail,
-          money: amount
+      post("/api/v1/transfer", {
+        transactionTarget: "wallet",
+        type: type,
+        sendTo: recipientEmail,
+        money: amount,
+      })
+        .then((res) => {
+          toast.success(res.data.message);
+          setError(null);
+          setLoading(false);
+          //chuyển thành công chuyển sang trang success kèm theo id Transaction
+          navigate(`/transactions/transaction/success/${res.data.id}`);
         })
-            .then((res) => {
-              toast.success(res.data.message);
-              setError(null);
-              setLoading(false);
-              //chuyển thành công chuyển sang trang success kèm theo id Transaction
-              navigate(`/transactions/transaction/success/${res.data.id}`);
-            })
-            .catch((e) => {
-              toast.error("Đã xảy ra lỗi Chuyển tiền!");
-              setError("Đã xảy ra lỗi khi Chuyển tiền! Vui lòng thử lại.");
-              setLoading(false);
-            });
-      } catch (error) {
-        toast.error("Đã xảy ra lỗi trong quá trình Chuyển tiền!");
-        setError("Đã xảy ra lỗi trong quá trình Chuyển tiền!");
-        setLoading(false);
-      }
+        .catch((e) => {
+          toast.error("Đã xảy ra lỗi Chuyển tiền!");
+          setError("Đã xảy ra lỗi khi Chuyển tiền! Vui lòng thử lại.");
+          setLoading(false);
+        });
+    } catch (error) {
+      toast.error("Đã xảy ra lỗi trong quá trình Chuyển tiền!");
+      setError("Đã xảy ra lỗi trong quá trình Chuyển tiền!");
+      setLoading(false);
+    }
   };
 
   return (

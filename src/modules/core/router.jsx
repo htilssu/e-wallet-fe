@@ -75,7 +75,7 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: "servicepayment",
+        path: "servicepayment/:id",
         element: <ServicePayment />,
       },
       {
@@ -126,7 +126,7 @@ export const router = createBrowserRouter([
             path: "customer-manage",
             element: <CustomerManange />,
           },
-        ]
+        ],
       },
       {
         path: "test",
