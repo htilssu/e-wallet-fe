@@ -97,7 +97,7 @@ const PersonalInfoForm = () => {
                                 <div>
                                     <h2 className="text-white text-3xl font-bold mb-2">Thông tin cá nhân</h2>
                                 </div>
-                                <div className="flex items-center text-red-400 hover:text-green-400"
+                                <div className="flex items-center text-green-400 hover:text-red-400"
                                      onClick={handleMpersonal}>
                                     <FaEdit size={20} className="cursor-pointer mr-2"/>
                                     <span className="cursor-pointer">Sửa</span>
@@ -115,10 +115,10 @@ const PersonalInfoForm = () => {
                                 <div>
                                     <div className={"flex flex-grow justify-start items-center gap-2"}>
                                         <p className="text-white text-lg font-semibold">{user.lastName +" "+ user.firstName}</p>
-                                        <HiMiniCheckBadge size={22} className="text-blue-600"/>
+                                        <HiMiniCheckBadge size={22} className= {user.verified ? "text-blue-600" : "text-gray-400"}/>
                                     </div>
                                     <div className="flex items-center">
-                                        <p className="text-emerald-300 font-semibold mr-2">{user.verified ? "Tài khoản đã chứng thực" : "Tài khoản chưa chứng thực"}</p>
+                                        <p className= {user.verified ? "text-emerald-300 font-semibold mr-2" : "text-gray-300 font-semibold mr-2"}>{user.verified ? "Đã chứng thực" : "Chưa chứng thực"}</p>
                                     </div>
                                 </div>
                             </div>
