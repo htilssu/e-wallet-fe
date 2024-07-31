@@ -1,65 +1,8 @@
 import { useState, useEffect } from "react";
 import { CiSearch } from "react-icons/ci";
 import TransactionTable from "./TransactionTable.jsx";
-
-const transactions = [
-    {
-        transactionCode: "138262548",
-        billCode: "NT12345",
-        transactionType: "NẠP TIỀN",
-        amount: 50000,
-        createdTime: "18:44:51 13/07/2024",
-        status: "Thành công",
-        receiverAccount: "tuanmeo980provip@gmail.com"
-    },
-    {
-        transactionCode: "138262548",
-        billCode: "NT12345",
-        transactionType: "NẠP TIỀN",
-        amount: 50000,
-        createdTime: "18:44:51 13/07/2024",
-        status: "Thành công",
-        receiverAccount: "tuanmeo980provip@gmail.com"
-    },
-    {
-        transactionCode: "138096951",
-        billCode: "CT12345",
-        transactionType: "CHUYỂN TIỀN",
-        amount: -100000,
-        createdTime: "22:18:43 07/07/2024",
-        status: "Thất bại",
-        receiverAccount: "tuanmeo980provip@gmail.com"
-    },
-    {
-        transactionCode: "138096943",
-        billCode: "RT12345",
-        transactionType: "RÚT TIỀN",
-        amount: -10000,
-        createdTime: "22:18:30 07/07/2024",
-        status: "Đang xử lý",
-        receiverAccount: "tuanmeo980provip@gmail.com"
-    }
-    ,
-    {
-        transactionCode: "138096943",
-        billCode: "TT12345",
-        transactionType: "THANH TOÁN",
-        amount: -10000,
-        createdTime: "22:18:30 07/07/2024",
-        status: "Thành công",
-        receiverAccount: "tuanmeo980provip@gmail.com"
-    }
-    ,
-    {
-        transactionCode: "138096943",
-        billCode: "NT12345",
-        transactionType: "NHẬN TIỀN",
-        amount: 10000,
-        createdTime: "22:18:30 07/07/2024",
-        status: "Thành công",
-        receiverAccount: "tuanmeo980provip@gmail.com"
-    }
-];
+import {get} from "../../util/requestUtil.js";
+import {toast} from "react-toastify";
 
 //Tạo Thành Phần Button:
 const FilterButton = ({ label, filterValue, currentFilter, onClick }) => {
@@ -78,7 +21,9 @@ const TransactionHistory = () => {
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
     const [isMobile, setIsMobile] = useState(false);
+    const [page, setPage] = useState(0)
     const [transactionTypeFilter, setTransactionTypeFilter] = useState("");
+    const [transactions, setTransactions] = useState([]);
 
     useEffect(() => {
         function handleResize() {
@@ -92,6 +37,14 @@ const TransactionHistory = () => {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
+
+    useEffect(() => {
+        get(`/api/v1/transaction/history?offset=5&page=${page}`).then((res) => {
+            setTransactions(res.data);
+        }).catch((e) => {
+            toast.error('Không thể lấy lịch sử giao dịch!');
+        });
+    }, [page]);
 
     // Hàm lọc các giao dịch dựa trên bộ lọc
     const filterTransactions = (transactions, filter) => {
@@ -290,7 +243,7 @@ const TransactionHistory = () => {
                     {filteredTransactions.length === 0 ? (
                         <NotFound/>
                     ) : (
-                        <TransactionTable transactions={filteredTransactions}/>
+                        <TransactionTable setPage={setPage} transactions={transactions}/>
                     )}
                 </div>
             </div>
