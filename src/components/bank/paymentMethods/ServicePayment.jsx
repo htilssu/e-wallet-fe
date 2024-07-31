@@ -108,7 +108,7 @@ const ServicePayment = () => {
                 Tên dịch vụ
               </label>
               <div className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 bg-gray-50">
-                {partner.partnerName}
+                {partner.serviceName}
               </div>
             </div>
             <div>
