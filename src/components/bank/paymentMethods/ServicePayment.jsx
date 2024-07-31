@@ -1,42 +1,57 @@
 import "react-toastify/dist/ReactToastify.css";
-import { ScrollRestoration, useNavigate } from "react-router-dom";
-import {get, post} from "../../../util/requestUtil.js";
-import {useEffect, useState} from "react";
+import { ScrollRestoration, useNavigate, useParams } from "react-router-dom";
+import { get, post } from "../../../util/requestUtil.js";
+import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
 const ServicePayment = () => {
-
   //lấy thông tin thanh toán
-  const [partner, setPartner] = useState({});
+  const navigate = useNavigate();
+
+  const [partner, setPartner] = useState({
+    partnerEmail: undefined,
+    voucherDiscount: undefined,
+    orderId: undefined,
+    id: undefined,
+    voucherId: undefined,
+    partnerId: undefined,
+    partnerName: undefined,
+  });
+  const { id } = useParams();
   useEffect(() => {
-    get("/api/v1/prequest/100000000000013").then((res) => {
-      setPartner(res.data);
-    }).catch((e) => {
-      toast.error('Không lấy được thông tin Partner!');
-    });
+    get(`/api/v1/prequest/${id}`)
+      .then((res) => {
+        setPartner(res.data);
+      })
+      .catch((e) => {});
   }, []);
 
   //lấy thông tin Ví
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    balance: 0,
+  });
   useEffect(() => {
-    get("/api/v1/user/wallet").then((res) => {
-      setUser(res.data);
-    }).catch((e) => {
-      toast.error('Không lấy thông tin Ví User!');
-    });
+    get("/api/v1/user/wallet")
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((e) => {
+        toast.error("Không lấy thông tin Ví User!");
+      });
   }, []);
 
   //lấy mail của partner
   const recipientEmail = partner.partnerEmail;
-  const  amount = partner.money - partner.voucherDiscount;  //tiền cuối = tiền sp - giá khuyến mãi
+  const amount = partner.money - partner.voucherDiscount; //tiền cuối = tiền sp - giá khuyến mãi
   //chuyen trang
-  const navigate = useNavigate();
   const handleOTPverify = () => {
-    navigate("/otpverification?type=service",{
+    navigate("/otpverification?type=service", {
       state: {
         amount,
-        recipientEmail
-      }
+        recipientEmail,
+        partner,
+        pid: partner.id,
+      },
     });
   };
   const [error, setError] = useState(null);
@@ -45,10 +60,9 @@ const ServicePayment = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true); // Bắt đầu loading
-    if (amount > user.balance)
-    {
+    if (amount > user.balance) {
       setLoading(false);
-      toast.error("Số dư không đủ! Vui lòng nạp thêm tiền.")
+      toast.error("Số dư không đủ! Vui lòng nạp thêm tiền.");
       return;
     }
     try {
@@ -109,8 +123,7 @@ const ServicePayment = () => {
               <label className="block text-gray-800 font-medium">
                 Số Tiền Thanh Toán
               </label>
-              <div
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 bg-gray-50 text-green-500">
+              <div className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 bg-gray-50 text-green-500">
                 {partner.money} VND
               </div>
             </div>
@@ -126,13 +139,12 @@ const ServicePayment = () => {
               <label className="block text-gray-800 font-medium">
                 Giá Khuyến Mãi
               </label>
-              <div
-                  className="text-red-500 mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 bg-gray-50">
+              <div className="text-red-500 mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 bg-gray-50">
                 {partner.voucherDiscount} VND
               </div>
             </div>
             <div
-                className={"flex flex-grow items-center gap-4 justify-between"}
+              className={"flex flex-grow items-center gap-4 justify-between"}
             >
               <label className="text-gray-800 font-semibold text-lg">
                 Tổng Số Tiền:
@@ -143,20 +155,20 @@ const ServicePayment = () => {
             </div>
             <div>
               <button
-                  className="w-full p-2 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600 transition duration-300 text-lg font-semibold"
-                  disabled={loading} // Disable button when loading
+                className="w-full p-2 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600 transition duration-300 text-lg font-semibold"
+                disabled={loading} // Disable button when loading
               >
                 {loading ? "Đang gửi OTP..." : "Xác Nhận Thanh Toán"}
               </button>
             </div>
             {error && (
-                <div className="text-red-500 text-center mt-4">{error}</div>
+              <div className="text-red-500 text-center mt-4">{error}</div>
             )}
           </form>
         </div>
       </div>
-      <ToastContainer stacked/>
-      <ScrollRestoration/>
+      <ToastContainer stacked />
+      <ScrollRestoration />
     </>
   );
 };
